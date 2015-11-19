@@ -37,7 +37,7 @@ a {
 
 
 header {
-  height: 100px;
+  height: $header-sm;
   margin: 0 auto;
   position: fixed;
   top: 0;
@@ -52,7 +52,7 @@ header {
 }
 .wrapper {
   max-width: 900px;
-  height: 100px;
+  height: $header-sm;
   position: fixed;
   left: 0;
   right: 0;
@@ -69,7 +69,7 @@ header {
   display: inline-block;
   bottom: 10px;
   left: 10px;
-  height: 80px;
+  height: $header-sm - 20px;
       @media (min-width: 500px) {
         height: 100px;
     bottom: 70px;
@@ -83,10 +83,13 @@ header {
   bottom: 20px;
 //  line-height: 100px;
   vertical-align: bottom;
-  left: 160px;
+  left: 110px;
+  font-size: 22px;
   margin: 0;
     @media (min-width: 500px) {
     bottom: 80px;
+      left: 160px;
+      font-size: 32px;
   }
 }
 
@@ -94,7 +97,7 @@ header {
   
   position: absolute;
   display: none;
-  top: 100px;
+  top: $header-sm;
   width: 100%;
   background: white; // to stop text from underneath showing
   padding-top: 15px;
@@ -144,7 +147,7 @@ header {
 //
 
 .spacer-top {
-  margin-top: 150px;
+  margin-top: $header-sm + 30px;
     @media (min-width: 500px) {
     margin-top: 280px;
   }
@@ -161,11 +164,16 @@ section {
 
 .profile {
   padding: 10px;
-  border: 5px solid $blue;
-  border-radius: 20px;
+//  border: 5px solid $blue;
   background: rgba(0, 113, 174, 0);
-  max-width: 300px;
+  max-width: 80%;
   margin: 0 auto;
+  @media (min-width: 500px) {
+    max-width: 300px;
+  }
+  img {
+      border-radius: 50%;
+  }
 }
 
 .gallery img {

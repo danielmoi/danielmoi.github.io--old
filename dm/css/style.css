@@ -41,7 +41,7 @@ a:hover {
 }
 
 header {
-  height: 100px;
+  height: 80px;
   margin: 0 auto;
   position: fixed;
   top: 0;
@@ -58,7 +58,7 @@ header {
 
 .wrapper {
   max-width: 900px;
-  height: 100px;
+  height: 80px;
   position: fixed;
   left: 0;
   right: 0;
@@ -76,7 +76,7 @@ header {
   display: inline-block;
   bottom: 10px;
   left: 10px;
-  height: 80px;
+  height: 60px;
 }
 @media (min-width: 500px) {
   .logo {
@@ -91,19 +91,22 @@ header {
   position: absolute;
   bottom: 20px;
   vertical-align: bottom;
-  left: 160px;
+  left: 110px;
+  font-size: 22px;
   margin: 0;
 }
 @media (min-width: 500px) {
   .title h1 {
     bottom: 80px;
+    left: 160px;
+    font-size: 32px;
   }
 }
 
 .nav-list {
   position: absolute;
   display: none;
-  top: 100px;
+  top: 80px;
   width: 100%;
   background: white;
   padding-top: 15px;
@@ -151,7 +154,7 @@ header {
 }
 
 .spacer-top {
-  margin-top: 150px;
+  margin-top: 110px;
 }
 @media (min-width: 500px) {
   .spacer-top {
@@ -169,11 +172,17 @@ section h2 {
 
 .profile {
   padding: 10px;
-  border: 5px solid #0071ae;
-  border-radius: 20px;
   background: rgba(0, 113, 174, 0);
-  max-width: 300px;
+  max-width: 80%;
   margin: 0 auto;
+}
+@media (min-width: 500px) {
+  .profile {
+    max-width: 300px;
+  }
+}
+.profile img {
+  border-radius: 50%;
 }
 
 .gallery img {
