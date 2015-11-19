@@ -23,7 +23,7 @@ body {
 
 
 header {
-  height: 200px;
+  height: 150px;
   margin: 0 auto;
   position: fixed;
   top: 0;
@@ -31,50 +31,61 @@ header {
   right: 0;
   width: 100%;
   background: $blue;
+  @media (min-width: 500px) {
+    height: 200px;
+  }
   
 }
 .wrapper {
   max-width: 900px;
-  height: 200px;
+  height: 150px;
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
   margin: 0 auto;
+  @media (min-width: 500px) {
+    height: 200px;
+  }
 }
 
-svg {
-  display: block;
-  height: 100%;
-  width: 100%;
-}
 
 .logo {
   position: absolute;
   display: inline-block;
-  bottom: 80px;
+  bottom: 25px;
   left: 10px;
   height: 100px;
+      @media (min-width: 500px) {
+    bottom: 70px;
+  }
 }
 
 .title h1 {
   display: inline-block;
   color: white;
   position: absolute;
-  bottom: 80px;
+  bottom: 30px;
 //  line-height: 100px;
   vertical-align: bottom;
   left: 160px;
   margin: 0;
+    @media (min-width: 500px) {
+    bottom: 80px;
+  }
 }
 
 .nav-list {
   
   position: absolute;
-  top: 200px;
+  top: 150px;
   width: 100%;
   background: white; // to stop text from underneath showing
   padding-top: 15px;
+  @media (min-width: 500px) {
+    top: 200px;
+  }
+
 
   ul {
     list-style: none;
@@ -105,7 +116,7 @@ svg {
   color: white;
   font-size: 40px;
   right: 20px;
-  bottom: 80px;
+  bottom: 30px;
   @media (min-width: 500px) {
     display: none;
   }
@@ -116,12 +127,16 @@ svg {
 //
 
 .spacer-top {
-  margin-top: 250px;
-  height: 10px;
+  margin-top: 20px;
+    @media (min-width: 500px) {
+    margin-top: 250px;
+  }
 }
 
 section {
   margin-top: 50px;
+  padding: 10px;
+  
 }
 
 // 
