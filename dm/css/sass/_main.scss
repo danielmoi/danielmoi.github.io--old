@@ -78,12 +78,14 @@ header {
 .nav-list {
   
   position: absolute;
+  display: none;
   top: 150px;
   width: 100%;
   background: white; // to stop text from underneath showing
   padding-top: 15px;
   @media (min-width: 500px) {
     top: 200px;
+    display: block;
   }
 
 
@@ -127,7 +129,7 @@ header {
 //
 
 .spacer-top {
-  margin-top: 20px;
+  margin-top: 150px;
     @media (min-width: 500px) {
     margin-top: 250px;
   }

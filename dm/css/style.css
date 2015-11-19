@@ -86,6 +86,7 @@ header {
 
 .nav-list {
   position: absolute;
+  display: none;
   top: 150px;
   width: 100%;
   background: white;
@@ -94,6 +95,7 @@ header {
 @media (min-width: 500px) {
   .nav-list {
     top: 200px;
+    display: block;
   }
 }
 .nav-list ul {
@@ -133,7 +135,7 @@ header {
 }
 
 .spacer-top {
-  margin-top: 20px;
+  margin-top: 150px;
 }
 @media (min-width: 500px) {
   .spacer-top {
