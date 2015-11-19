@@ -1,0 +1,97 @@
+* {
+  font-family: "Helvetica Neue", "Helvetica", sans-serif;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+* {
+  font-family: "Helvetica Neue", "Helvetica", sans-serif;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  /*  height: 100%;*/
+  height: 2000px;
+}
+
+body {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/*
+header h1 {
+  text-align: center;
+  color: tomato;
+  margin-top: 25%;
+}
+*/
+.wrapper {
+  max-width: 900px;
+}
+
+header {
+  height: 200px;
+  margin: 0 auto;
+  position: fixed;
+}
+
+svg {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.logo {
+  position: absolute;
+  display: inline-block;
+  bottom: 80px;
+  left: 10px;
+  height: 100px;
+}
+
+.title h1 {
+  display: inline-block;
+  color: white;
+  position: absolute;
+  bottom: 80px;
+  vertical-align: bottom;
+  left: 160px;
+  margin: 0;
+}
+
+.menu ul {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0 0 10px 0;
+  border-bottom: 5px solid #0071ae;
+}
+@media (min-width: 500px) {
+  .menu ul {
+    padding-left: 140px;
+  }
+}
+.menu ul li {
+  padding: 15px 0;
+  text-align: center;
+  color: #0071ae;
+}
+@media (min-width: 500px) {
+  .menu ul li {
+    display: inline;
+    padding: 15px 20px;
+  }
+}
+
+.nav-burger {
+  position: absolute;
+  color: white;
+  font-size: 40px;
+  right: 20px;
+  bottom: 80px;
+}
