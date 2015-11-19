@@ -16,7 +16,6 @@
 
 html {
   /*  height: 100%;*/
-  height: 2000px;
   max-width: 100%;
 }
 
@@ -42,7 +41,7 @@ a:hover {
 }
 
 header {
-  height: 150px;
+  height: 100px;
   margin: 0 auto;
   position: fixed;
   top: 0;
@@ -59,7 +58,7 @@ header {
 
 .wrapper {
   max-width: 900px;
-  height: 150px;
+  height: 100px;
   position: fixed;
   left: 0;
   right: 0;
@@ -75,12 +74,13 @@ header {
 .logo {
   position: absolute;
   display: inline-block;
-  bottom: 25px;
+  bottom: 10px;
   left: 10px;
-  height: 100px;
+  height: 80px;
 }
 @media (min-width: 500px) {
   .logo {
+    height: 100px;
     bottom: 70px;
   }
 }
@@ -89,7 +89,7 @@ header {
   display: inline-block;
   color: white;
   position: absolute;
-  bottom: 30px;
+  bottom: 20px;
   vertical-align: bottom;
   left: 160px;
   margin: 0;
@@ -103,7 +103,7 @@ header {
 .nav-list {
   position: absolute;
   display: none;
-  top: 150px;
+  top: 100px;
   width: 100%;
   background: white;
   padding-top: 15px;
@@ -142,7 +142,7 @@ header {
   color: white;
   font-size: 40px;
   right: 20px;
-  bottom: 30px;
+  bottom: 20px;
 }
 @media (min-width: 500px) {
   .nav-burger {
@@ -151,7 +151,7 @@ header {
 }
 
 .spacer-top {
-  margin-top: 190px;
+  margin-top: 150px;
 }
 @media (min-width: 500px) {
   .spacer-top {
