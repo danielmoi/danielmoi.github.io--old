@@ -1,0 +1,54 @@
+body {
+  max-width: 600px;
+  margin: 20px auto;
+  position: relative;
+  padding: 10px;
+}
+
+#list {
+  width: 30%;
+  background-color: tomato;
+  display: inline-block;
+  vertical-align: top;
+  left: 0;
+  color: white;
+  padding: 10px;
+}
+
+#display {
+  width: 60%;
+//  background-color: aliceblue;
+  display: inline-block;
+  height: 300px;
+  margin-left: 10px;
+}
+
+ul {
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  max-height: 300px;
+}
+
+#info {
+  margin-bottom: 20px;
+}
+
+#reset {
+  color: tomato;
+  margin-bottom: 30px;
+}
+
+#counter {
+  color: tomato;
+  font-size: 30px;
+}
+
+#header {
+  color: tomato;
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 30px;
+}
