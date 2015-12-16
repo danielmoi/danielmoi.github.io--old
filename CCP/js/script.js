@@ -71,6 +71,8 @@ for (var i = 0; i < data.length; i++) {
       reset.addEventListener('click', function () {
         counterCopy = 0;
         document.getElementById("counter").innerHTML = 0;
+        document.getElementById("name").innerHTML = "anything";
+        
       });
     };
 
