@@ -72,7 +72,6 @@ for (var i = 0; i < data.length; i++) {
         counterCopy = 0;
         document.getElementById("counter").innerHTML = 0;
         document.getElementById("name").innerHTML = "anything";
-        
       });
     };
 

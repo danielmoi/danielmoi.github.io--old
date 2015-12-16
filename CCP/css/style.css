@@ -34,6 +34,10 @@ ul {
   padding: 0;
 }
 
+li {
+  padding: 10px 0;
+}
+
 img {
   max-width: 100%;
   max-height: 300px;
