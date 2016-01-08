@@ -1,7 +1,27 @@
+/* line 1, sass/_global.scss */
 * {
   font-family: "Helvetica Neue", "Helvetica", sans-serif;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   -ms-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+/* line 1, sass/_main.scss */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 7, sass/_main.scss */
+header h1 {
+  text-align: center;
+}
+
+/* line 11, sass/_main.scss */
+#map {
+  height: 80%;
+  width: 80%;
+  margin: 50px auto;
 }
