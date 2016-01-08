@@ -20,7 +20,8 @@ function initMap() {
     zoom: 16,
     zoomControlOptions: {
         position: google.maps.ControlPosition.RIGHT_TOP
-    }
+    },
+    mapTypeId: google.maps.MapTypeId.HYBRID
   };
   map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
