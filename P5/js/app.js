@@ -11,11 +11,17 @@ var map;
 // This code defines a variable `map`, and assigns its value to a new `Map` object
 // The function `Map()` is a `constructor`
 function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
+  // `mapOptions` must be placed before `map` assignment
+  var mapOptions = {
     center: {
       lat: 35.667,
       lng: 139.762
     },
-    zoom: 16
-  });
+    zoom: 16,
+    zoomControlOptions: {
+        position: google.maps.ControlPosition.RIGHT_TOP
+    }
+  };
+  map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
 }
