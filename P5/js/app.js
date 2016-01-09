@@ -27,7 +27,9 @@ function initMap() {
 
 var ViewModel = function () {
   var self = this;
-  self.name = ko.observableArray([]);
+
+  self.venue_name_object = ko.observable();
+  self.venue_name_array = ko.observableArray();
 
   self.city = ko.observable("Sydney");
 
@@ -39,21 +41,23 @@ var ViewModel = function () {
   self.v = "&v=20140806";
   self.m = "&m=foursquare";
 
-  self.data = function () {
+  self.getStuff = function () {
     $.ajax({
       url: self.start + self.client_id + self.client_secret + self.location + self.v + self.m + self.limit,
 
-      success: function (data) {
-        var i;
-        var len = data.response.venues.length;
-        for (i = 0; i < len; i++) {
-          console.log(data.response.venues[i].name);
+      success: function (returnedData) {
+        for (var key in returnedData.response.venues) {
+          self.venue_name_object(returnedData.response.venues[key].name);
+          self.venue_name_array(returnedData.response.venues[key].name);
+          console.dir(returnedData);
+          console.dir(self.venue_name_object());          
+          console.dir(self.venue_name_array());
         }
-      },
+      }
     });
   };
 
-  
+
 };
 
 ko.applyBindings(new ViewModel());
