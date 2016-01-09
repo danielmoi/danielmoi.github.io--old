@@ -46,9 +46,9 @@ var ViewModel = function () {
       url: self.start + self.client_id + self.client_secret + self.location + self.v + self.m + self.limit,
 
       success: function (returnedData) {
-        for (var key in returnedData.response.venues) {
-          self.venue_name_object(returnedData.response.venues[key].name);
-          self.venue_name_array(returnedData.response.venues[key].name);
+        for (var i = 0; i < returnedData.response.venues.length; i ++) {
+          self.venue_name_object(returnedData.response.venues[i].name);
+          self.venue_name_array.push(returnedData.response.venues[i].name);
           console.dir(returnedData);
           console.dir(self.venue_name_object());          
           console.dir(self.venue_name_array());
