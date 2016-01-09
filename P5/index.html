@@ -25,15 +25,23 @@
 
     </div>
     <div>We are searching within: <span data-bind="text: city"></span></div>
-  <div id="left">
-    <div id="map"></div>
-  </div>
-  <div id="right">
-    <h2>Places</h2>
-    <ul id="places" data-bind="text: venue_name_object"></ul>
-    <ul id="places" data-bind="text: venue_name_array"></ul>
-    
-  </div>
+    <div id="left">
+      <div id="map"></div>
+    </div>
+    <div id="right">
+      <h2>Venues</h2>
+      <ul id="venues" data-bind="foreach: venue_name_array">
+        <li data-bind="text: $data"></li>
+      </ul>
+      <ul data-bind="foreach: venues_object">
+        <li>Venue name:<span data-bind="text: $data.name"></span></li>
+<!--        Because $data is [Object], so $data.name = Object.name... ???? -->
+        <li>Venue lat:<span data-bind="text: $data.location.lat"></span></li>
+      </ul>
+
+
+
+    </div>
   </div>
 
   <script async defer src="https://maps.googleapis.com/maps/api/js?v=3&callback=initMap">

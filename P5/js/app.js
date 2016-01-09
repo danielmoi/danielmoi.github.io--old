@@ -28,8 +28,9 @@ function initMap() {
 var ViewModel = function () {
   var self = this;
 
-  self.venue_name_object = ko.observable();
+  self.venues_object = ko.observable();
   self.venue_name_array = ko.observableArray();
+  self.venue_location = ko.observableArray();
 
   self.city = ko.observable("Sydney");
 
@@ -46,13 +47,17 @@ var ViewModel = function () {
       url: self.start + self.client_id + self.client_secret + self.location + self.v + self.m + self.limit,
 
       success: function (returnedData) {
-        for (var i = 0; i < returnedData.response.venues.length; i ++) {
-          self.venue_name_object(returnedData.response.venues[i].name);
+        for (var i = 0; i < returnedData.response.venues.length; i++) {
           self.venue_name_array.push(returnedData.response.venues[i].name);
-          console.dir(returnedData);
-          console.dir(self.venue_name_object());          
-          console.dir(self.venue_name_array());
+          self.venue_location.push(returnedData.response.venues[i].location);
+          //          console.dir(returnedData);
+          //          console.dir(self.venue_name_array());
+          //          console.log(returnedData.response.venues[i].name);
+          self.venues_object(returnedData.response.venues);
+
         }
+        console.dir(self.venues_object());
+
       }
     });
   };
