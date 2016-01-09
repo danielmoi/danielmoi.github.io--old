@@ -30,14 +30,16 @@
     </div>
     <div id="right">
       <h2>Venues</h2>
-      <ul id="venues" data-bind="foreach: venue_name_array">
-        <li data-bind="text: $data"></li>
-      </ul>
-      <ul data-bind="foreach: venues_object">
+
+      <div data-bind="foreach: venues_object">
+        <p>Venue <span data-bind="text: $index() + 1"></span></p>
+<!--        Because $index is an observable, we need to add ()!!-->
+        <ul>
         <li>Venue name:<span data-bind="text: $data.name"></span></li>
 <!--        Because $data is [Object], so $data.name = Object.name... ???? -->
         <li>Venue lat:<span data-bind="text: $data.location.lat"></span></li>
-      </ul>
+        </ul>
+      </div>
 
 
 
