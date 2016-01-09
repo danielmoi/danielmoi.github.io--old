@@ -9,7 +9,27 @@ header h1 {
 }
 
 #map {
-  height: 80%;
-  width: 80%;
+  height: 500px;
+  width: 100%;
   margin: 50px auto;
+  display: inline-block;
+}
+
+#left {
+  width: 45%;
+  display: inline-block;
+}
+
+#right {
+  width: 45%;
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 20px;
+}
+#container {
+  padding-left: 20px;
+}
+
+input, button {
+  font-size: 1em;
 }

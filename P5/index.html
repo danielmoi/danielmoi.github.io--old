@@ -5,9 +5,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DinerApp</title>
+  <title>DinnerApp</title>
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/lib/jquery-1.11.3.min.js"></script>
 
 
 
@@ -15,14 +14,34 @@
 
 <body>
   <header>
-    <h1>DinerApp v0.1</h1>
+    <h1>DinnerApp v0.1</h1>
   </header>
-  <div id="map"></div>
 
+  <div id="container">
+    <div>
+      <span>Type a location:</span>
+      <input data-bind="text: city, value: city, textInput: city" />
+      <button data-bind="click: data2">Go!</button>
 
-  <script src="js/app.js"></script>
+    </div>
+    <div>We are searching within: <span data-bind="text: city"></span></div>
+  <div id="left">
+    <div id="map"></div>
+  </div>
+  <div id="right">
+    <h2>Places</h2>
+    <ul id="places"></ul>
+  </div>
+  </div>
+
   <script async defer src="https://maps.googleapis.com/maps/api/js?v=3&callback=initMap">
   </script>
+
+  <script src="js/lib/jquery-1.11.3.min.js"></script>
+  <script src="js/lib/knockout-3.2.0.js"></script>
+  <!--Make sure app.js is loaded after libraries-->
+  <script src="js/app.js"></script>
+
 </body>
 
 

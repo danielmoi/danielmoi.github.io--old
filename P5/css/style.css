@@ -21,7 +21,32 @@ header h1 {
 
 /* line 11, sass/_main.scss */
 #map {
-  height: 80%;
-  width: 80%;
+  height: 500px;
+  width: 100%;
   margin: 50px auto;
+  display: inline-block;
+}
+
+/* line 18, sass/_main.scss */
+#left {
+  width: 45%;
+  display: inline-block;
+}
+
+/* line 23, sass/_main.scss */
+#right {
+  width: 45%;
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 20px;
+}
+
+/* line 29, sass/_main.scss */
+#container {
+  padding-left: 20px;
+}
+
+/* line 33, sass/_main.scss */
+input, button {
+  font-size: 1em;
 }
