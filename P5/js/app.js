@@ -37,14 +37,19 @@ var ViewModel = function () {
   self.start = "https://api.foursquare.com/v2/venues/search?";
   self.client_id = "client_id=J4JTA0KKSKB50R1ONPYB3W4H532SPS403IHJKL4VQMNMNKT0";
   self.client_secret = "&client_secret=W5FBT3FTE1X4RVJXPSJJDNNXCYHXL0OMH1TPVINZ40NO0LX5";
+
   self.location = "&near=" + self.city();
+
+
+
+
   self.limit = "&limit=10";
   self.v = "&v=20140806";
   self.m = "&m=foursquare";
 
   self.getStuff = function () {
     $.ajax({
-      url: self.start + self.client_id + self.client_secret + self.location + self.v + self.m + self.limit,
+      url: self.start + self.client_id + self.client_secret + "&near=" + self.city() + self.v + self.m + self.limit,
 
       success: function (returnedData) {
         for (var i = 0; i < returnedData.response.venues.length; i++) {
@@ -57,6 +62,7 @@ var ViewModel = function () {
 
         }
         console.dir(self.venues_object());
+        console.log(self.city());
 
       }
     });
