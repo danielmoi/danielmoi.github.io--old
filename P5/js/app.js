@@ -1,5 +1,6 @@
 var map;
 var service;
+var myGeo;
 
 // there are 2 required options for every map: `center` and `zoom`
 // the JS class that represents a map is the `Map` class
@@ -30,6 +31,8 @@ function initMap() {
     map: map, // my map is called 'map'
     title: "WASSUP!" // what displays upon hover
   });
+  myGeo = new google.maps.Geocoder();
+  
   service = new google.maps.places.PlacesService(map);
 
 }
@@ -79,6 +82,21 @@ var ViewModel = function () {
     });
   };
 
+  self.geoGeo = function () {
+    myGeo.geocode( {address:self.city()}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        console.dir(results);
+      }
+      else {
+        console.log("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  }
+                     
+  
+  
+  
+  
 
 };
 
