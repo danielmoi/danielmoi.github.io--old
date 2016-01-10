@@ -21,6 +21,7 @@ function initMap() {
     },
     mapTypeId: google.maps.MapTypeId.HYBRID
   };
+  
   map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
 }
