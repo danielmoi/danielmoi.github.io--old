@@ -1,4 +1,5 @@
 var map;
+var service;
 
 // there are 2 required options for every map: `center` and `zoom`
 // the JS class that represents a map is the `Map` class
@@ -7,7 +8,7 @@ var map;
 // We create a new instance of this class using the `new` operator
 
 // This code defines a variable `map`, and assigns its value to a new `Map` object
-// The function `Map()` is a `constructor`
+// The function `Map()` is a `constructor` from Google
 function initMap() {
   // `mapOptions` must be placed before `map` assignment
   var mapOptions = {
@@ -21,8 +22,15 @@ function initMap() {
     },
     mapTypeId: google.maps.MapTypeId.HYBRID
   };
-  
+
   map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+  var marker = new google.maps.Marker({
+    position: mapOptions.center, // object literal with 2 properties, lat & lng
+    map: map, // my map is called 'map'
+    title: "WASSUP!" // what displays upon hover
+  });
+  service = new google.maps.places.PlacesService(map);
 
 }
 
@@ -39,7 +47,7 @@ var ViewModel = function () {
   self.client_id = "client_id=J4JTA0KKSKB50R1ONPYB3W4H532SPS403IHJKL4VQMNMNKT0";
   self.client_secret = "&client_secret=W5FBT3FTE1X4RVJXPSJJDNNXCYHXL0OMH1TPVINZ40NO0LX5";
 
-  self.location = ko.computed(function() {
+  self.location = ko.computed(function () {
     return "&near=" + self.city();
   });
 
