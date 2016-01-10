@@ -31,18 +31,26 @@ function initMap() {
     map: map, // my map is called 'map'
     title: "WASSUP!" // what displays upon hover
   });
+
+
+
   myGeo = new google.maps.Geocoder();
-  
+
   service = new google.maps.places.PlacesService(map);
+  
 
 }
 
 var ViewModel = function () {
   var self = this;
 
+
+
   self.venues_object = ko.observable();
   self.venue_name_array = ko.observableArray();
   self.venue_location = ko.observableArray();
+
+  self.googlePlacesArray = ko.observableArray();
 
   self.city = ko.observable("Sydney");
 
@@ -83,20 +91,25 @@ var ViewModel = function () {
   };
 
   self.geoGeo = function () {
-    myGeo.geocode( {address:self.city()}, function(results, status) {
+    myGeo.geocode({
+      address: self.city()
+    }, function (results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
-        console.dir(results);
-      }
-      else {
+        console.dir(results); // results is an Array object
+        self.googlePlacesArray(results);
+        console.log(self.googlePlacesArray());
+      } else {
         console.log("Geocode was not successful for the following reason: " + status);
       }
+
+
     });
   }
-                     
-  
-  
-  
-  
+
+
+
+
+
 
 };
 
