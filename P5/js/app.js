@@ -72,7 +72,7 @@ var ViewModel = function () {
 
           self.explore_object_photos.push(
             returnedData.response.groups[0].items[i].venue.featuredPhotos.items[0].prefix +
-            'width=400' +
+            'width400' +
             returnedData.response.groups[0].items[i].venue.featuredPhotos.items[0].suffix
 
 
