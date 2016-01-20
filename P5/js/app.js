@@ -1,18 +1,11 @@
-var map;
-var service;
-var myGeo;
+var model = [{
+}];
 
-// there are 2 required options for every map: `center` and `zoom`
-// the JS class that represents a map is the `Map` class
-// objects of this class define a single map on a page
-// We may create more than one instance of this class
-// We create a new instance of this class using the `new` operator
+var ViewModel = function () {
+  var self = this;
 
-// This code defines a variable `map`, and assigns its value to a new `Map` object
-// The function `Map()` is a `constructor` from Google
-function initMap() {
-  // `mapOptions` must be placed before `map` assignment
-  var mapOptions = {
+
+  self.mapOptions = {
     center: {
       lat: 35.667,
       lng: 139.762
@@ -24,28 +17,21 @@ function initMap() {
     mapTypeId: google.maps.MapTypeId.HYBRID
   };
 
-  map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
 
-  var marker = new google.maps.Marker({
-    position: mapOptions.center, // object literal with 2 properties, lat & lng
-    map: map, // my map is called 'map'
+  self.marker = new google.maps.Marker({
+    position: self.mapOptions.center, // object literal with 2 properties, lat & lng
+    map: self.myMap, // my map is called 'map'
     title: "WASSUP!" // what displays upon hover
   });
 
 
 
-  myGeo = new google.maps.Geocoder();
+  self.myGeo = new google.maps.Geocoder();
 
-  service = new google.maps.places.PlacesService(map);
+//  self.service = new google.maps.places.PlacesService(self.myMap);
   
-
-}
-
-var ViewModel = function () {
-  var self = this;
-
-
-
+  
   self.venues_object = ko.observable();
   self.venue_name_array = ko.observableArray();
   self.venue_location = ko.observableArray();
@@ -62,7 +48,9 @@ var ViewModel = function () {
     return "&near=" + self.city();
   });
 
-
+  self.mapMap = function () {
+    console.log("mapMap!");
+  };
 
 
   self.limit = "&limit=10";
@@ -113,4 +101,8 @@ var ViewModel = function () {
 
 };
 
-ko.applyBindings(new ViewModel());
+// this applies the data-bind attributes from the whole View to those described in the constructor function ViewModel, and creates a new variable that is an instance of that constructor object (??)
+
+function initMap() {
+  ko.applyBindings(new ViewModel());
+}
