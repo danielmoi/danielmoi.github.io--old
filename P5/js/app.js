@@ -55,6 +55,10 @@ var ViewModel = function () {
   self.limit = "&limit=10";
   self.v = "&v=20140806";
   self.m = "&m=foursquare";
+  
+  
+  // store data
+  self.cafeArray = ko.observableArray();
 
 
   // the GO button
@@ -79,12 +83,16 @@ var ViewModel = function () {
 
 
           console.log(fsdata[i].venue.location.lat);
+          
+          self.cafeArray.push(new Cafe(fsdata, i));
 
 
 
 
         }
 
+        
+        /// MARKER STUFF *******************
         self.marker3 = new google.maps.Marker({
           position: {
             lat: 35.6,
@@ -115,11 +123,16 @@ var ViewModel = function () {
         self.myMap.fitBounds(self.bounds);
 
 
+        // **** END MARKER STUFF ****
+        
+        
         self.explore_object(fsdata);
 
 
         console.log(fsdata);
         console.log(self.marker3.position.lat());
+        
+        console.dir("cafeArray: " + self.cafeArray()[0].photoURL);
 
       }
     });
@@ -134,6 +147,16 @@ var ViewModel = function () {
 
 };
 
+var Cafe = function(data, index) {
+  var cafe = this;
+  cafe.name = data[index].venue.name;
+  cafe.lat = data[index].venue.location.lat;
+  cafe.lng = data[index].venue.location.lng;
+  cafe.rating = data[index].venue.rating;
+  cafe.photoURL = data[index].venue.featuredPhotos.items[0].prefix + 'width200' + data[index].venue.featuredPhotos.items[0].suffix;
+}
+  
+  
 // this applies the data-bind attributes from the whole View to those described in the constructor function ViewModel, and creates a new variable that is an instance of that constructor object (??)
 
 function initMap() {
