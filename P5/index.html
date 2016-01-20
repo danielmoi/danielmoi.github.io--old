@@ -42,7 +42,7 @@
         <li>Venue lat: <span data-bind="text: $data.venue.location.lat"></span></li>
         <li>Venue lng: <span data-bind="text: $data.venue.location.lng"></span></li>
           <li>Rating: <span data-bind="text: $data.venue.rating"></span></li>
-          <li>Photo: <span data-bind="text: $data.venue.photos.count"></span></li>
+          <li>Photo: <span data-bind="text: $parent.explore_object_photos()[$index()]"></span></li>
           
         </ul>
       </div>
