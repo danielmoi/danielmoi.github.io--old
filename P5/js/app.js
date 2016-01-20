@@ -125,21 +125,7 @@ var ViewModel = function () {
     });
   };
 
-  self.geoGeo = function () {
-    myGeo.geocode({
-      address: self.city()
-    }, function (results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        console.dir(results); // results is an Array object
-        self.googlePlacesArray(results);
-        console.log(self.googlePlacesArray());
-      } else {
-        console.log("Geocode was not successful for the following reason: " + status);
-      }
 
-
-    });
-  }
 
 
 
