@@ -33,13 +33,17 @@
     <div id="right">
       <h2>Venues</h2>
 
-      <div data-bind="foreach: venues_object">
+      <div data-bind="foreach: explore_object">
         <p>Venue <span data-bind="text: $index() + 1"></span></p>
 <!--        Because $index is an observable, we need to add ()!!-->
         <ul>
-        <li>Venue name:<span data-bind="text: $data.name"></span></li>
+        <li>Venue name: <span data-bind="text: $data.venue.name"></span></li>
 <!--        Because $data is [Object], so $data.name = Object.name... ???? -->
-        <li>Venue lat:<span data-bind="text: $data.location.lat"></span></li>
+        <li>Venue lat: <span data-bind="text: $data.venue.location.lat"></span></li>
+        <li>Venue lng: <span data-bind="text: $data.venue.location.lng"></span></li>
+          <li>Rating: <span data-bind="text: $data.venue.rating"></span></li>
+          <li>Photo: <span data-bind="text: $data.venue.photos.count"></span></li>
+          
         </ul>
       </div>
 
