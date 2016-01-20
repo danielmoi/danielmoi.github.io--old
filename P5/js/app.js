@@ -24,25 +24,17 @@ var ViewModel = function () {
     title: "WASSUUUP!" // what displays upon hover
   });
 
-  // this creates a new `LatLngBounds` object – not simply a group of coordinates
-  // it is empty, so it will have default values (not related to myMap AT ALL
   self.bounds = new google.maps.LatLngBounds();
 
-  console.log(self.bounds.toString()); // (1, 180), (-1, -180)
 
 
-  // .extend is a method of the `LatLngBounds` constructor
-  // it takes a `LatLng` OBJECT as its argument (which must be created using the `LatLng` constructor!)
-  self.bounds.extend(new google.maps.LatLng(self.mapOptions.center.lat, self.mapOptions.center.lng));
-  
-  console.log(self.bounds.toString()); // (1, 180), (-1, -180)
-  
-  self.myMap.fitBounds(self.bounds);
+//  self.bounds.extend(new google.maps.LatLng(self.mapOptions.center.lat, self.mapOptions.center.lng));
 
 
-  self.myGeo = new google.maps.Geocoder();
+//  self.myMap.fitBounds(self.bounds);
 
-  //  self.service = new google.maps.places.PlacesService(self.myMap);
+
+
 
 
 
@@ -84,6 +76,10 @@ var ViewModel = function () {
 
         self.explore_object_photos([]);
         self.cafeArray([]);
+        self.mapOptions.center = returnedData.response.geocode.center;
+        console.log(self.mapOptions.center);
+
+
 
         var fsdata = returnedData.response.groups[0].items;
 
@@ -96,7 +92,7 @@ var ViewModel = function () {
           );
 
 
-//          console.log(fsdata[i].venue.location.lat);
+          //          console.log(fsdata[i].venue.location.lat);
 
           self.cafeArray.push(new Cafe(fsdata, i, self));
 
@@ -106,39 +102,14 @@ var ViewModel = function () {
         }
 
 
-        /// MARKER STUFF *******************
-        self.marker3 = new google.maps.Marker({
-          position: {
-            lat: 35.6,
-            lng: 139.7
-          },
-          map: self.myMap, // my map is called 'map'
-          title: "FINALLY!" // what displays upon hover
 
-        });
-
-
-
-
-
-        // not sure why the .lat and .lng have to be invoked () ... to yield values
-//        self.bounds.extend(new google.maps.LatLng(self.marker3.position.lat(), self.marker3.position.lng()));
-//        console.log(self.marker3);
-//        console.log(self.marker3.position.lat());
-//        console.log(self.bounds.toString());
-
-
-
-        // **** END MARKER STUFF ****
 
 
         self.explore_object(fsdata);
 
 
-        console.log(fsdata);
-        console.log(self.marker3.position.lat());
+        console.log(returnedData);
 
-        console.log(self.cafeArray().length);
 
       }
     });
@@ -164,7 +135,7 @@ var Cafe = function (data, index, context) {
   cafe.marker = new google.maps.Marker({
     map: context.myMap,
     position: {
-      lat: cafe.lat, 
+      lat: cafe.lat,
       lng: cafe.lng
     }
   });
