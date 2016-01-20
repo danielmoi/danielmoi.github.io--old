@@ -64,11 +64,9 @@ var ViewModel = function () {
       url: self.start + self.client_id + self.client_secret + self.location() + self.v + self.m + self.limit + '&section=coffee&venuePhotos=1',
 
       success: function (returnedData) {
+        
+        self.explore_object_photos([]);
         for (var i = 0; i < returnedData.response.groups[0].items.length; i++) {
-          //          self.venue_name_array.push(returnedData.response.venues[i].name);
-          //          self.venue_location.push(returnedData.response.venues[i].location);
-          //          self.venues_object(returnedData.response.venues);
-          //          console.log(returnedData.response.groups[0].items[i].venue.featuredPhotos.items[0].prefix);
 
           self.explore_object_photos.push(
             returnedData.response.groups[0].items[i].venue.featuredPhotos.items[0].prefix +
@@ -78,7 +76,8 @@ var ViewModel = function () {
 
 
           );
-          console.log(self.explore_object_photos()[i]);
+// the photos' URLs
+//          console.log(self.explore_object_photos()[i]);
 
 
 
@@ -93,7 +92,6 @@ var ViewModel = function () {
         //        
         //        );
         console.log(returnedData.response.groups[0].items);
-        console.log(self.explore_object_photos);
 
       }
     });
