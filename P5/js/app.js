@@ -24,7 +24,20 @@ var ViewModel = function () {
     title: "WASSUUUP!" // what displays upon hover
   });
 
+  // this creates a new `LatLngBounds` object – not simply a group of coordinates
+  // it is empty, so it will have default values (not related to myMap AT ALL
+  self.bounds = new google.maps.LatLngBounds();
 
+  console.log(self.bounds.toString()); // (1, 180), (-1, -180)
+
+
+  // .extend is a method of the `LatLngBounds` constructor
+  // it takes a `LatLng` OBJECT as its argument (which must be created using the `LatLng` constructor!)
+  self.bounds.extend(new google.maps.LatLng(self.mapOptions.center.lat, self.mapOptions.center.lng));
+  
+  console.log(self.bounds.toString()); // (1, 180), (-1, -180)
+  
+  self.myMap.fitBounds(self.bounds);
 
 
   self.myGeo = new google.maps.Geocoder();
@@ -55,8 +68,8 @@ var ViewModel = function () {
   self.limit = "&limit=10";
   self.v = "&v=20140806";
   self.m = "&m=foursquare";
-  
-  
+
+
   // store data
   self.cafeArray = ko.observableArray();
 
@@ -70,6 +83,7 @@ var ViewModel = function () {
 
 
         self.explore_object_photos([]);
+        self.cafeArray([]);
 
         var fsdata = returnedData.response.groups[0].items;
 
@@ -82,16 +96,16 @@ var ViewModel = function () {
           );
 
 
-          console.log(fsdata[i].venue.location.lat);
-          
-          self.cafeArray.push(new Cafe(fsdata, i));
+//          console.log(fsdata[i].venue.location.lat);
+
+          self.cafeArray.push(new Cafe(fsdata, i, self));
 
 
 
 
         }
 
-        
+
         /// MARKER STUFF *******************
         self.marker3 = new google.maps.Marker({
           position: {
@@ -103,36 +117,28 @@ var ViewModel = function () {
 
         });
 
-        // this creates a new `LatLngBounds` object – not simply a group of coordinates
-        // it is empty, so it will have default values (not related to myMap AT ALL
-        self.bounds = new google.maps.LatLngBounds();
-        
-        console.log(self.bounds.toString());
-        // (1, 180), (-1, -180)
-        
-        // .extend is a method of the `LatLngBounds` constructor
-        // it takes a `LatLng` OBJECT as its argument (which must be created using the `LatLng` constructor!)
-        self.bounds.extend(new google.maps.LatLng(self.mapOptions.center.lat, self.mapOptions.center.lng));
+
+
+
 
         // not sure why the .lat and .lng have to be invoked () ... to yield values
-        self.bounds.extend(new google.maps.LatLng(self.marker3.position.lat(), self.marker3.position.lng()));
-        console.log(self.marker3);
-        console.log(self.marker3.position.lat());
-        console.log(self.bounds.toString());
-        
-        self.myMap.fitBounds(self.bounds);
+//        self.bounds.extend(new google.maps.LatLng(self.marker3.position.lat(), self.marker3.position.lng()));
+//        console.log(self.marker3);
+//        console.log(self.marker3.position.lat());
+//        console.log(self.bounds.toString());
+
 
 
         // **** END MARKER STUFF ****
-        
-        
+
+
         self.explore_object(fsdata);
 
 
         console.log(fsdata);
         console.log(self.marker3.position.lat());
-        
-        console.dir("cafeArray: " + self.cafeArray()[0].photoURL);
+
+        console.log(self.cafeArray().length);
 
       }
     });
@@ -147,16 +153,28 @@ var ViewModel = function () {
 
 };
 
-var Cafe = function(data, index) {
+var Cafe = function (data, index, context) {
   var cafe = this;
   cafe.name = data[index].venue.name;
   cafe.lat = data[index].venue.location.lat;
   cafe.lng = data[index].venue.location.lng;
   cafe.rating = data[index].venue.rating;
   cafe.photoURL = data[index].venue.featuredPhotos.items[0].prefix + 'width200' + data[index].venue.featuredPhotos.items[0].suffix;
+
+  cafe.marker = new google.maps.Marker({
+    map: context.myMap,
+    position: {
+      lat: cafe.lat, 
+      lng: cafe.lng
+    }
+  });
+  context.bounds.extend(new google.maps.LatLng(cafe.lat, cafe.lng));
+  context.myMap.fitBounds(context.bounds);
+
+
 }
-  
-  
+
+
 // this applies the data-bind attributes from the whole View to those described in the constructor function ViewModel, and creates a new variable that is an instance of that constructor object (??)
 
 function initMap() {
