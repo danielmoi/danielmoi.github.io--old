@@ -28,12 +28,6 @@ var ViewModel = function () {
 
 
 
-//  self.bounds.extend(new google.maps.LatLng(self.mapOptions.center.lat, self.mapOptions.center.lng));
-
-
-//  self.myMap.fitBounds(self.bounds);
-
-
 
 
 
@@ -42,8 +36,6 @@ var ViewModel = function () {
   self.explore_object = ko.observable();
   self.explore_object_photos = ko.observableArray();
 
-  // create empty objects for map
-  self.marker2 = ko.observable();
 
 
   // set starting city
@@ -76,8 +68,10 @@ var ViewModel = function () {
 
         self.explore_object_photos([]);
         self.cafeArray([]);
+          self.bounds = new google.maps.LatLngBounds();
+
         self.mapOptions.center = returnedData.response.geocode.center;
-        console.log(self.mapOptions.center);
+  self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
 
 
 
