@@ -50,9 +50,7 @@ var ViewModel = function () {
     return "&near=" + self.city();
   });
 
-  self.mapMap = function () {
-    console.log("mapMap!");
-  };
+
 
 
   self.limit = "&limit=10";
@@ -65,6 +63,7 @@ var ViewModel = function () {
 
       success: function (returnedData) {
         
+        
         self.explore_object_photos([]);
         for (var i = 0; i < returnedData.response.groups[0].items.length; i++) {
 
@@ -76,21 +75,10 @@ var ViewModel = function () {
 
 
           );
-// the photos' URLs
-//          console.log(self.explore_object_photos()[i]);
 
-
-
-        }
-        //        console.dir(self.venues_object());
-        //        console.log(self.city());
         self.explore_object(returnedData.response.groups[0].items);
-        //        self.explore_object_photos.push(
-        //          returnedData.response.groups[0].items.featuredPhotos.prefix + 
-        //          'width=400' + 
-        //          returnedData.response.groups[0].items.featuredPhotos.suffix
-        //        
-        //        );
+
+          
         console.log(returnedData.response.groups[0].items);
 
       }
