@@ -95,13 +95,18 @@ var ViewModel = function () {
 
         });
 
+        // this creates a new `LatLngBounds` object – not simply a group of coordinates
+        // it is empty, so it will have default values (not related to myMap AT ALL
         self.bounds = new google.maps.LatLngBounds();
         
         console.log(self.bounds.toString());
         // (1, 180), (-1, -180)
         
+        // .extend is a method of the `LatLngBounds` constructor
+        // it takes a `LatLng` OBJECT as its argument (which must be created using the `LatLng` constructor!)
         self.bounds.extend(new google.maps.LatLng(self.mapOptions.center.lat, self.mapOptions.center.lng));
 
+        // not sure why the .lat and .lng have to be invoked () ... to yield values
         self.bounds.extend(new google.maps.LatLng(self.marker3.position.lat(), self.marker3.position.lng()));
         console.log(self.marker3);
         console.log(self.marker3.position.lat());
