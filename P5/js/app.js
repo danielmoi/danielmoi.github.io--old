@@ -5,7 +5,7 @@ var ViewModel = function () {
 
   self.markerIcon = {
     url: "img/foursquare-icon-16x16.png",
-    size: new google.maps.Size(16,16),
+    size: new google.maps.Size(16, 16)
   };
 
   self.mapOptions = {
@@ -84,8 +84,9 @@ var ViewModel = function () {
 
 
         var fsdata = returnedData.response.groups[0].items;
+        var i;
 
-        for (var i = 0; i < fsdata.length; i++) {
+        for (i = 0; i < fsdata.length; i++) {
 
           if (fsdata[i].venue.featuredPhotos) {
             self.explore_object_photos.push(
@@ -154,7 +155,7 @@ var Cafe = function (data, index, context) {
   cafe.infoWindow = new google.maps.InfoWindow({
     content: '<h3>' + cafe.name + '</h3>'
   });
-  cafe.marker.addListener('click', function() {
+  cafe.marker.addListener('click', function () {
     cafe.infoWindow.open(context.myMap, cafe.marker);
   });
     
@@ -162,7 +163,7 @@ var Cafe = function (data, index, context) {
   context.myMap.fitBounds(context.bounds);
 
 
-}
+};
 
 
 // this applies the data-bind attributes from the whole View to those described in the constructor function ViewModel, and creates a new variable that is an instance of that constructor object (??)
