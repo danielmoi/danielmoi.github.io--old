@@ -17,7 +17,18 @@ var ViewModel = function () {
     zoomControlOptions: {
       position: google.maps.ControlPosition.RIGHT_TOP
     },
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    styles: [
+      {
+        "featureType": "poi",
+        "stylers": [
+          {
+            "visibility": "off"
+          }
+         ]
+      }
+      ]
+
   };
 
   self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
@@ -162,7 +173,7 @@ var Cafe = function (data, index, context) {
   context.myMap.addListener('click', function () {
     cafe.infoWindow.close();
   });
-    
+
   context.bounds.extend(new google.maps.LatLng(cafe.lat, cafe.lng));
   context.myMap.fitBounds(context.bounds);
 
