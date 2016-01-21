@@ -157,6 +157,10 @@ var Cafe = function (data, index, context) {
   });
   cafe.marker.addListener('click', function () {
     cafe.infoWindow.open(context.myMap, cafe.marker);
+    console.log("Marker clicked!");
+  });
+  context.myMap.addListener('click', function () {
+    cafe.infoWindow.close();
   });
     
   context.bounds.extend(new google.maps.LatLng(cafe.lat, cafe.lng));
