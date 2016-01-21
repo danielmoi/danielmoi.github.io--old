@@ -25,7 +25,7 @@ var ViewModel = function () {
   self.marker = new google.maps.Marker({
     position: self.mapOptions.center, // object literal with 2 properties, lat & lng
     map: self.myMap, // my map is called 'map'
-    title: "WASSUUUP!", // what displays upon hover
+    title: "Let's get coffee!", // what displays upon hover
     icon: self.markerIcon
 
   });
@@ -114,7 +114,7 @@ var ViewModel = function () {
         self.explore_object(fsdata);
 
 
-        console.log(returnedData);
+        console.log(self.cafeArray());
 
 
       }
@@ -151,6 +151,13 @@ var Cafe = function (data, index, context) {
     },
     icon: context.markerIcon
   });
+  cafe.infoWindow = new google.maps.InfoWindow({
+    content: '<h3>' + cafe.name + '</h3>'
+  });
+  cafe.marker.addListener('click', function() {
+    cafe.infoWindow.open(context.myMap, cafe.marker);
+  });
+    
   context.bounds.extend(new google.maps.LatLng(cafe.lat, cafe.lng));
   context.myMap.fitBounds(context.bounds);
 
