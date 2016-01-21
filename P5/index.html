@@ -35,22 +35,20 @@
     <div id="right">
       
       <h2>Cafe Details</h2>      
+      <p>(Thanks to <img src="img/foursquare-icon-16x16.png">!)</p>
+
+      <p id="details"></p>
+      
       <h2>Cafe List</h2>
 
-      <div data-bind="foreach: explore_object">
-        <p>Venue <span data-bind="text: $index() + 1"></span></p>
+      <div>
 <!--        Because $index is an observable, we need to add ()!!-->
-        <ul>
-        <li>Venue name: <span data-bind="text: $data.venue.name"></span></li>
-<!--        Because $data is [Object], so $data.name = Object.name... ???? -->
-        <li>Venue lat: <span data-bind="text: $data.venue.location.lat"></span></li>
-        <li>Venue lng: <span data-bind="text: $data.venue.location.lng"></span></li>
-          <li>Rating: <span data-bind="text: $data.venue.rating"></span></li>
-          <li>Photo URL: <span data-bind="text: $parent.explore_object_photos()[$index()]"></span></li>
-          <img data-bind="attr: {src: $parent.explore_object_photos()[$index()]}">
-        </ul>
-      </div>
+        <ol data-bind="foreach: explore_object">
+<!--          each object in the explore_object array is assigned to children element (at that 1st child level) -->
+        <li><span data-bind="text: $data.venue.name, click: $parent.test"></span></li>
 
+        </ol>
+      </div>
 
 
     </div>

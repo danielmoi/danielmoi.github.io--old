@@ -54,6 +54,18 @@ var ViewModel = function () {
   // Create empty objects for Foursquare
   self.explore_object = ko.observable();
   self.explore_object_photos = ko.observableArray();
+  
+  self.test = function(data) {
+    $("#details").html(
+      'Name: ' + data.venue.name + '<br>' + 
+      'Rating: ' + data.venue.rating + '<br>' + 
+      'Featured photo: ' + '<br>' + '<img src="' +               
+        data.venue.featuredPhotos.items[0].prefix +
+       'height200' + 
+        data.venue.featuredPhotos.items[0].suffix + '">');
+    
+    
+  };
 
 
 
@@ -150,9 +162,10 @@ var Cafe = function (data, index, context) {
   cafe.rating = data[index].venue.rating;
 
   if (data[index].venue.featuredPhotos) {
-    cafe.photoURL = data[index].venue.featuredPhotos.items[0].prefix + 'width200' + data[index].venue.featuredPhotos.items[0].suffix;
+    cafe.photoURL = data[index].venue.featuredPhotos.items[0].prefix + 'height200' + data[index].venue.featuredPhotos.items[0].suffix;
   } else {
     console.log("NO PHOTOS!!");
+    cafe.photoURL = "#";
   }
 
   cafe.marker = new google.maps.Marker({
@@ -168,7 +181,10 @@ var Cafe = function (data, index, context) {
   });
   cafe.marker.addListener('click', function () {
     cafe.infoWindow.open(context.myMap, cafe.marker);
-    console.log("Marker clicked!");
+    $("#details").html('Name: ' + cafe.name + '<br>' + 
+      'Rating: ' + cafe.rating + '<br>' + 
+      'Featured photo: ' + '<br>' + '<img src="' +               
+        cafe.photoURL + '">');
   });
   context.myMap.addListener('click', function () {
     cafe.infoWindow.close();
