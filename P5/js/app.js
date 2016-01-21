@@ -3,6 +3,10 @@ var model = [{}];
 var ViewModel = function () {
   var self = this;
 
+  self.markerIcon = {
+    url: "img/foursquare-icon-16x16.png",
+    size: new google.maps.Size(16,16),
+  };
 
   self.mapOptions = {
     center: {
@@ -21,10 +25,14 @@ var ViewModel = function () {
   self.marker = new google.maps.Marker({
     position: self.mapOptions.center, // object literal with 2 properties, lat & lng
     map: self.myMap, // my map is called 'map'
-    title: "WASSUUUP!" // what displays upon hover
+    title: "WASSUUUP!", // what displays upon hover
+    icon: self.markerIcon
+
   });
 
   self.bounds = new google.maps.LatLngBounds();
+
+
 
 
 
@@ -68,10 +76,10 @@ var ViewModel = function () {
 
         self.explore_object_photos([]);
         self.cafeArray([]);
-          self.bounds = new google.maps.LatLngBounds();
+        self.bounds = new google.maps.LatLngBounds();
 
         self.mapOptions.center = returnedData.response.geocode.center;
-  self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
+        self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
 
 
 
@@ -80,13 +88,12 @@ var ViewModel = function () {
         for (var i = 0; i < fsdata.length; i++) {
 
           if (fsdata[i].venue.featuredPhotos) {
-          self.explore_object_photos.push(
-            fsdata[i].venue.featuredPhotos.items[0].prefix +
-            'width200' +
-            fsdata[i].venue.featuredPhotos.items[0].suffix
-          );
-          }
-          else {
+            self.explore_object_photos.push(
+              fsdata[i].venue.featuredPhotos.items[0].prefix +
+              'width200' +
+              fsdata[i].venue.featuredPhotos.items[0].suffix
+            );
+          } else {
             console.log("no photos");
           }
 
@@ -129,11 +136,10 @@ var Cafe = function (data, index, context) {
   cafe.lat = data[index].venue.location.lat;
   cafe.lng = data[index].venue.location.lng;
   cafe.rating = data[index].venue.rating;
-  
+
   if (data[index].venue.featuredPhotos) {
-  cafe.photoURL = data[index].venue.featuredPhotos.items[0].prefix + 'width200' + data[index].venue.featuredPhotos.items[0].suffix;
-  }
-  else {
+    cafe.photoURL = data[index].venue.featuredPhotos.items[0].prefix + 'width200' + data[index].venue.featuredPhotos.items[0].suffix;
+  } else {
     console.log("NO PHOTOS!!");
   }
 
@@ -142,7 +148,8 @@ var Cafe = function (data, index, context) {
     position: {
       lat: cafe.lat,
       lng: cafe.lng
-    }
+    },
+    icon: context.markerIcon
   });
   context.bounds.extend(new google.maps.LatLng(cafe.lat, cafe.lng));
   context.myMap.fitBounds(context.bounds);
