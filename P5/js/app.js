@@ -13,7 +13,7 @@ var ViewModel = function () {
     zoomControlOptions: {
       position: google.maps.ControlPosition.RIGHT_TOP
     },
-    mapTypeId: google.maps.MapTypeId.HYBRID
+    mapTypeId: google.maps.MapTypeId.ROADMAP
   };
 
   self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
@@ -39,7 +39,7 @@ var ViewModel = function () {
 
 
   // set starting city
-  self.city = ko.observable("Sydney");
+  self.city = ko.observable("Tokyo");
 
 
   // Foursquare stuff
@@ -61,7 +61,7 @@ var ViewModel = function () {
   // the GO button
   self.getStuff = function () {
     $.ajax({
-      url: self.start + self.client_id + self.client_secret + self.location() + self.v + self.m + self.limit + '&section=coffee&venuePhotos=1',
+      url: self.start + self.client_id + self.client_secret + self.location() + self.v + self.m + self.limit + '&section=coffee&venuePhotos=1&radius=1000',
 
       success: function (returnedData) {
 
@@ -79,11 +79,16 @@ var ViewModel = function () {
 
         for (var i = 0; i < fsdata.length; i++) {
 
+          if (fsdata[i].venue.featuredPhotos) {
           self.explore_object_photos.push(
             fsdata[i].venue.featuredPhotos.items[0].prefix +
-            'width400' +
+            'width200' +
             fsdata[i].venue.featuredPhotos.items[0].suffix
           );
+          }
+          else {
+            console.log("no photos");
+          }
 
 
           //          console.log(fsdata[i].venue.location.lat);
@@ -124,7 +129,13 @@ var Cafe = function (data, index, context) {
   cafe.lat = data[index].venue.location.lat;
   cafe.lng = data[index].venue.location.lng;
   cafe.rating = data[index].venue.rating;
+  
+  if (data[index].venue.featuredPhotos) {
   cafe.photoURL = data[index].venue.featuredPhotos.items[0].prefix + 'width200' + data[index].venue.featuredPhotos.items[0].suffix;
+  }
+  else {
+    console.log("NO PHOTOS!!");
+  }
 
   cafe.marker = new google.maps.Marker({
     map: context.myMap,
