@@ -163,13 +163,11 @@ var Cafe = function (data, index, context) {
 
 
   cafe.marker.addListener('click', function () {
-    context.myInfo.setContent('<h3>' + cafe.name + '</h3>');
+    context.myInfo.setContent('<h3>' + cafe.name + '</h3>' +
+      '<img src="img/foursquare-icon-16x16.png"> Rating: ' + cafe.rating + '<br>' + 
+      '<img src="' + cafe.photoURL + '">');
+    
     context.myInfo.open(context.myMap, cafe.marker);
-
-    $("#details").html(cafe.name + '<br>' +
-      'Rating: ' + cafe.rating + '<br>');
-
-    $("#photos").html('<img src="' + cafe.photoURL + '">');
 
     context.mapOptions.center = cafe.marker;
 
@@ -192,13 +190,12 @@ var Cafe = function (data, index, context) {
   });
 
   cafe.listClick = function () {
-    context.myInfo.setContent('<h3>' + cafe.name + '</h3>');
+    context.myInfo.setContent('<h3>' + cafe.name + '</h3>' +
+      '<img src="img/foursquare-icon-16x16.png"> Rating: ' + cafe.rating + '<br>' + 
+      '<img src="' + cafe.photoURL + '">');
+    
     context.myInfo.open(context.myMap, cafe.marker);
 
-    $("#details").html(cafe.name + '<br>' +
-      'Rating: ' + cafe.rating + '<br>');
-
-    $("#photos").html('<img src="' + cafe.photoURL + '">');
     context.mapOptions.center = cafe.marker;
 
     cafe.marker.setAnimation(google.maps.Animation.BOUNCE);
