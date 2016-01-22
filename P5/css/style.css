@@ -20,6 +20,13 @@ header h1 {
 }
 
 /* line 11, sass/_main.scss */
+header {
+  background: burlywood;
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
+/* line 17, sass/_main.scss */
 #map {
   height: 500px;
   width: 100%;
@@ -27,13 +34,13 @@ header h1 {
   display: inline-block;
 }
 
-/* line 18, sass/_main.scss */
+/* line 24, sass/_main.scss */
 #left {
   width: 45%;
   display: inline-block;
 }
 
-/* line 23, sass/_main.scss */
+/* line 29, sass/_main.scss */
 #right {
   width: 45%;
   display: inline-block;
@@ -41,12 +48,39 @@ header h1 {
   padding-left: 20px;
 }
 
-/* line 30, sass/_main.scss */
+/* line 36, sass/_main.scss */
 #container {
   padding-left: 20px;
 }
 
-/* line 34, sass/_main.scss */
+/* line 40, sass/_main.scss */
 input, button {
   font-size: 1em;
+}
+
+/* line 44, sass/_main.scss */
+ol#list1 {
+  padding-left: 0;
+}
+
+/* line 48, sass/_main.scss */
+#list1 li {
+  list-style-position: inside;
+  list-style-type: none;
+  padding: 10px 20px 10px 20px;
+}
+
+/* line 55, sass/_main.scss */
+li:hover {
+  cursor: pointer;
+}
+
+/* line 59, sass/_main.scss */
+#list1 li:nth-child(even) {
+  background: antiquewhite;
+}
+
+/* line 63, sass/_main.scss */
+#list1 li:nth-child(odd) {
+  background: burlywood;
 }

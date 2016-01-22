@@ -101,6 +101,8 @@ var ViewModel = function () {
       url: self.start + self.client_id + self.client_secret + self.location() + self.v + self.m + self.limit + '&section=coffee&venuePhotos=1&radius=1000',
 
       success: function (returnedData) {
+        
+        $("#details").html('');
 
 
         self.explore_object_photos([]);
@@ -166,6 +168,8 @@ var ViewModel = function () {
 
 var Cafe = function (data, index, context) {
   var cafe = this;
+  
+  // can't use `cafeArray` object yet – it hasn't been populated yet
   cafe.name = data[index].venue.name;
   cafe.lat = data[index].venue.location.lat;
   cafe.lng = data[index].venue.location.lng;

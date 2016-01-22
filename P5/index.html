@@ -26,6 +26,13 @@
 
     </div>
     <div>We are searching within: <span data-bind="text: city"></span></div>
+    <div>Filter results: 
+      <form>
+        <input placeholder="Type name from Cafe List" size="30">
+      </form>
+    </div>
+    
+    
     <div id="left">
       <div id="map"></div>
     </div>
@@ -45,9 +52,9 @@
 
       <div>
 <!--        Because $index is an observable, we need to add ()!!-->
-        <ol data-bind="foreach: cafeArray">
+        <ol data-bind="foreach: cafeArray" id="list1">
 <!--          each object in the explore_object array is assigned to children element (at that 1st child level) -->
-        <li><span data-bind="text: $data.name, click: $data.center"></span></li>
+        <li data-bind="text: $data.name, click: $data.center"></li>
 
         </ol>
       </div>

@@ -8,6 +8,12 @@ header h1 {
   text-align: center;
 }
 
+header {
+  background: $darkbrown;
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
 #map {
   height: 500px;
   width: 100%;
@@ -33,4 +39,27 @@ header h1 {
 
 input, button {
   font-size: 1em;
+}
+
+ol#list1 {
+  padding-left: 0;
+}
+
+#list1 li {
+  list-style-position: inside;
+  list-style-type: none;
+  padding: 10px 20px 10px 20px;
+
+}
+
+li:hover {
+  cursor: pointer;
+}
+
+#list1 li:nth-child(even) {
+  background: $lightbrown;
+}
+
+#list1 li:nth-child(odd) {
+  background: $darkbrown;
 }
