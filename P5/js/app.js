@@ -186,9 +186,6 @@ var Cafe = function (data, index, context) {
     },
     icon: context.markerIcon
   });
-  cafe.infoWindow = new google.maps.InfoWindow({
-    content: '<h3>' + cafe.name + '</h3>'
-  });
   
   
   cafe.marker.addListener('click', function () {
@@ -202,6 +199,7 @@ var Cafe = function (data, index, context) {
     
     context.mapOptions.center = cafe.marker;
   });
+  
   context.myMap.addListener('click', function () {
     context.myInfo.close();
   });
@@ -215,15 +213,9 @@ var Cafe = function (data, index, context) {
       'Featured photo: ' + '<br>' + '<img src="' +
       cafe.photoURL + '">');
     context.mapOptions.center = cafe.marker;
-    console.log("HHH");
   };
 
-  cafe.test = function () {
-    console.log(cafe.name);
-  };
 
-  cafe.list = "<li>" + cafe.name + "</li>";
-  $("#list1").append(cafe.list);
 
   context.bounds.extend(new google.maps.LatLng(cafe.lat, cafe.lng));
   context.myMap.fitBounds(context.bounds);
