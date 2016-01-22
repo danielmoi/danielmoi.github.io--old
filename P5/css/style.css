@@ -1,4 +1,3 @@
-/* line 1, sass/_global.scss */
 * {
   font-family: "Helvetica Neue", "Helvetica", sans-serif;
   -webkit-box-sizing: border-box;
@@ -7,43 +6,36 @@
   box-sizing: border-box;
 }
 
-/* line 1, sass/_main.scss */
 *, html, body {
   margin: 0;
   padding: 0;
 }
 
-/* line 6, sass/_main.scss */
 html, body {
   font-size: 14px;
   height: 100%;
 }
 
-/* line 10, sass/_main.scss */
 h1 {
   text-align: center;
   font-size: 1.6em;
   padding: 10px 0;
 }
 
-/* line 16, sass/_main.scss */
 h2 {
   font-size: 1.2em;
 }
 
-/* line 22, sass/_main.scss */
 header {
   background: burlywood;
   margin-bottom: 10px;
 }
 
-/* line 26, sass/_main.scss */
 #map-container {
   width: 100%;
   display: inline-block;
 }
 
-/* line 30, sass/_main.scss */
 #map {
   height: 200px;
   width: 100%;
@@ -51,45 +43,38 @@ header {
   display: inline-block;
 }
 @media screen and (min-width: 600px) {
-  /* line 30, sass/_main.scss */
   #map {
     height: 500px;
   }
 }
 
-/* line 45, sass/_main.scss */
 #container {
   padding: 0 10px;
   max-width: 900px;
   margin: 0 auto;
 }
 
-/* line 51, sass/_main.scss */
 input, button {
   font-size: 1em;
   padding: 10px;
 }
 
-/* line 59, sass/_main.scss */
 #cafe {
   display: inline-block;
   width: 40%;
 }
 
-/* line 63, sass/_main.scss */
 #details {
   display: inline-block;
   width: 100%;
   vertical-align: top;
 }
 
-/* line 68, sass/_main.scss */
 #photos {
   display: inline-block;
   max-width: 100%;
 }
 
-/* line 72, sass/_main.scss */
 #list {
   width: 55%;
   display: inline-block;
@@ -97,12 +82,10 @@ input, button {
   padding-left: 10px;
 }
 
-/* line 78, sass/_main.scss */
 ol#list1 {
   padding-left: 0;
 }
 
-/* line 82, sass/_main.scss */
 #list-cafe li {
   list-style-position: inside;
   list-style-type: none;
@@ -111,34 +94,28 @@ ol#list1 {
   border-bottom: burlywood 1px solid;
 }
 
-/* line 90, sass/_main.scss */
 #list-cafe li:hover {
   cursor: pointer;
   background: burlywood;
 }
 
-/* line 95, sass/_main.scss */
 #list-cafe li:first-child {
   border-top: burlywood 1px solid;
 }
 
-/* line 99, sass/_main.scss */
-.selected {
+#list-cafe li.amazing {
   background: burlywood;
 }
 
-/* line 102, sass/_main.scss */
 #search {
   max-width: 100%;
   vertical-align: top;
 }
 
-/* line 109, sass/_main.scss */
 img {
   max-width: 100%;
 }
 
-/* line 113, sass/_main.scss */
 footer {
   text-align: center;
   padding: 20px 0;

@@ -50,7 +50,7 @@
       <!--        Because $index is an observable, we need to add ()!!-->
       <ol data-bind="foreach: cafeArray" id="list-cafe">
         <!--          each object in the explore_object array is assigned to children element (at that 1st child level) -->
-        <li data-bind="text: $data.name, click: $data.listClick, visible: $data.visible"></li>
+        <li data-bind="text: $data.name, click: $data.listClick, visible: $data.visible, css: {amazing: $data.isSelected}"></li>
 
       </ol>
     </div>

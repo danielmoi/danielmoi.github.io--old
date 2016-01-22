@@ -83,12 +83,12 @@ var ViewModel = function () {
     for (i = 0; i < arrayLength; i++) {
       var cafeNameLowerCase = self.cafeArray()[i].name.toLowerCase();
       if (cafeNameLowerCase.indexOf(filterValueLowerCase) < 0) {
-//        console.log("Not found");
+        //        console.log("Not found");
         self.cafeArray()[i].marker.setVisible(false);
         self.cafeArray()[i].visible(false);
 
       } else {
-//        console.log("Found");
+        //        console.log("Found");
         self.cafeArray()[i].marker.setVisible(true);
         self.cafeArray()[i].visible(true);
       }
@@ -142,7 +142,7 @@ var Cafe = function (data, index, context) {
   cafe.lng = data[index].venue.location.lng;
   cafe.rating = data[index].venue.rating;
   cafe.visible = ko.observable(true);
-  cafe.selected = ko.observable(false);
+  cafe.isSelected = ko.observable(false);
 
 
   if (data[index].venue.featuredPhotos) {
@@ -168,7 +168,7 @@ var Cafe = function (data, index, context) {
 
     $("#details").html(cafe.name + '<br>' +
       'Rating: ' + cafe.rating + '<br>');
-    
+
     $("#photos").html('<img src="' + cafe.photoURL + '">');
 
     context.mapOptions.center = cafe.marker;
@@ -178,6 +178,13 @@ var Cafe = function (data, index, context) {
     window.setTimeout(function () {
       cafe.marker.setAnimation(null);
     }, 1500);
+
+    var i;
+    for (i = 0; i < context.cafeArray().length; i++) {
+      context.cafeArray()[i].isSelected(false);
+    }
+    cafe.isSelected(true);
+    
   });
 
   context.myMap.addListener('click', function () {
@@ -190,7 +197,7 @@ var Cafe = function (data, index, context) {
 
     $("#details").html(cafe.name + '<br>' +
       'Rating: ' + cafe.rating + '<br>');
-    
+
     $("#photos").html('<img src="' + cafe.photoURL + '">');
     context.mapOptions.center = cafe.marker;
 
@@ -199,6 +206,13 @@ var Cafe = function (data, index, context) {
     window.setTimeout(function () {
       cafe.marker.setAnimation(null);
     }, 1500);
+
+    var i;
+    for (i = 0; i < context.cafeArray().length; i++) {
+      context.cafeArray()[i].isSelected(false);
+    }
+    cafe.isSelected(true);
+    console.log(cafe.isSelected());
 
   };
 
