@@ -44,7 +44,9 @@ var ViewModel = function () {
   self.myInfo = new google.maps.InfoWindow();
 
   self.bounds = new google.maps.LatLngBounds();
-
+  self.myMap.addListener('click', function () {
+    self.myInfo.close();
+  });
 
 
   // set starting city
@@ -81,12 +83,12 @@ var ViewModel = function () {
     for (i = 0; i < arrayLength; i++) {
       var cafeNameLowerCase = self.cafeArray()[i].name.toLowerCase();
       if (cafeNameLowerCase.indexOf(filterValueLowerCase) < 0) {
-        console.log("Not found");
+//        console.log("Not found");
         self.cafeArray()[i].marker.setVisible(false);
         self.cafeArray()[i].visible(false);
 
       } else {
-        console.log("Found");
+//        console.log("Found");
         self.cafeArray()[i].marker.setVisible(true);
         self.cafeArray()[i].visible(true);
       }
@@ -163,10 +165,10 @@ var Cafe = function (data, index, context) {
     context.myInfo.setContent('<h3>' + cafe.name + '</h3>');
     context.myInfo.open(context.myMap, cafe.marker);
 
-    $("#details").html('Name: ' + cafe.name + '<br>' +
-      'Rating: ' + cafe.rating + '<br>' +
-      'Featured photo: ' + '<br>' + '<img src="' +
-      cafe.photoURL + '">');
+    $("#details").html(cafe.name + '<br>' +
+      'Rating: ' + cafe.rating + '<br>');
+    
+    $("#photos").html('<img src="' + cafe.photoURL + '">');
 
     context.mapOptions.center = cafe.marker;
 
@@ -181,15 +183,14 @@ var Cafe = function (data, index, context) {
     context.myInfo.close();
   });
 
-  cafe.center = function () {
+  cafe.listClick = function () {
     context.myInfo.setContent('<h3>' + cafe.name + '</h3>');
     context.myInfo.open(context.myMap, cafe.marker);
 
-    $("#details").html('Name: ' + cafe.name + '<br>' +
-      'Rating: ' + cafe.rating + '<br>' +
-      'Featured photo: ' + '<br>');
-    $("#photos").html('<img src="' +
-      cafe.photoURL + '">');
+    $("#details").html(cafe.name + '<br>' +
+      'Rating: ' + cafe.rating + '<br>');
+    
+    $("#photos").html('<img src="' + cafe.photoURL + '">');
     context.mapOptions.center = cafe.marker;
 
     cafe.marker.setAnimation(google.maps.Animation.BOUNCE);
@@ -211,5 +212,4 @@ var Cafe = function (data, index, context) {
 
 function initMap() {
   ko.applyBindings(new ViewModel());
-  self.getStuff;
 }

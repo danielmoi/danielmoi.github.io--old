@@ -1,46 +1,80 @@
-html, body {
-  height: 100%;
+*, html, body {
   margin: 0;
   padding: 0;
 }
 
-header h1 {
-  text-align: center;
+html, body {
+  font-size: 14px;
+  height: 100%;
 }
+h1 {
+  text-align: center;
+  font-size: 1.6em;
+  padding: 10px 0;
+}
+
+h2 {
+  font-size: 1.2em;
+}
+
+p {}
 
 header {
   background: $darkbrown;
-  padding: 10px 0;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
-
-#map {
-  height: 500px;
+#map-container {
   width: 100%;
-  margin: 50px auto;
   display: inline-block;
+}
+#map {
+  height: 200px;
+  width: 100%;
+  margin: 5px auto;
+  display: inline-block;
+  
+  @media screen and (min-width: 600px) {
+    height: 500px;
+  }
 }
 
-#left {
-  width: 45%;
-  display: inline-block;
-}
 
-#right {
-  width: 45%;
-  display: inline-block;
-  vertical-align: top;
-  padding-left: 20px;
-}
+
+
 
 #container {
-  padding-left: 20px;
+  padding: 0 10px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 input, button {
   font-size: 1em;
+  padding: 10px;
 }
 
+
+
+
+#cafe {
+  display: inline-block;
+  width: 40%;
+}
+#details {
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+}
+#photos {
+  display: inline-block;
+  max-width: 100%;
+}
+#list {
+  width: 55%;
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 10px;
+}
 ol#list1 {
   padding-left: 0;
 }
@@ -48,7 +82,7 @@ ol#list1 {
 #list1 li {
   list-style-position: inside;
   list-style-type: none;
-  padding: 10px 20px 10px 20px;
+  padding: 5px 10px;
 
 }
 
@@ -63,28 +97,12 @@ li:hover {
 #list1 li:nth-child(odd) {
   background: $darkbrown;
 }
-
-#details {
-  display: inline-block;
-  width: 30%;
-  vertical-align: top;
-}
-
-#photos {
-  display: inline-block;
-  max-width: 40%;
-}
-
 #search {
-  display: inline-block;
-  width: 30%;
+  max-width: 100%;
   vertical-align: top;
 }
 
-#cafe {
-  display: inline-block;
-  width: 60%;
-}
+
 
 img {
   max-width: 100%;

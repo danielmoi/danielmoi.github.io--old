@@ -8,110 +8,129 @@
 }
 
 /* line 1, sass/_main.scss */
-html, body {
-  height: 100%;
+*, html, body {
   margin: 0;
   padding: 0;
 }
 
-/* line 7, sass/_main.scss */
-header h1 {
-  text-align: center;
+/* line 6, sass/_main.scss */
+html, body {
+  font-size: 14px;
+  height: 100%;
 }
 
-/* line 11, sass/_main.scss */
+/* line 10, sass/_main.scss */
+h1 {
+  text-align: center;
+  font-size: 1.6em;
+  padding: 10px 0;
+}
+
+/* line 16, sass/_main.scss */
+h2 {
+  font-size: 1.2em;
+}
+
+/* line 22, sass/_main.scss */
 header {
   background: burlywood;
-  padding: 10px 0;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
-/* line 17, sass/_main.scss */
-#map {
-  height: 500px;
+/* line 26, sass/_main.scss */
+#map-container {
   width: 100%;
-  margin: 50px auto;
   display: inline-block;
 }
 
-/* line 24, sass/_main.scss */
-#left {
-  width: 45%;
+/* line 30, sass/_main.scss */
+#map {
+  height: 200px;
+  width: 100%;
+  margin: 5px auto;
   display: inline-block;
 }
-
-/* line 29, sass/_main.scss */
-#right {
-  width: 45%;
-  display: inline-block;
-  vertical-align: top;
-  padding-left: 20px;
+@media screen and (min-width: 600px) {
+  /* line 30, sass/_main.scss */
+  #map {
+    height: 500px;
+  }
 }
 
-/* line 36, sass/_main.scss */
+/* line 45, sass/_main.scss */
 #container {
-  padding-left: 20px;
+  padding: 0 10px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-/* line 40, sass/_main.scss */
+/* line 51, sass/_main.scss */
 input, button {
   font-size: 1em;
+  padding: 10px;
 }
 
-/* line 44, sass/_main.scss */
+/* line 59, sass/_main.scss */
+#cafe {
+  display: inline-block;
+  width: 40%;
+}
+
+/* line 63, sass/_main.scss */
+#details {
+  display: inline-block;
+  width: 100%;
+  vertical-align: top;
+}
+
+/* line 68, sass/_main.scss */
+#photos {
+  display: inline-block;
+  max-width: 100%;
+}
+
+/* line 72, sass/_main.scss */
+#list {
+  width: 55%;
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 10px;
+}
+
+/* line 78, sass/_main.scss */
 ol#list1 {
   padding-left: 0;
 }
 
-/* line 48, sass/_main.scss */
+/* line 82, sass/_main.scss */
 #list1 li {
   list-style-position: inside;
   list-style-type: none;
-  padding: 10px 20px 10px 20px;
+  padding: 5px 10px;
 }
 
-/* line 55, sass/_main.scss */
+/* line 89, sass/_main.scss */
 li:hover {
   cursor: pointer;
 }
 
-/* line 59, sass/_main.scss */
+/* line 93, sass/_main.scss */
 #list1 li:nth-child(even) {
   background: antiquewhite;
 }
 
-/* line 63, sass/_main.scss */
+/* line 97, sass/_main.scss */
 #list1 li:nth-child(odd) {
   background: burlywood;
 }
 
-/* line 67, sass/_main.scss */
-#details {
-  display: inline-block;
-  width: 30%;
-  vertical-align: top;
-}
-
-/* line 73, sass/_main.scss */
-#photos {
-  display: inline-block;
-  max-width: 40%;
-}
-
-/* line 78, sass/_main.scss */
+/* line 100, sass/_main.scss */
 #search {
-  display: inline-block;
-  width: 30%;
+  max-width: 100%;
   vertical-align: top;
 }
 
-/* line 84, sass/_main.scss */
-#cafe {
-  display: inline-block;
-  width: 60%;
-}
-
-/* line 89, sass/_main.scss */
+/* line 107, sass/_main.scss */
 img {
   max-width: 100%;
 }
