@@ -47,29 +47,6 @@ var ViewModel = function () {
 
 
 
-
-
-
-
-
-
-  // Create empty objects for Foursquare
-
-
-  self.test = function (data) {
-    $("#details").html(
-      'Name: ' + data.venue.name + '<br>' +
-      'Rating: ' + data.venue.rating + '<br>' +
-      'Featured photo: ' + '<br>' + '<img src="' +
-      data.venue.featuredPhotos.items[0].prefix +
-      'height200' +
-      data.venue.featuredPhotos.items[0].suffix + '">');
-
-
-  };
-
-
-
   // set starting city
   self.city = ko.observable("Tokyo");
 
@@ -137,18 +114,13 @@ var ViewModel = function () {
         self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
 
 
-
         var fsdata = returnedData.response.groups[0].items;
         var i;
 
         for (i = 0; i < fsdata.length; i++) {
-
           self.cafeArray.push(new Cafe(fsdata, i, self));
-
           console.log(self.cafeArray()[i].name);
-
         }
-
 
         console.log(self.cafeArray());
 
@@ -156,13 +128,6 @@ var ViewModel = function () {
       }
     });
   };
-
-
-
-
-
-
-
 
 };
 
@@ -233,8 +198,6 @@ var Cafe = function (data, index, context) {
     }, 1500);
 
   };
-
-
 
   context.bounds.extend(new google.maps.LatLng(cafe.lat, cafe.lng));
   context.myMap.fitBounds(context.bounds);
