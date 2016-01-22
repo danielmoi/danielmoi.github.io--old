@@ -84,3 +84,16 @@ li:hover {
 #list1 li:nth-child(odd) {
   background: burlywood;
 }
+
+/* line 67, sass/_main.scss */
+#details {
+  display: inline-block;
+  width: 45%;
+  vertical-align: top;
+}
+
+/* line 73, sass/_main.scss */
+#photos {
+  display: inline-block;
+  width: 30%;
+}

@@ -187,7 +187,8 @@ var Cafe = function (data, index, context) {
 
     $("#details").html('Name: ' + cafe.name + '<br>' +
       'Rating: ' + cafe.rating + '<br>' +
-      'Featured photo: ' + '<br>' + '<img src="' +
+      'Featured photo: ' + '<br>');
+    $("#photos").html('<img src="' +
       cafe.photoURL + '">');
     context.mapOptions.center = cafe.marker;
 

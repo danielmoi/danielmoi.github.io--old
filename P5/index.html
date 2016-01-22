@@ -22,51 +22,51 @@
       <span>Type a location:</span>
       <input data-bind="text: city, value: city, textInput: city" />
       <button data-bind="click: getStuff">Go!</button>
-      
+
 
     </div>
     <div>We are searching within: <span data-bind="text: city"></span></div>
-    <div>Filter results: 
+    <div>Filter results:
       <form>
         <input placeholder="Type name from Cafe List" size="30" data-bind="textInput: filterValue">
       </form>
       <div data-bind="text: filterValueLower"></div>
     </div>
-    
-    
+
+
     <div id="left">
       <div id="map"></div>
     </div>
-    
 
-    
+
+
     <div id="right">
-      
-      <h2>Cafe Details</h2>      
-      <p>(Thanks to <img src="img/foursquare-icon-16x16.png">!)</p>
 
-      <p id="details"></p>
-      
-      
-      
+
       <h2>Cafe List</h2>
 
       <div>
-<!--        Because $index is an observable, we need to add ()!!-->
+        <!--        Because $index is an observable, we need to add ()!!-->
         <ol data-bind="foreach: cafeArray" id="list1">
-<!--          each object in the explore_object array is assigned to children element (at that 1st child level) -->
-        <li data-bind="text: $data.name, click: $data.center, visible: $data.visible"></li>
+          <!--          each object in the explore_object array is assigned to children element (at that 1st child level) -->
+          <li data-bind="text: $data.name, click: $data.center, visible: $data.visible"></li>
 
         </ol>
       </div>
 
 
     </div>
+
+    <h2>Cafe Details</h2>
+    <p>(Thanks to <img src="img/foursquare-icon-16x16.png">!)</p>
+
+    <div id="photos"></div>
+    <div id="details"></div>
   </div>
 
   <script async defer src="https://maps.googleapis.com/maps/api/js?v=3&callback=initMap">
   </script>
-<!--  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTib2HB_1yqDSkx25FkDkCiHnMuRXY9xg&libraries=places"></script>-->
+  <!--  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTib2HB_1yqDSkx25FkDkCiHnMuRXY9xg&libraries=places"></script>-->
   <script src="js/lib/jquery-1.11.3.min.js"></script>
   <script src="js/lib/knockout-3.2.0.js"></script>
   <!--Make sure app.js is loaded after libraries-->

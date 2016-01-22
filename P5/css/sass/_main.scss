@@ -63,3 +63,14 @@ li:hover {
 #list1 li:nth-child(odd) {
   background: $darkbrown;
 }
+
+#details {
+  display: inline-block;
+  width: 45%;
+  vertical-align: top;
+}
+
+#photos {
+  display: inline-block;
+  width: 30%;
+}
