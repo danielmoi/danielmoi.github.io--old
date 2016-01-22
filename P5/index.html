@@ -18,25 +18,35 @@
   </header>
 
   <div id="container">
-    <div id="search">
-      <p>Type a location:</p>
-      <input data-bind="text: city, value: city, textInput: city" />
-      <button data-bind="click: getStuff">Go!</button>
-    </div>
+    <div id="side">
+      <div id="search">
+        <p>Type a location:</p>
+        <input data-bind="text: city, value: city, textInput: city" />
+        <button data-bind="click: getStuff">Go!</button>
+      </div>
 
-    <div id="filter">
-      <div>Filter results:
-        <form>
-          <input placeholder="Type name from Cafe List" size="30" data-bind="textInput: filterValue">
-        </form>
-        <div data-bind="text: filterValueLower"></div>
+      <div id="filter">
+        <div>Filter results:
+          <form>
+            <input placeholder="Type name from Cafe List" size="30" data-bind="textInput: filterValue">
+          </form>
+          <div data-bind="text: filterValueLower"></div>
+        </div>
+      </div>
+
+      <div id="list">
+        <h2>Cafe List</h2>
+
+        <!--        Because $index is an observable, we need to add ()!!-->
+        <ol data-bind="foreach: cafeArray" id="list-cafe">
+          <!--          each object in the explore_object array is assigned to children element (at that 1st child level) -->
+          <li data-bind="text: $data.name, click: $data.listClick, visible: $data.visible, css: {amazing: $data.isSelected}"></li>
+
+        </ol>
       </div>
     </div>
 
-    <div id="map-container">
-      <div id="map"></div>
-    </div>
-
+    <div id="map"></div>
 
     <div id="cafe">
       <h2><img src="img/foursquare-icon-16x16.png"> Secrets</h2>
@@ -44,22 +54,11 @@
       <div id="photos"></div>
     </div>
 
-    <div id="list">
-      <h2>Cafe List</h2>
 
-      <!--        Because $index is an observable, we need to add ()!!-->
-      <ol data-bind="foreach: cafeArray" id="list-cafe">
-        <!--          each object in the explore_object array is assigned to children element (at that 1st child level) -->
-        <li data-bind="text: $data.name, click: $data.listClick, visible: $data.visible, css: {amazing: $data.isSelected}"></li>
-
-      </ol>
-    </div>
 
   </div>
 
-<footer>
-  <p>&copy; 2016 Daniel Moi</p>
-  </footer>
+
 
 
   <script async defer src="https://maps.googleapis.com/maps/api/js?v=3&callback=initMap">

@@ -28,40 +28,52 @@ h2 {
 
 header {
   background: burlywood;
-  margin-bottom: 10px;
-}
-
-#map-container {
-  width: 100%;
-  display: inline-block;
-}
-
-#map {
-  height: 200px;
-  width: 100%;
-  margin: 5px auto;
-  display: inline-block;
-}
-@media screen and (min-width: 600px) {
-  #map {
-    height: 500px;
-  }
+  z-index: 10;
+  height: 60px;
 }
 
 #container {
-  padding: 0 10px;
-  max-width: 900px;
+  max-width: 100%;
   margin: 0 auto;
+  height: 100%;
 }
 
-input, button {
-  font-size: 1em;
+#side {
+  position: absolute;
+  width: 300px;
+  z-index: 10;
   padding: 10px;
+  background: antiquewhite;
+  top: 60px;
 }
 
 #cafe {
   display: inline-block;
-  width: 40%;
+  width: 200px;
+  z-index: 10;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background: antiquewhite;
+  padding: 10px;
+}
+
+#map {
+  height: 100%;
+  z-index: 0;
+}
+
+#list {
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+  z-index: 1;
+}
+
+#search {
+  max-width: 100%;
+  vertical-align: top;
+  z-index: 1;
 }
 
 #details {
@@ -73,13 +85,6 @@ input, button {
 #photos {
   display: inline-block;
   max-width: 100%;
-}
-
-#list {
-  width: 55%;
-  display: inline-block;
-  vertical-align: top;
-  padding-left: 10px;
 }
 
 ol#list1 {
@@ -107,18 +112,11 @@ ol#list1 {
   background: burlywood;
 }
 
-#search {
-  max-width: 100%;
-  vertical-align: top;
+input, button {
+  font-size: 1em;
+  padding: 10px;
 }
 
 img {
   max-width: 100%;
-}
-
-footer {
-  text-align: center;
-  padding: 20px 0;
-  margin-top: 20px;
-  background: antiquewhite;
 }
