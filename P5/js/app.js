@@ -40,6 +40,8 @@ var ViewModel = function () {
     icon: self.markerIcon
 
   });
+  
+  self.myInfo = new google.maps.InfoWindow();
 
   self.bounds = new google.maps.LatLngBounds();
 
@@ -190,25 +192,29 @@ var Cafe = function (data, index, context) {
   
   
   cafe.marker.addListener('click', function () {
-    cafe.infoWindow.close();
-    cafe.infoWindow.open(context.myMap, cafe.marker);
+    context.myInfo.setContent('<h3>' + cafe.name + '</h3>');
+    context.myInfo.open(context.myMap, cafe.marker);
+    
     $("#details").html('Name: ' + cafe.name + '<br>' +
       'Rating: ' + cafe.rating + '<br>' +
       'Featured photo: ' + '<br>' + '<img src="' +
       cafe.photoURL + '">');
-    context.mapOptions.center = cafe.marker.position;
+    
+    context.mapOptions.center = cafe.marker;
   });
   context.myMap.addListener('click', function () {
-    cafe.infoWindow.close();
+    context.myInfo.close();
   });
 
   cafe.center = function () {
-    cafe.infoWindow.open(context.myMap, cafe.marker);
+    context.myInfo.setContent('<h3>' + cafe.name + '</h3>');
+    context.myInfo.open(context.myMap, cafe.marker);
+    
     $("#details").html('Name: ' + cafe.name + '<br>' +
       'Rating: ' + cafe.rating + '<br>' +
       'Featured photo: ' + '<br>' + '<img src="' +
       cafe.photoURL + '">');
-    context.mapOptions.center = cafe.marker.position;
+    context.mapOptions.center = cafe.marker;
     console.log("HHH");
   };
 
