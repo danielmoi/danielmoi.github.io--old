@@ -39,13 +39,16 @@
 
       <p id="details"></p>
       
+      <ul id="list1"></ul>
+      
+      
       <h2>Cafe List</h2>
 
       <div>
 <!--        Because $index is an observable, we need to add ()!!-->
-        <ol data-bind="foreach: explore_object">
+        <ol data-bind="foreach: cafeArray">
 <!--          each object in the explore_object array is assigned to children element (at that 1st child level) -->
-        <li><span data-bind="text: $data.venue.name, click: $parent.test"></span></li>
+        <li><span data-bind="text: $data.name, click: $data.center"></span></li>
 
         </ol>
       </div>

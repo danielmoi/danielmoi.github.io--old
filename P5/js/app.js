@@ -54,17 +54,17 @@ var ViewModel = function () {
   // Create empty objects for Foursquare
   self.explore_object = ko.observable();
   self.explore_object_photos = ko.observableArray();
-  
-  self.test = function(data) {
+
+  self.test = function (data) {
     $("#details").html(
-      'Name: ' + data.venue.name + '<br>' + 
-      'Rating: ' + data.venue.rating + '<br>' + 
-      'Featured photo: ' + '<br>' + '<img src="' +               
-        data.venue.featuredPhotos.items[0].prefix +
-       'height200' + 
-        data.venue.featuredPhotos.items[0].suffix + '">');
-    
-    
+      'Name: ' + data.venue.name + '<br>' +
+      'Rating: ' + data.venue.rating + '<br>' +
+      'Featured photo: ' + '<br>' + '<img src="' +
+      data.venue.featuredPhotos.items[0].prefix +
+      'height200' +
+      data.venue.featuredPhotos.items[0].suffix + '">');
+
+
   };
 
 
@@ -88,6 +88,10 @@ var ViewModel = function () {
   // store data
   self.cafeArray = ko.observableArray();
 
+  for (cafe in self.cafeArray) {
+    console.log("hello");
+  }
+
 
   // the GO button
   self.getStuff = function () {
@@ -99,6 +103,7 @@ var ViewModel = function () {
 
         self.explore_object_photos([]);
         self.cafeArray([]);
+        console.log(self.cafeArray());
         self.bounds = new google.maps.LatLngBounds();
 
         self.mapOptions.center = returnedData.response.geocode.center;
@@ -122,9 +127,12 @@ var ViewModel = function () {
           }
 
 
-          //          console.log(fsdata[i].venue.location.lat);
 
           self.cafeArray.push(new Cafe(fsdata, i, self));
+
+          console.log(self.cafeArray()[i].name);
+
+
 
 
 
@@ -179,16 +187,37 @@ var Cafe = function (data, index, context) {
   cafe.infoWindow = new google.maps.InfoWindow({
     content: '<h3>' + cafe.name + '</h3>'
   });
+  
+  
   cafe.marker.addListener('click', function () {
+    cafe.infoWindow.close();
     cafe.infoWindow.open(context.myMap, cafe.marker);
-    $("#details").html('Name: ' + cafe.name + '<br>' + 
-      'Rating: ' + cafe.rating + '<br>' + 
-      'Featured photo: ' + '<br>' + '<img src="' +               
-        cafe.photoURL + '">');
+    $("#details").html('Name: ' + cafe.name + '<br>' +
+      'Rating: ' + cafe.rating + '<br>' +
+      'Featured photo: ' + '<br>' + '<img src="' +
+      cafe.photoURL + '">');
+    context.mapOptions.center = cafe.marker.position;
   });
   context.myMap.addListener('click', function () {
     cafe.infoWindow.close();
   });
+
+  cafe.center = function () {
+    cafe.infoWindow.open(context.myMap, cafe.marker);
+    $("#details").html('Name: ' + cafe.name + '<br>' +
+      'Rating: ' + cafe.rating + '<br>' +
+      'Featured photo: ' + '<br>' + '<img src="' +
+      cafe.photoURL + '">');
+    context.mapOptions.center = cafe.marker.position;
+    console.log("HHH");
+  };
+
+  cafe.test = function () {
+    console.log(cafe.name);
+  };
+
+  cafe.list = "<li>" + cafe.name + "</li>";
+  $("#list1").append(cafe.list);
 
   context.bounds.extend(new google.maps.LatLng(cafe.lat, cafe.lng));
   context.myMap.fitBounds(context.bounds);
