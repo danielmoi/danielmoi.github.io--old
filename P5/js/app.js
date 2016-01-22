@@ -202,6 +202,12 @@ var Cafe = function (data, index, context) {
       cafe.photoURL + '">');
     
     context.mapOptions.center = cafe.marker;
+    
+    cafe.marker.setAnimation(google.maps.Animation.BOUNCE);
+    
+    window.setTimeout(function () {
+      cafe.marker.setAnimation(null);
+    }, 1500);    
   });
   
   context.myMap.addListener('click', function () {
@@ -217,6 +223,13 @@ var Cafe = function (data, index, context) {
       'Featured photo: ' + '<br>' + '<img src="' +
       cafe.photoURL + '">');
     context.mapOptions.center = cafe.marker;
+    
+    cafe.marker.setAnimation(google.maps.Animation.BOUNCE);
+    
+    window.setTimeout(function () {
+      cafe.marker.setAnimation(null);
+    }, 1500);
+    
   };
 
 
