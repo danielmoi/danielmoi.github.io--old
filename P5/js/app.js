@@ -54,8 +54,7 @@ var ViewModel = function () {
 
 
   // Create empty objects for Foursquare
-  self.explore_object = ko.observable();
-  self.explore_object_photos = ko.observableArray();
+
 
   self.test = function (data) {
     $("#details").html(
@@ -113,8 +112,6 @@ var ViewModel = function () {
         console.log("Found");
         self.cafeArray()[i].marker.setVisible(true);
         self.cafeArray()[i].visible(true);
-
-
       }
     }
   });
@@ -128,9 +125,10 @@ var ViewModel = function () {
       success: function (returnedData) {
 
         $("#details").html('');
+        self.filterValue("");
 
 
-        self.explore_object_photos([]);
+
         self.cafeArray([]);
         console.log(self.cafeArray());
         self.bounds = new google.maps.LatLngBounds();
@@ -145,34 +143,11 @@ var ViewModel = function () {
 
         for (i = 0; i < fsdata.length; i++) {
 
-          if (fsdata[i].venue.featuredPhotos) {
-            self.explore_object_photos.push(
-              fsdata[i].venue.featuredPhotos.items[0].prefix +
-              'width200' +
-              fsdata[i].venue.featuredPhotos.items[0].suffix
-            );
-          } else {
-            console.log("no photos");
-          }
-
-
-
           self.cafeArray.push(new Cafe(fsdata, i, self));
 
           console.log(self.cafeArray()[i].name);
 
-
-
-
-
-
         }
-
-
-
-
-
-        self.explore_object(fsdata);
 
 
         console.log(self.cafeArray());
