@@ -142,6 +142,7 @@ var Cafe = function (data, index, context) {
   cafe.lng = data[index].venue.location.lng;
   cafe.rating = data[index].venue.rating;
   cafe.visible = ko.observable(true);
+  cafe.selected = ko.observable(false);
 
 
   if (data[index].venue.featuredPhotos) {

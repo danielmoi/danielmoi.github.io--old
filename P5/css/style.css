@@ -103,34 +103,45 @@ ol#list1 {
 }
 
 /* line 82, sass/_main.scss */
-#list1 li {
+#list-cafe li {
   list-style-position: inside;
   list-style-type: none;
   padding: 5px 10px;
-}
-
-/* line 89, sass/_main.scss */
-li:hover {
-  cursor: pointer;
-}
-
-/* line 93, sass/_main.scss */
-#list1 li:nth-child(even) {
   background: antiquewhite;
+  border-bottom: burlywood 1px solid;
 }
 
-/* line 97, sass/_main.scss */
-#list1 li:nth-child(odd) {
+/* line 90, sass/_main.scss */
+#list-cafe li:hover {
+  cursor: pointer;
   background: burlywood;
 }
 
-/* line 100, sass/_main.scss */
+/* line 95, sass/_main.scss */
+#list-cafe li:first-child {
+  border-top: burlywood 1px solid;
+}
+
+/* line 99, sass/_main.scss */
+.selected {
+  background: burlywood;
+}
+
+/* line 102, sass/_main.scss */
 #search {
   max-width: 100%;
   vertical-align: top;
 }
 
-/* line 107, sass/_main.scss */
+/* line 109, sass/_main.scss */
 img {
   max-width: 100%;
+}
+
+/* line 113, sass/_main.scss */
+footer {
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 20px;
+  background: antiquewhite;
 }

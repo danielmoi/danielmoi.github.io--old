@@ -48,7 +48,7 @@
       <h2>Cafe List</h2>
 
       <!--        Because $index is an observable, we need to add ()!!-->
-      <ol data-bind="foreach: cafeArray" id="list1">
+      <ol data-bind="foreach: cafeArray" id="list-cafe">
         <!--          each object in the explore_object array is assigned to children element (at that 1st child level) -->
         <li data-bind="text: $data.name, click: $data.listClick, visible: $data.visible"></li>
 
@@ -57,13 +57,10 @@
 
   </div>
 
+<footer>
+  <p>&copy; 2016 Daniel Moi</p>
+  </footer>
 
-  </div>
-
-
-
-
-  </div>
 
   <script async defer src="https://maps.googleapis.com/maps/api/js?v=3&callback=initMap">
   </script>
