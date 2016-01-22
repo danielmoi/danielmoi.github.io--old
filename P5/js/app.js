@@ -40,7 +40,7 @@ var ViewModel = function () {
     icon: self.markerIcon
 
   });
-  
+
   self.myInfo = new google.maps.InfoWindow();
 
   self.bounds = new google.maps.LatLngBounds();
@@ -90,9 +90,34 @@ var ViewModel = function () {
   // store data
   self.cafeArray = ko.observableArray();
 
-  for (cafe in self.cafeArray) {
-    console.log("hello");
-  }
+
+
+  // filter results
+  self.filterValue = ko.observable("");
+  self.filterValueLower = ko.observable(self.filterValue().toLowerCase());
+
+  // use ko.computed so this function runs whenever any observable changes
+  self.filterStuff = ko.computed(function () {
+    var arrayLength = self.cafeArray().length;
+    var filterValueLowerCase = self.filterValue().toLowerCase();
+
+    var i;
+    for (i = 0; i < arrayLength; i++) {
+      var cafeNameLowerCase = self.cafeArray()[i].name.toLowerCase();
+      if (cafeNameLowerCase.indexOf(filterValueLowerCase) < 0) {
+        console.log("Not found");
+        self.cafeArray()[i].marker.setVisible(false);
+        self.cafeArray()[i].visible(false);
+
+      } else {
+        console.log("Found");
+        self.cafeArray()[i].marker.setVisible(true);
+        self.cafeArray()[i].visible(true);
+
+
+      }
+    }
+  });
 
 
   // the GO button
@@ -101,7 +126,7 @@ var ViewModel = function () {
       url: self.start + self.client_id + self.client_secret + self.location() + self.v + self.m + self.limit + '&section=coffee&venuePhotos=1&radius=1000',
 
       success: function (returnedData) {
-        
+
         $("#details").html('');
 
 
@@ -168,12 +193,14 @@ var ViewModel = function () {
 
 var Cafe = function (data, index, context) {
   var cafe = this;
-  
+
   // can't use `cafeArray` object yet – it hasn't been populated yet
   cafe.name = data[index].venue.name;
   cafe.lat = data[index].venue.location.lat;
   cafe.lng = data[index].venue.location.lng;
   cafe.rating = data[index].venue.rating;
+  cafe.visible = ko.observable(true);
+
 
   if (data[index].venue.featuredPhotos) {
     cafe.photoURL = data[index].venue.featuredPhotos.items[0].prefix + 'height200' + data[index].venue.featuredPhotos.items[0].suffix;
@@ -190,26 +217,26 @@ var Cafe = function (data, index, context) {
     },
     icon: context.markerIcon
   });
-  
-  
+
+
   cafe.marker.addListener('click', function () {
     context.myInfo.setContent('<h3>' + cafe.name + '</h3>');
     context.myInfo.open(context.myMap, cafe.marker);
-    
+
     $("#details").html('Name: ' + cafe.name + '<br>' +
       'Rating: ' + cafe.rating + '<br>' +
       'Featured photo: ' + '<br>' + '<img src="' +
       cafe.photoURL + '">');
-    
+
     context.mapOptions.center = cafe.marker;
-    
+
     cafe.marker.setAnimation(google.maps.Animation.BOUNCE);
-    
+
     window.setTimeout(function () {
       cafe.marker.setAnimation(null);
-    }, 1500);    
+    }, 1500);
   });
-  
+
   context.myMap.addListener('click', function () {
     context.myInfo.close();
   });
@@ -217,19 +244,19 @@ var Cafe = function (data, index, context) {
   cafe.center = function () {
     context.myInfo.setContent('<h3>' + cafe.name + '</h3>');
     context.myInfo.open(context.myMap, cafe.marker);
-    
+
     $("#details").html('Name: ' + cafe.name + '<br>' +
       'Rating: ' + cafe.rating + '<br>' +
       'Featured photo: ' + '<br>' + '<img src="' +
       cafe.photoURL + '">');
     context.mapOptions.center = cafe.marker;
-    
+
     cafe.marker.setAnimation(google.maps.Animation.BOUNCE);
-    
+
     window.setTimeout(function () {
       cafe.marker.setAnimation(null);
     }, 1500);
-    
+
   };
 
 
