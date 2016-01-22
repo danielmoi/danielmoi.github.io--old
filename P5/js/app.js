@@ -40,6 +40,8 @@ var ViewModel = function () {
     icon: self.markerIcon
 
   });
+  
+  self.myInfo = new google.maps.InfoWindow();
 
   self.bounds = new google.maps.LatLngBounds();
 
@@ -54,17 +56,17 @@ var ViewModel = function () {
   // Create empty objects for Foursquare
   self.explore_object = ko.observable();
   self.explore_object_photos = ko.observableArray();
-  
-  self.test = function(data) {
+
+  self.test = function (data) {
     $("#details").html(
-      'Name: ' + data.venue.name + '<br>' + 
-      'Rating: ' + data.venue.rating + '<br>' + 
-      'Featured photo: ' + '<br>' + '<img src="' +               
-        data.venue.featuredPhotos.items[0].prefix +
-       'height200' + 
-        data.venue.featuredPhotos.items[0].suffix + '">');
-    
-    
+      'Name: ' + data.venue.name + '<br>' +
+      'Rating: ' + data.venue.rating + '<br>' +
+      'Featured photo: ' + '<br>' + '<img src="' +
+      data.venue.featuredPhotos.items[0].prefix +
+      'height200' +
+      data.venue.featuredPhotos.items[0].suffix + '">');
+
+
   };
 
 
@@ -88,6 +90,10 @@ var ViewModel = function () {
   // store data
   self.cafeArray = ko.observableArray();
 
+  for (cafe in self.cafeArray) {
+    console.log("hello");
+  }
+
 
   // the GO button
   self.getStuff = function () {
@@ -95,10 +101,13 @@ var ViewModel = function () {
       url: self.start + self.client_id + self.client_secret + self.location() + self.v + self.m + self.limit + '&section=coffee&venuePhotos=1&radius=1000',
 
       success: function (returnedData) {
+        
+        $("#details").html('');
 
 
         self.explore_object_photos([]);
         self.cafeArray([]);
+        console.log(self.cafeArray());
         self.bounds = new google.maps.LatLngBounds();
 
         self.mapOptions.center = returnedData.response.geocode.center;
@@ -122,9 +131,12 @@ var ViewModel = function () {
           }
 
 
-          //          console.log(fsdata[i].venue.location.lat);
 
           self.cafeArray.push(new Cafe(fsdata, i, self));
+
+          console.log(self.cafeArray()[i].name);
+
+
 
 
 
@@ -156,6 +168,8 @@ var ViewModel = function () {
 
 var Cafe = function (data, index, context) {
   var cafe = this;
+  
+  // can't use `cafeArray` object yet – it hasn't been populated yet
   cafe.name = data[index].venue.name;
   cafe.lat = data[index].venue.location.lat;
   cafe.lng = data[index].venue.location.lng;
@@ -176,19 +190,36 @@ var Cafe = function (data, index, context) {
     },
     icon: context.markerIcon
   });
-  cafe.infoWindow = new google.maps.InfoWindow({
-    content: '<h3>' + cafe.name + '</h3>'
-  });
+  
+  
   cafe.marker.addListener('click', function () {
-    cafe.infoWindow.open(context.myMap, cafe.marker);
-    $("#details").html('Name: ' + cafe.name + '<br>' + 
-      'Rating: ' + cafe.rating + '<br>' + 
-      'Featured photo: ' + '<br>' + '<img src="' +               
-        cafe.photoURL + '">');
+    context.myInfo.setContent('<h3>' + cafe.name + '</h3>');
+    context.myInfo.open(context.myMap, cafe.marker);
+    
+    $("#details").html('Name: ' + cafe.name + '<br>' +
+      'Rating: ' + cafe.rating + '<br>' +
+      'Featured photo: ' + '<br>' + '<img src="' +
+      cafe.photoURL + '">');
+    
+    context.mapOptions.center = cafe.marker;
   });
+  
   context.myMap.addListener('click', function () {
-    cafe.infoWindow.close();
+    context.myInfo.close();
   });
+
+  cafe.center = function () {
+    context.myInfo.setContent('<h3>' + cafe.name + '</h3>');
+    context.myInfo.open(context.myMap, cafe.marker);
+    
+    $("#details").html('Name: ' + cafe.name + '<br>' +
+      'Rating: ' + cafe.rating + '<br>' +
+      'Featured photo: ' + '<br>' + '<img src="' +
+      cafe.photoURL + '">');
+    context.mapOptions.center = cafe.marker;
+  };
+
+
 
   context.bounds.extend(new google.maps.LatLng(cafe.lat, cafe.lng));
   context.myMap.fitBounds(context.bounds);
