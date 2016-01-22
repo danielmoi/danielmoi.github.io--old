@@ -31,7 +31,26 @@ var ViewModel = function () {
 
   };
 
+
+
   self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
+  self.myMap.panBy(-300, 0);
+
+
+  google.maps.Map.prototype.setCenterWithOffset = function (latlng, offsetX, offsetY) {
+    var map = this;
+    var ov = new google.maps.OverlayView();
+    ov.onAdd = function () {
+      var proj = this.getProjection();
+      var aPoint = proj.fromLatLngToContainerPixel(latlng);
+      aPoint.x = aPoint.x + offsetX;
+      aPoint.y = aPoint.y + offsetY;
+      map.setCenter(proj.fromLatLngToContainerPixel(aPoint));
+    };
+    ov.draw = function () {};
+    ov.setMap(this);
+  };
+
 
   self.marker = new google.maps.Marker({
     position: self.mapOptions.center, // object literal with 2 properties, lat & lng
@@ -114,6 +133,8 @@ var ViewModel = function () {
 
         self.mapOptions.center = returnedData.response.geocode.center;
         self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
+        self.myMap.panBy(-300, 0);
+
 
 
         var fsdata = returnedData.response.groups[0].items;
@@ -164,12 +185,14 @@ var Cafe = function (data, index, context) {
 
   cafe.marker.addListener('click', function () {
     context.myInfo.setContent('<h3>' + cafe.name + '</h3>' +
-      '<img src="img/foursquare-icon-16x16.png"> Rating: ' + cafe.rating + '<br>' + 
+      '<img src="img/foursquare-icon-16x16.png"> Rating: ' + cafe.rating + '<br>' +
       '<img src="' + cafe.photoURL + '">');
-    
+
     context.myInfo.open(context.myMap, cafe.marker);
 
     context.mapOptions.center = cafe.marker;
+    context.myMap.panBy(-300, 0);
+
 
     cafe.marker.setAnimation(google.maps.Animation.BOUNCE);
 
@@ -182,7 +205,7 @@ var Cafe = function (data, index, context) {
       context.cafeArray()[i].isSelected(false);
     }
     cafe.isSelected(true);
-    
+
   });
 
   context.myMap.addListener('click', function () {
@@ -191,12 +214,13 @@ var Cafe = function (data, index, context) {
 
   cafe.listClick = function () {
     context.myInfo.setContent('<h3>' + cafe.name + '</h3>' +
-      '<img src="img/foursquare-icon-16x16.png"> Rating: ' + cafe.rating + '<br>' + 
+      '<img src="img/foursquare-icon-16x16.png"> Rating: ' + cafe.rating + '<br>' +
       '<img src="' + cafe.photoURL + '">');
-    
+
     context.myInfo.open(context.myMap, cafe.marker);
 
     context.mapOptions.center = cafe.marker;
+    context.myMap.panBy(-300, 0);
 
     cafe.marker.setAnimation(google.maps.Animation.BOUNCE);
 
