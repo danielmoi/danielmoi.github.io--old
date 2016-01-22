@@ -66,11 +66,26 @@ li:hover {
 
 #details {
   display: inline-block;
-  width: 45%;
+  width: 30%;
   vertical-align: top;
 }
 
 #photos {
   display: inline-block;
+  max-width: 40%;
+}
+
+#search {
+  display: inline-block;
   width: 30%;
+  vertical-align: top;
+}
+
+#cafe {
+  display: inline-block;
+  width: 60%;
+}
+
+img {
+  max-width: 100%;
 }

@@ -211,4 +211,5 @@ var Cafe = function (data, index, context) {
 
 function initMap() {
   ko.applyBindings(new ViewModel());
+  self.getStuff;
 }

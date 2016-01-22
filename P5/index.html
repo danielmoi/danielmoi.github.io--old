@@ -14,23 +14,30 @@
 
 <body>
   <header>
-    <h1>Coffee App v0.1</h1>
+    <h1>Cafe App v0.1</h1>
   </header>
 
   <div id="container">
-    <div>
+    <div id="search">
       <span>Type a location:</span>
       <input data-bind="text: city, value: city, textInput: city" />
       <button data-bind="click: getStuff">Go!</button>
 
 
+      <div>We are searching within: <span data-bind="text: city"></span></div>
+      <div>Filter results:
+        <form>
+          <input placeholder="Type name from Cafe List" size="30" data-bind="textInput: filterValue">
+        </form>
+        <div data-bind="text: filterValueLower"></div>
+      </div>
     </div>
-    <div>We are searching within: <span data-bind="text: city"></span></div>
-    <div>Filter results:
-      <form>
-        <input placeholder="Type name from Cafe List" size="30" data-bind="textInput: filterValue">
-      </form>
-      <div data-bind="text: filterValueLower"></div>
+
+    <div id="cafe">
+      <h2>Cafe Details</h2>
+      <p>(Thanks to <img src="img/foursquare-icon-16x16.png">!)</p>
+      <div id="photos"></div>
+      <div id="details"></div>
     </div>
 
 
@@ -57,11 +64,9 @@
 
     </div>
 
-    <h2>Cafe Details</h2>
-    <p>(Thanks to <img src="img/foursquare-icon-16x16.png">!)</p>
 
-    <div id="photos"></div>
-    <div id="details"></div>
+
+
   </div>
 
   <script async defer src="https://maps.googleapis.com/maps/api/js?v=3&callback=initMap">
