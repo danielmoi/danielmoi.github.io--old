@@ -45,16 +45,21 @@ var ViewModel = function () {
     icon: self.markerIcon
   });
 
-  self.myInfo = new google.maps.InfoWindow(
-    {
-      maxWidth: 200
-    }
-  );
+  self.myInfo = new google.maps.InfoWindow({
+    maxWidth: 200
+  });
 
   self.bounds = new google.maps.LatLngBounds();
+
+  // close info window when clicking on map
   self.myMap.addListener('click', function () {
     self.myInfo.close();
+    if (window.innerWidth < 400) {
+      console.log("HHHHH");
+      self.navClick();
+    }
   });
+
 
 
   // Set starting objects for app
@@ -72,6 +77,9 @@ var ViewModel = function () {
   self.limit = "&limit=20";
   self.v = "&v=20140806";
   self.m = "&m=foursquare";
+  self.section = '&section=coffee';
+  self.venuePhotos = '&venuePhotos=1';
+  self.radius = '&radius=1000'
 
 
   // Filter functionality
@@ -89,7 +97,7 @@ var ViewModel = function () {
     for (i = 0; i < arrayLength; i++) {
       // close existing info window
       self.myInfo.close();
-      
+
       // look for matches of filterValue in cafeArray.name
       var cafeNameLowerCase = self.cafeArray()[i].name.toLowerCase();
       if (cafeNameLowerCase.indexOf(filterValueLowerCase) < 0) {
@@ -104,19 +112,19 @@ var ViewModel = function () {
       }
     }
   });
-  
+
   // Clear filter button
   self.clearFilter = function () {
     self.filterValue("");
 
   };
-  
+
   // Nav button
   self.navClick = function () {
     $("#side").slideToggle("slow");
     $("#nav-button").toggleClass('fa-chevron-down');
   };
-  
+
   // Error message
   self.message = ko.observable("no errors to report");
 
@@ -124,7 +132,7 @@ var ViewModel = function () {
   // The GO button
   self.getStuff = function () {
     $.ajax({
-      url: self.start + self.client_id + self.client_secret + self.location() + self.v + self.m + self.limit + '&section=coffee&venuePhotos=1&radius=1000',
+      url: self.start + self.client_id + self.client_secret + self.location() + self.v + self.m + self.limit + self.section + self.venuePhotos + self.radius,
 
       success: function (returnedData) {
 
@@ -177,7 +185,7 @@ var Cafe = function (data, index, context) {
     console.log("NO PHOTOS!!");
     cafe.photoURL = "#";
   }
-  
+
   // create marker for cafe
   cafe.marker = new google.maps.Marker({
     map: context.myMap,
@@ -190,7 +198,7 @@ var Cafe = function (data, index, context) {
 
   // add click listener for marker
   cafe.marker.addListener('click', function () {
-    
+
     // The content for Info Window
     context.myInfo.setContent('<h3>' + cafe.name + '</h3>' +
       '<img src="img/foursquare-icon-16x16.png"> Rating: ' + cafe.rating + '<br>' +
@@ -202,11 +210,11 @@ var Cafe = function (data, index, context) {
     // Re-center map
     context.mapOptions.center = cafe.marker;
     context.myMap.panTo(cafe.marker.position);
-//    context.myMap.panBy(-50,-200);
+    //    context.myMap.panBy(-50,-200);
     var div = context.myMap.getDiv();
     console.log(div.offsetHeight);
-    context.myMap.panBy(0, -div.offsetHeight/5);
-    
+    context.myMap.panBy(0, -div.offsetHeight / 5);
+
 
     // Bounce marker
     cafe.marker.setAnimation(google.maps.Animation.BOUNCE);
@@ -221,7 +229,7 @@ var Cafe = function (data, index, context) {
     for (i = 0; i < context.cafeArray().length; i++) {
       context.cafeArray()[i].isSelected(false);
     }
-    
+
     // Make the cafe, whose marker is clicked, selected
     cafe.isSelected(true);
 
@@ -231,7 +239,7 @@ var Cafe = function (data, index, context) {
   context.myMap.addListener('click', function () {
     context.myInfo.close();
   });
-  
+
   // Add click listener to cafes in list
   cafe.listClick = function () {
     context.myInfo.setContent('<h3>' + cafe.name + '</h3>' +
@@ -240,15 +248,15 @@ var Cafe = function (data, index, context) {
 
     // open Info Window
     context.myInfo.open(context.myMap, cafe.marker);
-    
+
     // Re-center map
     context.mapOptions.center = cafe.marker;
     context.myMap.panTo(cafe.marker.position);
-//    context.myMap.panBy(-50,-200);
+    //    context.myMap.panBy(-50,-200);
     var div = context.myMap.getDiv();
     console.log(div.offsetHeight);
-    context.myMap.panBy(0, -div.offsetHeight/5);    
-    
+    context.myMap.panBy(0, -div.offsetHeight / 5);
+
     // start marker bounce
     cafe.marker.setAnimation(google.maps.Animation.BOUNCE);
 
