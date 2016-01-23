@@ -40,7 +40,7 @@ header {
 
 #side {
   position: absolute;
-  width: 300px;
+  width: 250px;
   z-index: 10;
   padding: 10px;
   background: antiquewhite;
@@ -121,7 +121,7 @@ button {
 }
 
 #filter-input, #location-input {
-  width: 75%;
+  width: 70%;
 }
 
 img {

@@ -47,7 +47,12 @@ var ViewModel = function () {
 
   });
 
-  self.myInfo = new google.maps.InfoWindow();
+  self.myInfo = new google.maps.InfoWindow(
+    {
+      maxWidth: 200
+    }
+  );
+
 
   self.bounds = new google.maps.LatLngBounds();
   self.myMap.addListener('click', function () {
@@ -194,6 +199,7 @@ var Cafe = function (data, index, context) {
     $("#photos").html('<img src="' + cafe.photoURL + '">');
 
     context.mapOptions.center = cafe.marker;
+    context.myMap.panTo(cafe.marker.position);
 
 
     cafe.marker.setAnimation(google.maps.Animation.BOUNCE);
@@ -229,6 +235,8 @@ var Cafe = function (data, index, context) {
 
     $("#photos").html('<img src="' + cafe.photoURL + '">');
     context.mapOptions.center = cafe.marker;
+    context.myMap.panTo(cafe.marker.position);
+    
 
     cafe.marker.setAnimation(google.maps.Animation.BOUNCE);
 
