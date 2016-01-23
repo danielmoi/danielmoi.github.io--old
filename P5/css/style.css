@@ -131,6 +131,9 @@ button {
   background: burlywood;
   color: white;
 }
+button:hover {
+  cursor: pointer;
+}
 
 #filter-input, #location-input {
   width: 70%;
@@ -157,4 +160,7 @@ img {
   right: 0;
   background: antiquewhite;
   padding: 10px;
+}
+#nav-button:hover {
+  cursor: pointer;
 }

@@ -136,6 +136,9 @@ input {
 button {
   background: $darkbrown;
   color: white;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 #filter-input, #location-input {
@@ -163,4 +166,7 @@ img {
   right: 0;
   background: $lightbrown;
   padding: 10px;
+  &:hover {
+    cursor: pointer;
+  }
 }
