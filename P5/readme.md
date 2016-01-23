@@ -19,7 +19,7 @@ This is a single page application that shows a map of cafes in a given neighbour
 
 # How to view app
 1. Download the source files from my repo on GitHub: https://github.com/danielmoi/danielmoi.github.io/tree/master/P5
-2. Alternatively, you can try it out online at: danielmoi.github.io/P5/
+2. Alternatively, you can try it out online at: http://danielmoi.github.io/P5/
 
 # Helpful Resources
 1. http://knockoutjs.com/documentation/introduction.html
@@ -27,4 +27,6 @@ This is a single page application that shows a map of cafes in a given neighbour
 3. http://www.aspsnippets.com/Articles/Google-Maps-API-V3-Open-Show-only-one-InfoWindow-at-a-time-and-close-other-InfoWindow.aspx
 4. http://fontawesome.io/
 5. https://developer.foursquare.com/
+----
 
+Thanks for stopping by, and I hope you like the app!
