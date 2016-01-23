@@ -71,7 +71,7 @@ var ViewModel = function () {
   self.location = ko.computed(function () {
     return "&near=" + self.city();
   });
-  self.limit = "&limit=10";
+  self.limit = "&limit=20";
   self.v = "&v=20140806";
   self.m = "&m=foursquare";
 

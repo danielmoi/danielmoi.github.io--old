@@ -42,6 +42,8 @@ header {
   padding: 10px;
   background: $lightbrown;
   top: 60px;
+  overflow: scroll;
+  max-height: 100%;
 }
 
 #cafe {
@@ -66,6 +68,7 @@ header {
   vertical-align: top;
   z-index: 1;
   margin-top: 10px;
+  overflow: scroll;
 }
 
 #search {
