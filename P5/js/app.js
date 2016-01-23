@@ -113,7 +113,8 @@ var ViewModel = function () {
   };
   
   self.navClick = function () {
-    $("#list-container").slideToggle("slow");
+    $("#list").slideToggle("slow");
+    $("#filter").slideToggle("slow");
   };
   
   // error message

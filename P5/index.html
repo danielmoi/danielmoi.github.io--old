@@ -26,7 +26,7 @@
 
 
       </div>
-      <div id="list-container">
+      <div id="list-super-container">
         <div id="search">
           <p>Type a location:</p>
           <form id="location-form">
@@ -35,7 +35,7 @@
           </form>
         </div>
 
-        <div id="filter">
+        <div id="filter" data-bind="visible: cafeArray().length > 0">
           <div>Filter results:
             <form id="filter-form">
               <input id="filter-input" placeholder="Type name from Cafe List" size="30" data-bind="textInput: filterValue">

@@ -20,6 +20,7 @@ h1 {
   text-align: center;
   font-size: 1.6em;
   line-height: 60px;
+  color: white;
 }
 
 h2 {
@@ -28,8 +29,10 @@ h2 {
 
 header {
   background: burlywood;
-  z-index: 10;
+  z-index: 50;
   height: 60px;
+  width: 100%;
+  position: fixed;
 }
 
 #container {
@@ -42,21 +45,10 @@ header {
   position: absolute;
   width: 250px;
   z-index: 10;
-  padding: 10px;
   background: antiquewhite;
   top: 60px;
-  max-height: 100%;
+  max-height: 90%;
   overflow: scroll;
-}
-
-#cafe {
-  display: inline-block;
-  width: 200px;
-  z-index: 10;
-  position: absolute;
-  top: 60px;
-  right: 0;
-  background: antiquewhite;
   padding: 10px;
 }
 
@@ -70,7 +62,11 @@ header {
   display: inline-block;
   vertical-align: top;
   z-index: 1;
-  margin-top: 10px;
+  padding-top: 10px;
+}
+
+#list-super-container {
+  padding-top: 10px;
 }
 
 #search {
@@ -78,6 +74,10 @@ header {
   vertical-align: top;
   z-index: 1;
   margin-top: 30px;
+}
+
+#filter {
+  margin-top: 5px;
 }
 
 ol#list1 {
@@ -142,12 +142,19 @@ img {
 
 #nav-row {
   z-index: 40;
+  position: fixed;
+  width: 250px;
+  top: 60px;
+  padding: 10px;
+  left: 0;
+  background: antiquewhite;
+  border-bottom: 1px solid burlywood;
 }
 
 #nav-button {
   position: absolute;
-  right: 0;
   top: 0;
+  right: 0;
   background: antiquewhite;
   padding: 10px;
 }
