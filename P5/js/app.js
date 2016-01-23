@@ -100,6 +100,12 @@ var ViewModel = function () {
       }
     }
   });
+  
+  // clear filter button
+  self.clearFilter = function () {
+    self.filterValue("");
+
+  };
 
 
   // the GO button
