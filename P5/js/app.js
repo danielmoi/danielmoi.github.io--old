@@ -42,7 +42,7 @@ var ViewModel = function () {
   self.marker = new google.maps.Marker({
     position: self.mapOptions.center, // object literal with 2 properties, lat & lng
     map: self.myMap, // my map is called 'map'
-    title: "Let's get coffee!", // what displays upon hover
+    title: "Click Go! to find some cafes!", // what displays upon hover
     icon: self.markerIcon
 
   });
@@ -115,6 +115,9 @@ var ViewModel = function () {
   self.navClick = function () {
     $("#list-container").slideToggle("slow");
   };
+  
+  // error message
+  self.message = ko.observable("no errors to report");
 
 
   // the GO button
@@ -150,6 +153,9 @@ var ViewModel = function () {
         console.log(self.cafeArray());
 
 
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        self.message(textStatus + '–' + errorThrown);
       }
     });
   };
@@ -166,11 +172,13 @@ var Cafe = function (data, index, context) {
   cafe.rating = data[index].venue.rating;
   cafe.visible = ko.observable(true);
   cafe.isSelected = ko.observable(false);
+  context.message("no errors to report");
 
 
   if (data[index].venue.featuredPhotos) {
     cafe.photoURL = data[index].venue.featuredPhotos.items[0].prefix + 'height200' + data[index].venue.featuredPhotos.items[0].suffix;
   } else {
+    context.message("sorry, no featured photos available");
     console.log("NO PHOTOS!!");
     cafe.photoURL = "#";
   }

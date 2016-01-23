@@ -105,6 +105,16 @@ ol#list1 {
   background: burlywood;
 }
 
+#footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  background: antiquewhite;
+  z-index: 40;
+  padding-left: 5px;
+}
+
 input, button {
   font-size: 1em;
   padding: 10px;
