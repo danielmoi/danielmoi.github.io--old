@@ -27,6 +27,7 @@ This is a single page application that shows a map of cafes in a given neighbour
 3. http://www.aspsnippets.com/Articles/Google-Maps-API-V3-Open-Show-only-one-InfoWindow-at-a-time-and-close-other-InfoWindow.aspx
 4. http://fontawesome.io/
 5. https://developer.foursquare.com/
+
 ----
 
 Thanks for stopping by, and I hope you like the app!
