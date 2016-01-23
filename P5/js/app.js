@@ -1,8 +1,13 @@
+// ** The model for app **
+// Empty because all data is dynamically generated
 var model = [{}];
 
+
+// ** The viewmodel for app **
 var ViewModel = function () {
   var self = this;
 
+  // Google Map
   self.markerIcon = {
     url: "img/foursquare-icon-16x16.png",
     size: new google.maps.Size(16, 16)
@@ -31,20 +36,13 @@ var ViewModel = function () {
     ]
   };
 
-
-
   self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
-
-
-
-
 
   self.marker = new google.maps.Marker({
     position: self.mapOptions.center, // object literal with 2 properties, lat & lng
     map: self.myMap, // my map is called 'map'
     title: "Click Go! to find some cafes!", // what displays upon hover
     icon: self.markerIcon
-
   });
 
   self.myInfo = new google.maps.InfoWindow(
@@ -53,18 +51,18 @@ var ViewModel = function () {
     }
   );
 
-
   self.bounds = new google.maps.LatLngBounds();
   self.myMap.addListener('click', function () {
     self.myInfo.close();
   });
 
 
-  // set starting city
+  // Set starting objects for app
   self.city = ko.observable("Tokyo");
+  self.cafeArray = ko.observableArray();
 
 
-  // Foursquare stuff
+  // Foursquare 
   self.start = "https://api.foursquare.com/v2/venues/explore?";
   self.client_id = "client_id=J4JTA0KKSKB50R1ONPYB3W4H532SPS403IHJKL4VQMNMNKT0";
   self.client_secret = "&client_secret=W5FBT3FTE1X4RVJXPSJJDNNXCYHXL0OMH1TPVINZ40NO0LX5";
@@ -76,12 +74,7 @@ var ViewModel = function () {
   self.m = "&m=foursquare";
 
 
-  // store data
-  self.cafeArray = ko.observableArray();
-
-
-
-  // filter results
+  // Filter functionality
   self.filterValue = ko.observable("");
   self.filterValueLower = ko.observable(self.filterValue().toLowerCase());
 
@@ -106,42 +99,37 @@ var ViewModel = function () {
     }
   });
   
-  // clear filter button
+  // Clear filter button
   self.clearFilter = function () {
     self.filterValue("");
 
   };
   
+  // Nav button
   self.navClick = function () {
     $("#list").slideToggle("slow");
     $("#filter").slideToggle("slow");
   };
   
-  // error message
+  // Error message
   self.message = ko.observable("no errors to report");
 
 
-  // the GO button
+  // The GO button
   self.getStuff = function () {
     $.ajax({
       url: self.start + self.client_id + self.client_secret + self.location() + self.v + self.m + self.limit + '&section=coffee&venuePhotos=1&radius=1000',
 
       success: function (returnedData) {
 
-
         self.filterValue("");
-
-
 
         self.cafeArray([]);
         console.log(self.cafeArray());
         self.bounds = new google.maps.LatLngBounds();
 
-
         self.mapOptions.center = returnedData.response.geocode.center;
         self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
-
-
 
         var fsdata = returnedData.response.groups[0].items;
         var i;
@@ -152,8 +140,6 @@ var ViewModel = function () {
         }
 
         console.log(self.cafeArray());
-
-
       },
       error: function (jqXHR, textStatus, errorThrown) {
         self.message(textStatus + '–' + errorThrown);
@@ -162,6 +148,8 @@ var ViewModel = function () {
   };
 
 };
+
+// ** Cafe constructor for each cafe returned from Foursquare **
 
 var Cafe = function (data, index, context) {
   var cafe = this;
@@ -183,7 +171,8 @@ var Cafe = function (data, index, context) {
     console.log("NO PHOTOS!!");
     cafe.photoURL = "#";
   }
-
+  
+  // create marker for cafe
   cafe.marker = new google.maps.Marker({
     map: context.myMap,
     position: {
@@ -193,78 +182,80 @@ var Cafe = function (data, index, context) {
     icon: context.markerIcon
   });
 
-
+  // add click listener for marker
   cafe.marker.addListener('click', function () {
+    
+    // The content for Info Window
     context.myInfo.setContent('<h3>' + cafe.name + '</h3>' +
       '<img src="img/foursquare-icon-16x16.png"> Rating: ' + cafe.rating + '<br>' +
       '<img src="' + cafe.photoURL + '">');
 
-
+    // Open the Info Window
     context.myInfo.open(context.myMap, cafe.marker);
 
-    $("#details").html(cafe.name + '<br>' +
-      'Rating: ' + cafe.rating + '<br>');
-
-    $("#photos").html('<img src="' + cafe.photoURL + '">');
-
+    // Re-center map
     context.mapOptions.center = cafe.marker;
     context.myMap.panTo(cafe.marker.position);
 
-
+    // Bounce marker
     cafe.marker.setAnimation(google.maps.Animation.BOUNCE);
 
+    // Stop bounce
     window.setTimeout(function () {
       cafe.marker.setAnimation(null);
     }, 1500);
 
+    // create a 'isSelected' value for all cafes and set them to false
     var i;
     for (i = 0; i < context.cafeArray().length; i++) {
       context.cafeArray()[i].isSelected(false);
     }
+    
+    // Make the cafe, whose marker is clicked, selected
     cafe.isSelected(true);
 
   });
 
+  // Close info window when clicking elsewhere on map
   context.myMap.addListener('click', function () {
     context.myInfo.close();
   });
-
+  
+  // Add click listener to cafes in list
   cafe.listClick = function () {
-
-
     context.myInfo.setContent('<h3>' + cafe.name + '</h3>' +
       '<img src="img/foursquare-icon-16x16.png"> Rating: ' + cafe.rating + '<br>' +
       '<img src="' + cafe.photoURL + '">');
 
-
+    // open Info Window
     context.myInfo.open(context.myMap, cafe.marker);
-
-    $("#details").html(cafe.name + '<br>' +
-      'Rating: ' + cafe.rating + '<br>');
-
-    $("#photos").html('<img src="' + cafe.photoURL + '">');
+    
+    // Re-center map
     context.mapOptions.center = cafe.marker;
     context.myMap.panTo(cafe.marker.position);
     
-
+    // start marker bounce
     cafe.marker.setAnimation(google.maps.Animation.BOUNCE);
 
+    // stop marker bounce
     window.setTimeout(function () {
       cafe.marker.setAnimation(null);
     }, 1500);
 
+    // create a 'isSelected' value for all cafes and set them to false
     var i;
     for (i = 0; i < context.cafeArray().length; i++) {
       context.cafeArray()[i].isSelected(false);
     }
+    // The cafe being clicked is selected
     cafe.isSelected(true);
     console.log(cafe.isSelected());
 
   };
 
+  // Make Google Map encompass the location of this cafe
   context.bounds.extend(new google.maps.LatLng(cafe.lat, cafe.lng));
   context.myMap.fitBounds(context.bounds);
-
 
 };
 
