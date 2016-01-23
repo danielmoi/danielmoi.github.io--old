@@ -117,13 +117,30 @@ ol#list1 {
 input, button {
   font-size: 1em;
   padding: 10px;
+  border-radius: 5px;
+  border: 1px $darkbrown solid;
+  
 }
 
+input {
+  background: white;
+  color: $darkbrown;
+}
 
+button {
+  background: $darkbrown;
+  color: white;
+}
+
+#filter-input, #location-input {
+  width: 75%;
+}
 
 img {
   max-width: 100%;
 }
 
 #nav {
+  position: absolute;
+  right: 10px;
 }

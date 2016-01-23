@@ -22,17 +22,20 @@
     <div id="side">
       <i id="nav" class="fa fa-navicon fa-lg"></i>
       <div id="search">
+        <h3>Let's find a cafe!</h3>
         <p>Type a location:</p>
-        <input data-bind="text: city, value: city, textInput: city" />
-        <button data-bind="click: getStuff">Go!</button>
+        <form id="location-form">
+          <input id="location-input" data-bind="text: city, value: city, textInput: city" />
+          <button type="submit" data-bind="click: getStuff">Go!</button>
+        </form>
       </div>
 
       <div id="filter">
         <div>Filter results:
-          <form>
-            <input placeholder="Type name from Cafe List" size="30" data-bind="textInput: filterValue">
+          <form id="filter-form">
+            <input id="filter-input" placeholder="Type name from Cafe List" size="30" data-bind="textInput: filterValue">
+            <button type="submit">Clear</button>
           </form>
-          <div data-bind="text: filterValueLower"></div>
         </div>
       </div>
 
