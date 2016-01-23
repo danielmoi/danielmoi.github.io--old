@@ -45,7 +45,7 @@
         </div>
 
         <div id="list">
-          <h2>Cafe List</h2>
+          <h2 data-bind="visible: cafeArray().length > 0">Cafe List</h2>
 
           <!--        Because $index is an observable, we need to add ()!!-->
           <ol data-bind="foreach: cafeArray" id="list-cafe">
