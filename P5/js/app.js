@@ -196,6 +196,8 @@ var Cafe = function (data, index, context) {
     // Re-center map
     context.mapOptions.center = cafe.marker;
     context.myMap.panTo(cafe.marker.position);
+    context.myMap.panBy(-50,-200);
+    
 
     // Bounce marker
     cafe.marker.setAnimation(google.maps.Animation.BOUNCE);
@@ -233,6 +235,7 @@ var Cafe = function (data, index, context) {
     // Re-center map
     context.mapOptions.center = cafe.marker;
     context.myMap.panTo(cafe.marker.position);
+    context.myMap.panBy(-50,-200);
     
     // start marker bounce
     cafe.marker.setAnimation(google.maps.Animation.BOUNCE);
