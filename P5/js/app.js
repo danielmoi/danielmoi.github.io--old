@@ -106,6 +106,10 @@ var ViewModel = function () {
     self.filterValue("");
 
   };
+  
+  self.navClick = function () {
+    $("#list-container").slideToggle("slow");
+  };
 
 
   // the GO button

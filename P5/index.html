@@ -19,35 +19,41 @@
   </header>
 
   <div id="container">
-    <div id="side">
-      <i id="nav" class="fa fa-navicon fa-lg"></i>
-      <div id="search">
-        <h3>Let's find a cafe!</h3>
-        <p>Type a location:</p>
-        <form id="location-form">
-          <input id="location-input" data-bind="text: city, value: city, textInput: city" />
-          <button type="submit" data-bind="click: getStuff">Go!</button>
-        </form>
-      </div>
 
-      <div id="filter">
-        <div>Filter results:
-          <form id="filter-form">
-            <input id="filter-input" placeholder="Type name from Cafe List" size="30" data-bind="textInput: filterValue">
-            <button type="submit" data-bind="click: clearFilter">Clear</button>
+    <div id="side">
+      <div id="nav-row">
+        <h3>Let's find a cafe!<i id="nav-button" class="fa fa-navicon fa-lg" data-bind="click: navClick"></i></h3>
+
+
+      </div>
+      <div id="list-container">
+        <div id="search">
+          <p>Type a location:</p>
+          <form id="location-form">
+            <input id="location-input" data-bind="text: city, value: city, textInput: city" />
+            <button type="submit" data-bind="click: getStuff">Go!</button>
           </form>
         </div>
-      </div>
 
-      <div id="list">
-        <h2>Cafe List</h2>
+        <div id="filter">
+          <div>Filter results:
+            <form id="filter-form">
+              <input id="filter-input" placeholder="Type name from Cafe List" size="30" data-bind="textInput: filterValue">
+              <button type="submit" data-bind="click: clearFilter">Clear</button>
+            </form>
+          </div>
+        </div>
 
-        <!--        Because $index is an observable, we need to add ()!!-->
-        <ol data-bind="foreach: cafeArray" id="list-cafe">
-          <!--          each object in the explore_object array is assigned to children element (at that 1st child level) -->
-          <li data-bind="text: $data.name, click: $data.listClick, visible: $data.visible, css: {amazing: $data.isSelected}"></li>
+        <div id="list">
+          <h2>Cafe List</h2>
 
-        </ol>
+          <!--        Because $index is an observable, we need to add ()!!-->
+          <ol data-bind="foreach: cafeArray" id="list-cafe">
+            <!--          each object in the explore_object array is assigned to children element (at that 1st child level) -->
+            <li data-bind="text: $data.name, click: $data.listClick, visible: $data.visible, css: {amazing: $data.isSelected}"></li>
+
+          </ol>
+        </div>
       </div>
     </div>
 

@@ -75,6 +75,7 @@ header {
   max-width: 100%;
   vertical-align: top;
   z-index: 1;
+  margin-top: 30px;
 }
 
 ol#list1 {
@@ -127,7 +128,14 @@ img {
   max-width: 100%;
 }
 
-#nav {
+#nav-row {
+  z-index: 40;
+}
+
+#nav-button {
   position: absolute;
-  right: 10px;
+  right: 0;
+  top: 0;
+  background: antiquewhite;
+  padding: 10px;
 }
