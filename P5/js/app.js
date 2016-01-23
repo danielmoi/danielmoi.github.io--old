@@ -27,7 +27,6 @@ var ViewModel = function () {
           }
          ]
       }
-      ],
 
 
   };
@@ -35,6 +34,7 @@ var ViewModel = function () {
 
 
   self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
+  self.myMap.panBy(-300, 0);
 
 
 
@@ -111,8 +111,6 @@ var ViewModel = function () {
       success: function (returnedData) {
 
 
-
-
         $("#details").html('');
         self.filterValue("");
 
@@ -123,9 +121,7 @@ var ViewModel = function () {
         self.bounds = new google.maps.LatLngBounds();
 
 
-
-        
-
+        self.mapOptions.center = returnedData.response.geocode.center;
         self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
 
 
@@ -177,19 +173,11 @@ var Cafe = function (data, index, context) {
 
 
   cafe.marker.addListener('click', function () {
-<<<<<<< HEAD
     context.myInfo.setContent('<h3>' + cafe.name + '</h3>' +
       '<img src="img/foursquare-icon-16x16.png"> Rating: ' + cafe.rating + '<br>' +
       '<img src="' + cafe.photoURL + '">');
 
-||||||| 37ea308... Remove cafe element, and move details to infoWindow
-    context.myInfo.setContent('<h3>' + cafe.name + '</h3>' +
-      '<img src="img/foursquare-icon-16x16.png"> Rating: ' + cafe.rating + '<br>' + 
-      '<img src="' + cafe.photoURL + '">');
-    
-=======
-    context.myInfo.setContent('<h3>' + cafe.name + '</h3>');
->>>>>>> parent of 37ea308... Remove cafe element, and move details to infoWindow
+
     context.myInfo.open(context.myMap, cafe.marker);
 
     $("#details").html(cafe.name + '<br>' +
@@ -198,6 +186,7 @@ var Cafe = function (data, index, context) {
     $("#photos").html('<img src="' + cafe.photoURL + '">');
 
     context.mapOptions.center = cafe.marker;
+    context.myMap.panBy(-300, 0);
 
 
     cafe.marker.setAnimation(google.maps.Animation.BOUNCE);
@@ -219,19 +208,13 @@ var Cafe = function (data, index, context) {
   });
 
   cafe.listClick = function () {
-<<<<<<< HEAD
-    context.myInfo.setContent('<h3>' + cafe.name + '</h3>' +
-      '<img src="img/foursquare-icon-16x16.png"> Rating: ' + cafe.rating + '<br>' +
-      '<img src="' + cafe.photoURL + '">');
 
-||||||| 37ea308... Remove cafe element, and move details to infoWindow
+    
     context.myInfo.setContent('<h3>' + cafe.name + '</h3>' +
       '<img src="img/foursquare-icon-16x16.png"> Rating: ' + cafe.rating + '<br>' + 
       '<img src="' + cafe.photoURL + '">');
     
-=======
-    context.myInfo.setContent('<h3>' + cafe.name + '</h3>');
->>>>>>> parent of 37ea308... Remove cafe element, and move details to infoWindow
+
     context.myInfo.open(context.myMap, cafe.marker);
 
     $("#details").html(cafe.name + '<br>' +
