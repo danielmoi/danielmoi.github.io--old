@@ -19,7 +19,7 @@ html, body {
 h1 {
   text-align: center;
   font-size: 1.6em;
-  padding: 10px 0;
+  line-height: 60px;
 }
 
 h2 {
