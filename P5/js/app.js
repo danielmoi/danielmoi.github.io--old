@@ -108,6 +108,7 @@ var ViewModel = function () {
   // Nav button
   self.navClick = function () {
     $("#side").slideToggle("slow");
+    $("#nav-button").toggleClass('fa-chevron-down');
   };
   
   // Error message
