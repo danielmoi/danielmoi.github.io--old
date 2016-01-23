@@ -157,9 +157,9 @@ img {
 #nav-button {
   position: absolute;
   top: 0;
-  right: 0;
-  background: antiquewhite;
-  padding: 10px;
+  left: 0;
+  padding: 0 10px;
+  line-height: 60px;
 }
 #nav-button:hover {
   cursor: pointer;

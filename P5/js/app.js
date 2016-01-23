@@ -107,8 +107,7 @@ var ViewModel = function () {
   
   // Nav button
   self.navClick = function () {
-    $("#list").slideToggle("slow");
-    $("#filter").slideToggle("slow");
+    $("#side").slideToggle("slow");
   };
   
   // Error message
@@ -142,7 +141,7 @@ var ViewModel = function () {
         console.log(self.cafeArray());
       },
       error: function (jqXHR, textStatus, errorThrown) {
-        self.message(textStatus + '–' + errorThrown);
+        self.message('sorry, something went wrong... ' + textStatus + '–' + errorThrown + ' – try a different location!');
       }
     });
   };
