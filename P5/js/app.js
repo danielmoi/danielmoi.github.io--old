@@ -27,14 +27,16 @@ var ViewModel = function () {
           }
          ]
       }
-      ]
+      ],
+    //    scale: Math.pow(2, self.mapOptions.zoom)
+    //    offset: 300/this.zoom,
+    //    center.lat: this.center.lat + this.offset
 
   };
 
 
 
   self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
-  self.myMap.panBy(-300, 0);
 
 
   google.maps.Map.prototype.setCenterWithOffset = function (latlng, offsetX, offsetY) {
@@ -122,6 +124,12 @@ var ViewModel = function () {
 
       success: function (returnedData) {
 
+        var scale = Math.pow(2, self.mapOptions.zoom);
+        var offsetX = 3000 / scale;
+        self.mapOptions.center.lat += offsetX;
+        console.log(self.mapOptions.center.lat);
+
+
         $("#details").html('');
         self.filterValue("");
 
@@ -131,10 +139,19 @@ var ViewModel = function () {
         console.log(self.cafeArray());
         self.bounds = new google.maps.LatLngBounds();
 
-        self.mapOptions.center = returnedData.response.geocode.center;
-        self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
-        self.myMap.panBy(-300, 0);
+        console.log(self.mapOptions.center.lat);
+        
+        self.mapOptions.center = {
+          lat: returnedData.response.geocode.center.lat + offsetX,
+          lng: returnedData.response.geocode.center.lng + offsetX
+        };
 
+//        self.mapOptions.center = returnedData.response.geocode.center;
+        
+
+        self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
+
+        console.log('getCenter: ' + self.myMap.getCenter());
 
 
         var fsdata = returnedData.response.groups[0].items;
@@ -191,7 +208,6 @@ var Cafe = function (data, index, context) {
     context.myInfo.open(context.myMap, cafe.marker);
 
     context.mapOptions.center = cafe.marker;
-    context.myMap.panBy(-300, 0);
 
 
     cafe.marker.setAnimation(google.maps.Animation.BOUNCE);
@@ -220,7 +236,6 @@ var Cafe = function (data, index, context) {
     context.myInfo.open(context.myMap, cafe.marker);
 
     context.mapOptions.center = cafe.marker;
-    context.myMap.panBy(-300, 0);
 
     cafe.marker.setAnimation(google.maps.Animation.BOUNCE);
 
