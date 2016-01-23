@@ -28,9 +28,7 @@ var ViewModel = function () {
          ]
       }
       ],
-    //    scale: Math.pow(2, self.mapOptions.zoom)
-    //    offset: 300/this.zoom,
-    //    center.lat: this.center.lat + this.offset
+
 
   };
 
@@ -39,19 +37,7 @@ var ViewModel = function () {
   self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
 
 
-  google.maps.Map.prototype.setCenterWithOffset = function (latlng, offsetX, offsetY) {
-    var map = this;
-    var ov = new google.maps.OverlayView();
-    ov.onAdd = function () {
-      var proj = this.getProjection();
-      var aPoint = proj.fromLatLngToContainerPixel(latlng);
-      aPoint.x = aPoint.x + offsetX;
-      aPoint.y = aPoint.y + offsetY;
-      map.setCenter(proj.fromLatLngToContainerPixel(aPoint));
-    };
-    ov.draw = function () {};
-    ov.setMap(this);
-  };
+
 
 
   self.marker = new google.maps.Marker({
@@ -124,10 +110,7 @@ var ViewModel = function () {
 
       success: function (returnedData) {
 
-        var scale = Math.pow(2, self.mapOptions.zoom);
-        var offsetX = 3000 / scale;
-        self.mapOptions.center.lat += offsetX;
-        console.log(self.mapOptions.center.lat);
+
 
 
         $("#details").html('');
@@ -139,19 +122,12 @@ var ViewModel = function () {
         console.log(self.cafeArray());
         self.bounds = new google.maps.LatLngBounds();
 
-        console.log(self.mapOptions.center.lat);
-        
-        self.mapOptions.center = {
-          lat: returnedData.response.geocode.center.lat + offsetX,
-          lng: returnedData.response.geocode.center.lng + offsetX
-        };
 
-//        self.mapOptions.center = returnedData.response.geocode.center;
+
         
 
         self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
 
-        console.log('getCenter: ' + self.myMap.getCenter());
 
 
         var fsdata = returnedData.response.groups[0].items;
