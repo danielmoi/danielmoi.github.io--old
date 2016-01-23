@@ -25,16 +25,15 @@ var ViewModel = function () {
           {
             "visibility": "off"
           }
-         ]
+        ]
       }
 
-
+    ]
   };
 
 
 
   self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
-  self.myMap.panBy(-300, 0);
 
 
 
@@ -186,7 +185,6 @@ var Cafe = function (data, index, context) {
     $("#photos").html('<img src="' + cafe.photoURL + '">');
 
     context.mapOptions.center = cafe.marker;
-    context.myMap.panBy(-300, 0);
 
 
     cafe.marker.setAnimation(google.maps.Animation.BOUNCE);
@@ -209,11 +207,11 @@ var Cafe = function (data, index, context) {
 
   cafe.listClick = function () {
 
-    
+
     context.myInfo.setContent('<h3>' + cafe.name + '</h3>' +
-      '<img src="img/foursquare-icon-16x16.png"> Rating: ' + cafe.rating + '<br>' + 
+      '<img src="img/foursquare-icon-16x16.png"> Rating: ' + cafe.rating + '<br>' +
       '<img src="' + cafe.photoURL + '">');
-    
+
 
     context.myInfo.open(context.myMap, cafe.marker);
 
