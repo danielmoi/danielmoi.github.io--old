@@ -78,13 +78,19 @@ var ViewModel = function () {
   self.filterValue = ko.observable("");
   self.filterValueLower = ko.observable(self.filterValue().toLowerCase());
 
+
   // use ko.computed so this function runs whenever any observable changes
+  // what triggers this to run?
   self.filterStuff = ko.computed(function () {
     var arrayLength = self.cafeArray().length;
     var filterValueLowerCase = self.filterValue().toLowerCase();
 
     var i;
     for (i = 0; i < arrayLength; i++) {
+      // close existing info window
+      self.myInfo.close();
+      
+      // look for matches of filterValue in cafeArray.name
       var cafeNameLowerCase = self.cafeArray()[i].name.toLowerCase();
       if (cafeNameLowerCase.indexOf(filterValueLowerCase) < 0) {
         //        console.log("Not found");
