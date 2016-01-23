@@ -116,7 +116,6 @@ var ViewModel = function () {
       success: function (returnedData) {
 
 
-        $("#details").html('');
         self.filterValue("");
 
 

@@ -68,23 +68,13 @@ header {
   display: inline-block;
   vertical-align: top;
   z-index: 1;
+  margin-top: 10px;
 }
 
 #search {
   max-width: 100%;
   vertical-align: top;
   z-index: 1;
-}
-
-#details {
-  display: inline-block;
-  width: 100%;
-  vertical-align: top;
-}
-
-#photos {
-  display: inline-block;
-  max-width: 100%;
 }
 
 ol#list1 {
