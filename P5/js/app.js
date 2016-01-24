@@ -143,7 +143,7 @@ var ViewModel = function () {
         self.bounds = new google.maps.LatLngBounds();
 
         self.mapOptions.center = returnedData.response.geocode.center;
-        self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
+//        self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
 
         var fsdata = returnedData.response.groups[0].items;
         var i;
@@ -160,7 +160,9 @@ var ViewModel = function () {
       }
     });
   };
-
+  
+  // Populate map with starting city markers
+  self.getStuff();
 };
 
 // ** Cafe constructor for each cafe returned from Foursquare **
