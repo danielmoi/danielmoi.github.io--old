@@ -79,7 +79,7 @@ var ViewModel = function () {
   self.m = "&m=foursquare";
   self.section = '&section=coffee';
   self.venuePhotos = '&venuePhotos=1';
-  self.radius = '&radius=1000'
+  self.radius = '&radius=1000';
 
 
   // Filter functionality
@@ -116,7 +116,6 @@ var ViewModel = function () {
   // Clear filter button
   self.clearFilter = function () {
     self.filterValue("");
-
   };
 
   // Nav button
