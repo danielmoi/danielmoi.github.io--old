@@ -38,13 +38,6 @@ var ViewModel = function () {
 
   self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
 
-  self.marker = new google.maps.Marker({
-    position: self.mapOptions.center, // object literal with 2 properties, lat & lng
-    map: self.myMap, // my map is called 'map'
-    title: "Click Go! to find some cafes!", // what displays upon hover
-    icon: self.markerIcon
-  });
-
   self.myInfo = new google.maps.InfoWindow({
     maxWidth: 200
   });
@@ -143,7 +136,6 @@ var ViewModel = function () {
         self.bounds = new google.maps.LatLngBounds();
 
         self.mapOptions.center = returnedData.response.geocode.center;
-//        self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
 
         var fsdata = returnedData.response.groups[0].items;
         var i;
