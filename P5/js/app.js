@@ -187,7 +187,8 @@ var Cafe = function (data, index, context) {
       lat: cafe.lat,
       lng: cafe.lng
     },
-    icon: context.markerIcon
+    icon: context.markerIcon,
+    title: cafe.name
   });
 
   // add click listener for marker
