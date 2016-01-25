@@ -222,7 +222,7 @@ var Cafe = function (data, index, context) {
     // Stop bounce
     window.setTimeout(function () {
       cafe.marker.setAnimation(null);
-    }, 1500);
+    }, 1400);
 
     // create a 'isSelected' value for all cafes and set them to false
     var i;
