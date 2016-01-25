@@ -57,7 +57,7 @@ var ViewModel = function () {
   self.mapWidth = window.innerWidth;
   if (self.mapWidth < 600) {
     self.myMap.addListener('click', function () {
-      self.navClick();
+      self.navHide();
     });
   }
 
@@ -123,6 +123,12 @@ var ViewModel = function () {
     $("#side").slideToggle("slow");
     $("#nav-button").toggleClass('fa-chevron-down');
 
+  };
+  
+  // Nav hide for small screens
+  self.navHide = function () {
+    $("#side").slideUp("slow");
+    $("#nav-button").addClass('fa-chevron-down');
   };
 
   // Error message
