@@ -49,15 +49,10 @@ var ViewModel = function () {
 
   self.bounds = new google.maps.LatLngBounds();
 
-  // close info window when clicking on map
+  // Close info window when clicking elsewhere on map
   self.myMap.addListener('click', function () {
     self.myInfo.close();
-    if (window.innerWidth < 400) {
-      console.log("HHHHH");
-      self.navClick();
-    }
-  });
-
+  });  
 
 
   // Set starting objects for app
@@ -235,10 +230,7 @@ var Cafe = function (data, index, context) {
 
   });
 
-  // Close info window when clicking elsewhere on map
-  context.myMap.addListener('click', function () {
-    context.myInfo.close();
-  });
+
 
   // Add click listener to cafes in list
   cafe.listClick = function () {
