@@ -148,7 +148,7 @@ var ViewModel = function () {
         console.log(self.cafeArray());
       },
       error: function (jqXHR, textStatus, errorThrown) {
-        self.message('sorry, something went wrong... ' + textStatus + '–' + errorThrown + ' – try a different location!');
+        self.message('sorry, something went wrong... (System error: "' + textStatus + '–' + errorThrown + '") – try a different location!');
       }
     });
   };
@@ -282,4 +282,15 @@ var Cafe = function (data, index, context) {
 
 function initMap() {
   ko.applyBindings(new ViewModel());
+}
+
+function mapError(error, url, line, col, errorObj) {
+  
+  console.log("Error message: " + error + ', '
+              + "Script URL: " + url + ', '
+             + "Line number: " + line + ', '
+             + "Col number: " + col + ', '
+             + "Error object: " + errorObj);
+  $("#message").text('sorry, something went wrong with Google Maps... (System error: "' + error + '")');
+  $("#map").append('<div id="error"><img src="img/cat.jpg"></div>');
 }
