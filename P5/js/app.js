@@ -14,10 +14,10 @@ var ViewModel = function () {
   }
   
   self.markerIconStar = {
-    url: "img/coffee_star_32.png",
+    url: "img/coffee_star_32.png"
   };
   self.markerIconNormal = {
-    url: "img/coffee_normal_32.png",
+    url: "img/coffee_normal_32.png"
   };
 
   self.mapOptions = {
@@ -60,7 +60,7 @@ var ViewModel = function () {
   // Close info window when clicking elsewhere on map
   self.myMap.addListener('click', function () {
     self.myInfo.close();
-  });  
+  });
   
   self.mapWidth = window.innerWidth;
   if (self.mapWidth < 600) {
@@ -125,7 +125,7 @@ var ViewModel = function () {
   self.clearFilter = function () {
     self.filterValue("");
   };
-
+  
   // Nav button
   self.navClick = function () {
     $("#side").slideToggle("slow");
@@ -143,6 +143,8 @@ var ViewModel = function () {
   self.message = ko.observable("no errors to report");
 
 
+  
+  
   // The GO button
   self.getStuff = function () {
     $.ajax({
