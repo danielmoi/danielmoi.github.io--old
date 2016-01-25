@@ -234,37 +234,7 @@ var Cafe = function (data, index, context) {
 
   // Add click listener to cafes in list
   cafe.listClick = function () {
-    context.myInfo.setContent('<h3>' + cafe.name + '</h3>' +
-      '<img src="img/foursquare-icon-16x16.png"> Rating: ' + cafe.rating + '<br>' +
-      '<img src="' + cafe.photoURL + '">');
-
-    // open Info Window
-    context.myInfo.open(context.myMap, cafe.marker);
-
-    // Re-center map
-    context.mapOptions.center = cafe.marker;
-    context.myMap.panTo(cafe.marker.position);
-    //    context.myMap.panBy(-50,-200);
-    var div = context.myMap.getDiv();
-    console.log(div.offsetHeight);
-    context.myMap.panBy(0, -div.offsetHeight / 5);
-
-    // start marker bounce
-    cafe.marker.setAnimation(google.maps.Animation.BOUNCE);
-
-    // stop marker bounce
-    window.setTimeout(function () {
-      cafe.marker.setAnimation(null);
-    }, 1500);
-
-    // create a 'isSelected' value for all cafes and set them to false
-    var i;
-    for (i = 0; i < context.cafeArray().length; i++) {
-      context.cafeArray()[i].isSelected(false);
-    }
-    // The cafe being clicked is selected
-    cafe.isSelected(true);
-    console.log(cafe.isSelected());
+    google.maps.event.trigger(cafe.marker, 'click');
 
   };
 
