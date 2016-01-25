@@ -53,6 +53,13 @@ var ViewModel = function () {
   self.myMap.addListener('click', function () {
     self.myInfo.close();
   });  
+  
+  self.mapWidth = window.innerWidth;
+  if (self.mapWidth < 600) {
+    self.myMap.addListener('click', function () {
+      self.navClick();
+    });
+  }
 
 
   // Set starting objects for app
