@@ -8,6 +8,11 @@ var ViewModel = function () {
   var self = this;
 
   // Google Map
+  
+  if (typeof google === 'undefined') {
+    mapError();
+  }
+  
   self.markerIcon = {
     url: "img/foursquare-icon-16x16.png",
     size: new google.maps.Size(16, 16)
