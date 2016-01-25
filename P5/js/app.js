@@ -13,9 +13,11 @@ var ViewModel = function () {
     mapError();
   }
   
-  self.markerIcon = {
-    url: "img/foursquare-icon-16x16.png",
-    size: new google.maps.Size(16, 16)
+  self.markerIconStar = {
+    url: "img/coffee_star_32.png",
+  };
+  self.markerIconNormal = {
+    url: "img/coffee_normal_32.png",
   };
 
   self.mapOptions = {
@@ -49,6 +51,7 @@ var ViewModel = function () {
 
   self.bounds = new google.maps.LatLngBounds();
   
+  // recenter map upon window resize
   window.onresize = function () {
     console.log("window resized");
     self.myMap.fitBounds(self.bounds);
@@ -199,15 +202,28 @@ var Cafe = function (data, index, context) {
   }
 
   // create marker for cafe
-  cafe.marker = new google.maps.Marker({
+  if (cafe.rating > 8.5) {
+    cafe.marker = new google.maps.Marker({
     map: context.myMap,
     position: {
       lat: cafe.lat,
       lng: cafe.lng
     },
-    icon: context.markerIcon,
+    icon: context.markerIconStar,
     title: cafe.name
   });
+  }
+  else {
+    cafe.marker = new google.maps.Marker({
+    map: context.myMap,
+    position: {
+      lat: cafe.lat,
+      lng: cafe.lng
+    },
+    icon: context.markerIconNormal,
+    title: cafe.name
+  });
+  }
 
   // add click listener for marker
   cafe.marker.addListener('click', function () {
