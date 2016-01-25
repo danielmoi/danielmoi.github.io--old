@@ -141,6 +141,7 @@ var ViewModel = function () {
 
   // Error message
   self.message = ko.observable("no errors to report");
+  self.messageSimple = ko.observable();
 
 
   
@@ -152,9 +153,12 @@ var ViewModel = function () {
 
       success: function (returnedData) {
 
+        // reset values
         self.filterValue("");
-
         self.cafeArray([]);
+        self.message("");
+        self.messageSimple("");
+        
         console.log(self.cafeArray());
         self.bounds = new google.maps.LatLngBounds();
 
@@ -171,7 +175,9 @@ var ViewModel = function () {
         console.log(self.cafeArray());
       },
       error: function (jqXHR, textStatus, errorThrown) {
-        self.message('sorry, something went wrong... (System error: "' + textStatus + '–' + errorThrown + '") – try a different location!');
+        self.message('system error: "' + textStatus + '–' + errorThrown + '"');
+        self.messageSimple('sorry, something went wrong... try a different location!');
+//        $("#error").css("display", "block");
       }
     });
   };
@@ -294,6 +300,8 @@ function mapError(error, url, line, col, errorObj) {
              + "Line number: " + line + ', '
              + "Col number: " + col + ', '
              + "Error object: " + errorObj);
-  $("#message").text('sorry, something went wrong with Google Maps... (System error: "' + error + '")');
+  // can't use ViewModel properties because it isn't loaded
+  $("#message").text('system error: "' + error + '"');
+  $('#error').text('sorry, something went wrong with Google Maps... try again soon! (we\'ve sent our code kitten to find out what\'s wrong!)');
   $("#map").append('<div id="error"><img src="img/cat.jpg"></div>');
 }
