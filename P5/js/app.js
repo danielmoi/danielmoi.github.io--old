@@ -48,6 +48,11 @@ var ViewModel = function () {
   });
 
   self.bounds = new google.maps.LatLngBounds();
+  
+  window.onresize = function () {
+    console.log("window resized");
+    self.myMap.fitBounds(self.bounds);
+  };
 
   // Close info window when clicking elsewhere on map
   self.myMap.addListener('click', function () {
