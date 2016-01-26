@@ -12,10 +12,7 @@ gulp.task('html', function() {
 });
 
 // Gulp image files
-gulp.task('images', function() {
-  gulp.src('src/img/')
-    .pipe(gulp.dest('dist/img'));
-});
+
 
 // Gulp script files – minify and rename
 gulp.task('scripts', function () {
@@ -23,8 +20,6 @@ gulp.task('scripts', function () {
     .pipe(uglify())
     .pipe(rename('app.min.js'))
     .pipe(gulp.dest('dist/js/'));
-  gulp.src('src/js/lib/*')
-    .pipe(gulp.dest('dist/js/lib'));
 });
 
 // Gulp style files – minify and rename
@@ -33,8 +28,6 @@ gulp.task('styles', function () {
     .pipe(minifyCSS())
     .pipe(rename('style.min.css'))
     .pipe(gulp.dest('dist/css/'));
-  gulp.src('src/css/lib/*')
-    .pipe(gulp.dest('dist/css/lib'));  
 });
 
 
@@ -45,4 +38,4 @@ gulp.task('watch', function() {
 });
 
 // Run gulp
-gulp.task('default', ['html', 'scripts', 'styles', 'images']);
+gulp.task('default', ['html', 'scripts', 'styles']);
