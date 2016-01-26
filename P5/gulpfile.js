@@ -38,6 +38,7 @@ gulp.task('scripts', function () {
     .pipe(rename({
       suffix: '.min'
     }))
+    .pipe(gulp.dest('src/js')) // trailing "/" not needed
     .pipe(gulp.dest('dist/js')) // trailing "/" not needed
     .pipe(notify({
       message: 'scripts task complete'
@@ -51,6 +52,7 @@ gulp.task('styles', function () {
     .pipe(rename({
       suffix: '.min'
     }))
+    .pipe(gulp.dest('src/css/'))
     .pipe(gulp.dest('dist/css/'))
     .pipe(notify({
       message: 'styles task complete'
