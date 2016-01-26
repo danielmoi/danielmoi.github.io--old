@@ -51,10 +51,22 @@ var ViewModel = function () {
 
   self.bounds = new google.maps.LatLngBounds();
 
+  self.widthMagic = ko.computed(function () {
+    self.mapWidth = ko.observable(window.innerWidth);
+    if (self.mapWidth() < 600) {
+      self.myMap.addListener('click', function () {
+        self.navHide();
+      });
+    }
+    return self.mapWidth();
+  });
+
+
   // recenter map upon window resize
   window.onresize = function () {
     console.log("window resized");
     self.myMap.fitBounds(self.bounds);
+    self.widthMagic();
   };
 
   // Close info window when clicking elsewhere on map
@@ -62,12 +74,7 @@ var ViewModel = function () {
     self.myInfo.close();
   });
 
-  self.mapWidth = ko.observable(window.innerWidth);
-  if (self.mapWidth() < 600) {
-    self.myMap.addListener('click', function () {
-      self.navHide();
-    });
-  }
+
 
 
   // Set starting objects for app
@@ -267,7 +274,7 @@ var Cafe = function (data, index, context) {
 
     // Make the cafe, whose marker is clicked, selected
     cafe.isSelected(true);
-    
+
     if (context.mapWidth() < 600) {
       context.navHide();
     }
