@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cafe App</title>
+  <link rel="stylesheet" href="css/style.min.css">
+  <link rel="stylesheet" href="css/lib/font-awesome-4.5.0/css/font-awesome.min.css">
+  
+
+
+
+</head>
+
+<body>
+  <header>
+    <h1><i id="nav-button" class="fa fa-chevron-up fa-lg" data-bind="click: navClick"></i>Cafe App <i class="fa fa-coffee"></i> v0.1</h1>
+  </header>
+
+  <div id="container">
+
+    <div id="side">
+      <div id="nav-row">
+        <h3>Let's find a cafe!</h3>
+      </div>
+
+      <div id="list-super-container">
+        <div id="search">
+          <p>Type a location:</p>
+          <form id="location-form">
+            <input id="location-input" data-bind="text: city, value: city, textInput: city" />
+            <button type="submit" data-bind="click: getStuff">Go!</button>
+          </form>
+        </div>
+
+        <div id="filter" data-bind="visible: cafeArray().length > 0">
+          <div>Filter results:
+            <form id="filter-form">
+              <input id="filter-input" placeholder="Type name from Cafe List" size="30" data-bind="textInput: filterValue">
+              <button type="submit" data-bind="click: clearFilter">Clear</button>
+            </form>
+          </div>
+        </div>
+
+        <div id="list">
+          <h2 data-bind="visible: cafeArray().length > 0">Cafe List</h2>
+
+          <!--        Because $index is an observable, we need to add ()!!-->
+          <ol data-bind="foreach: cafeArray" id="list-cafe">
+            <!--          each object in the explore_object array is assigned to children element (at that 1st child level) -->
+            <li data-bind="text: $data.name, click: $data.listClick, visible: $data.visible, css: {amazing: $data.isSelected}"></li>
+
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div id="map"></div>
+    <div id="error" data-bind="text: messageSimple, visible: messageSimple()"></div>
+
+    <div id="footer">Status: <span id="message" data-bind="text: message"></span></div>
+
+
+
+  </div>
+
+
+
+
+  <script src="js/lib/jquery-1.11.3.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+
+  <script src="js/lib/knockout-3.2.0.js"></script>
+  <!--Make sure app.js is loaded after libraries-->
+  <script src="js/app.min.js"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?v=3&callback=initMap" onerror="mapError()"></script>
+
+
+</body>
+
+
+
+</html>
