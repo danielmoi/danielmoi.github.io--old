@@ -8,11 +8,11 @@ var ViewModel = function () {
   var self = this;
 
   // Google Map
-  
+
   if (typeof google === 'undefined') {
     mapError();
   }
-  
+
   self.markerIconStar = {
     url: "img/coffee_star_32.png"
   };
@@ -50,7 +50,7 @@ var ViewModel = function () {
   });
 
   self.bounds = new google.maps.LatLngBounds();
-  
+
   // recenter map upon window resize
   window.onresize = function () {
     console.log("window resized");
@@ -61,9 +61,9 @@ var ViewModel = function () {
   self.myMap.addListener('click', function () {
     self.myInfo.close();
   });
-  
-  self.mapWidth = window.innerWidth;
-  if (self.mapWidth < 600) {
+
+  self.mapWidth = ko.observable(window.innerWidth);
+  if (self.mapWidth() < 600) {
     self.myMap.addListener('click', function () {
       self.navHide();
     });
@@ -125,14 +125,14 @@ var ViewModel = function () {
   self.clearFilter = function () {
     self.filterValue("");
   };
-  
+
   // Nav button
   self.navClick = function () {
     $("#side").slideToggle("slow");
     $("#nav-button").toggleClass('fa-chevron-down');
 
   };
-  
+
   // Nav hide for small screens
   self.navHide = function () {
     $("#side").slideUp("slow");
@@ -144,8 +144,8 @@ var ViewModel = function () {
   self.messageSimple = ko.observable();
 
 
-  
-  
+
+
   // The GO button
   self.getStuff = function () {
     $.ajax({
@@ -158,7 +158,7 @@ var ViewModel = function () {
         self.cafeArray([]);
         self.message("");
         self.messageSimple("");
-        
+
         console.log(self.cafeArray());
         self.bounds = new google.maps.LatLngBounds();
 
@@ -177,11 +177,11 @@ var ViewModel = function () {
       error: function (jqXHR, textStatus, errorThrown) {
         self.message('system error: "' + textStatus + '–' + errorThrown + '"');
         self.messageSimple('sorry, something went wrong... try a different location!');
-//        $("#error").css("display", "block");
+        //        $("#error").css("display", "block");
       }
     });
   };
-  
+
   // Populate map with starting city markers
   self.getStuff();
 };
@@ -212,25 +212,24 @@ var Cafe = function (data, index, context) {
   // create marker for cafe
   if (cafe.rating > 8.5) {
     cafe.marker = new google.maps.Marker({
-    map: context.myMap,
-    position: {
-      lat: cafe.lat,
-      lng: cafe.lng
-    },
-    icon: context.markerIconStar,
-    title: cafe.name
-  });
-  }
-  else {
+      map: context.myMap,
+      position: {
+        lat: cafe.lat,
+        lng: cafe.lng
+      },
+      icon: context.markerIconStar,
+      title: cafe.name
+    });
+  } else {
     cafe.marker = new google.maps.Marker({
-    map: context.myMap,
-    position: {
-      lat: cafe.lat,
-      lng: cafe.lng
-    },
-    icon: context.markerIconNormal,
-    title: cafe.name
-  });
+      map: context.myMap,
+      position: {
+        lat: cafe.lat,
+        lng: cafe.lng
+      },
+      icon: context.markerIconNormal,
+      title: cafe.name
+    });
   }
 
   // add click listener for marker
@@ -269,6 +268,11 @@ var Cafe = function (data, index, context) {
 
     // Make the cafe, whose marker is clicked, selected
     cafe.isSelected(true);
+    
+    if (context.mapWidth() < 600) {
+      context.navHide();
+    }
+
 
   });
 
@@ -294,12 +298,8 @@ function initMap() {
 }
 
 function mapError(error, url, line, col, errorObj) {
-  
-  console.log("Error message: " + error + ', '
-              + "Script URL: " + url + ', '
-             + "Line number: " + line + ', '
-             + "Col number: " + col + ', '
-             + "Error object: " + errorObj);
+
+  console.log("Error message: " + error + ', ' + "Script URL: " + url + ', ' + "Line number: " + line + ', ' + "Col number: " + col + ', ' + "Error object: " + errorObj);
   // can't use ViewModel properties because it isn't loaded
   $("#message").text('system error: "' + error + '"');
   $('#error').text('sorry, something went wrong with Google Maps... try again soon! (we\'ve sent our code kitten to find out what\'s wrong!)');
