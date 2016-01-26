@@ -33,7 +33,9 @@ gulp.task('images', function () {
 
 // Gulp script files – minify and rename
 gulp.task('scripts', function () {
-  return gulp.src('src/js/**/*.js') // need to add "**/" to make this recursive
+  gulp.src('src/js/lib/**/*.js')
+    .pipe(gulp.dest('dist/js/lib'));
+  return gulp.src(['src/js/**/*.js', '!src/js/**/*.min.js', '!src/js/lib']) // need to add "**/" to make this recursive
     .pipe(uglify())
     .pipe(rename({
       suffix: '.min'
@@ -47,7 +49,9 @@ gulp.task('scripts', function () {
 
 // Gulp style files – minify and rename
 gulp.task('styles', function () {
-  return gulp.src('src/css/**/*.css')
+  gulp.src('src/css/lib/**/*.js')
+    .pipe(gulp.dest('dist/css/lib'));
+  return gulp.src(['src/css/**/*.css', '!src/css/**/*.min.css', '!src/css/lib'])
     .pipe(cssnano())
     .pipe(rename({
       suffix: '.min'
@@ -72,5 +76,4 @@ gulp.task('watch', function () {
 // Run gulp
 gulp.task('default', ['clean'], function () {
   gulp.start('html', 'images', 'scripts', 'styles');
-  gulp.start('watch');
 });

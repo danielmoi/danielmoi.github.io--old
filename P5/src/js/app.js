@@ -27,7 +27,7 @@ var ViewModel = function () {
     },
     zoom: 16,
     zoomControlOptions: {
-      position: google.maps.ControlPosition.RIGHT_TOP
+      position: google.maps.ControlPosition.RIGHT_BOTTOM
     },
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     styles: [
