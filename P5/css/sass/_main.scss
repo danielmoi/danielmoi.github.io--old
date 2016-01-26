@@ -127,6 +127,11 @@ ol#list1 {
   color: $pink;
   padding: 10px;
 //  display: none;
+  width: 100%;
+  @media screen and (max-width: 600px) {
+    left: 0;
+    z-index: 100;
+  }
 }
 
 

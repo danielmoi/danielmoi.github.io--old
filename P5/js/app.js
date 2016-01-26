@@ -169,7 +169,6 @@ var ViewModel = function () {
 
         for (i = 0; i < fsdata.length; i++) {
           self.cafeArray.push(new Cafe(fsdata, i, self));
-          console.log(self.cafeArray()[i].name);
         }
 
         console.log(self.cafeArray());
