@@ -7,3 +7,6 @@ css/.sass-cache/
 
 ### Other ###
 config.rb
+
+### Gulp ###
+node_modules
