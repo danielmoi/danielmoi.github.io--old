@@ -11,7 +11,8 @@
   padding: 0;
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   font-size: 14px;
@@ -129,7 +130,8 @@ header {
   }
 }
 
-input, button {
+input,
+button {
   font-size: 1em;
   padding: 10px;
   border-radius: 5px;
@@ -149,7 +151,8 @@ button:hover {
   cursor: pointer;
 }
 
-.filter-input, .location-input {
+.filter-input,
+.location-input {
   width: 70%;
 }
 
@@ -177,4 +180,9 @@ img {
 }
 .nav-button:hover {
   cursor: pointer;
+}
+
+.fa-lg.fa-chevron-up,
+.fa-lg.fa-chevron-down {
+  line-height: 60px;
 }
