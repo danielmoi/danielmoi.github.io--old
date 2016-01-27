@@ -136,17 +136,30 @@ var ViewModel = function () {
   };
 
   // Nav button
+  self.navChevronDown = ko.observable(false);
+  self.navChevronUp = ko.observable(true);
+
   self.navClick = function () {
+    console.log('navChevronDown =' + self.navChevronDown());
+    console.log('navChevronUp =' + self.navChevronUp());
     $("#side").slideToggle("slow");
-    $("#nav-button").toggleClass('fa-chevron-down');
+    self.navChevronDown(!self.navChevronDown());
+    self.navChevronUp(!self.navChevronUp());
+    console.log('navChevronDown =' + self.navChevronDown());
+    console.log('navChevronUp =' + self.navChevronUp());
+
+    
 
   };
 
   // Nav hide for small screens
   self.navHide = function () {
     $("#side").slideUp("slow");
-    $("#nav-button").addClass('fa-chevron-down');
+    self.navChevronDown(false);
+    self.navChevronUp(true);
+
   };
+  
 
   // Error message
   self.message = ko.observable("no errors to report");
