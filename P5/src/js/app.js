@@ -1,3 +1,5 @@
+'use strict';
+
 // ** The model for app **
 // Empty because all data is dynamically generated
 var model = [{}];

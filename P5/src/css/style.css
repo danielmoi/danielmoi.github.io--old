@@ -37,13 +37,13 @@ header {
   position: fixed;
 }
 
-#container {
+.container {
   max-width: 100%;
   margin: 0 auto;
   height: 100%;
 }
 
-#side {
+.side {
   position: absolute;
   width: 250px;
   z-index: 10;
@@ -54,12 +54,12 @@ header {
   padding: 10px;
 }
 
-#map {
+.map {
   height: 100%;
   z-index: 0;
 }
 
-#list {
+.list {
   width: 100%;
   display: inline-block;
   vertical-align: top;
@@ -67,26 +67,22 @@ header {
   padding-top: 10px;
 }
 
-#list-super-container {
+.list-super-container {
   padding-top: 10px;
 }
 
-#search {
+.search {
   max-width: 100%;
   vertical-align: top;
   z-index: 1;
   margin-top: 30px;
 }
 
-#filter {
+.filter {
   margin-top: 5px;
 }
 
-ol#list1 {
-  padding-left: 0;
-}
-
-#list-cafe li {
+.list-cafe li {
   list-style-position: inside;
   list-style-type: none;
   padding: 5px 10px;
@@ -94,20 +90,20 @@ ol#list1 {
   border-bottom: burlywood 1px solid;
 }
 
-#list-cafe li:hover {
+.list-cafe li:hover {
   cursor: pointer;
   background: burlywood;
 }
 
-#list-cafe li:first-child {
+.list-cafe li:first-child {
   border-top: burlywood 1px solid;
 }
 
-#list-cafe li.amazing {
+.list-cafe li.amazing {
   background: burlywood;
 }
 
-#footer {
+.footer {
   position: fixed;
   right: 0;
   bottom: 0;
@@ -117,7 +113,7 @@ ol#list1 {
   padding-left: 5px;
 }
 
-#error {
+.error {
   position: absolute;
   top: 60px;
   left: 250px;
@@ -127,7 +123,7 @@ ol#list1 {
   width: 100%;
 }
 @media screen and (max-width: 600px) {
-  #error {
+  .error {
     left: 0;
     z-index: 100;
   }
@@ -153,7 +149,7 @@ button:hover {
   cursor: pointer;
 }
 
-#filter-input, #location-input {
+.filter-input, .location-input {
   width: 70%;
 }
 
@@ -161,7 +157,7 @@ img {
   max-width: 100%;
 }
 
-#nav-row {
+.nav-row {
   z-index: 40;
   position: fixed;
   width: 250px;
@@ -172,13 +168,13 @@ img {
   border-bottom: 1px solid burlywood;
 }
 
-#nav-button {
+.nav-button {
   position: absolute;
   top: 0;
   left: 0;
   padding: 0 10px;
   line-height: 60px;
 }
-#nav-button:hover {
+.nav-button:hover {
   cursor: pointer;
 }
