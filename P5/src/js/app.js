@@ -136,8 +136,8 @@ var ViewModel = function () {
   };
 
   // Nav button
-  self.navChevronDown = ko.observable(false);
-  self.navChevronUp = ko.observable(true);
+  self.navChevronDown = ko.observable(true);
+  self.navChevronUp = ko.observable(false);
 
   self.navClick = function () {
     console.log('navChevronDown =' + self.navChevronDown());
@@ -145,13 +145,27 @@ var ViewModel = function () {
     $("#side").slideToggle("slow");
     self.navChevronDown(!self.navChevronDown());
     self.navChevronUp(!self.navChevronUp());
-    console.log('navChevronDown =' + self.navChevronDown());
-    console.log('navChevronUp =' + self.navChevronUp());
-
-    
-
   };
 
+  self.chevronDirection = ko.computed(function () {
+    var navClass;
+    if (self.navChevronUp() === true) { // make chevron point down
+      self.navChevronUp(false);
+      self.navChevronUp(true);
+      navClass = 'fa-chevron-down';
+      console.log(navClass);
+      return navClass;
+    }
+    else { // make chevron point up
+      self.navChevronUp(true);
+      self.navChevronDown(false);
+      navClass = 'fa-chevron-up';
+      console.log(navClass);
+      return navClass;
+    }
+  });
+  
+  
   // Nav hide for small screens
   self.navHide = function () {
     $("#side").slideUp("slow");
