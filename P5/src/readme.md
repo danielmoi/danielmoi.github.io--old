@@ -21,7 +21,7 @@ This is a single page application that shows a map of cafes in a given neighbour
 1. Download the source files from my repo on GitHub: https://github.com/danielmoi/danielmoi.github.io/tree/master/P5
 2. Open dist/index.html in your browser
 
-(Alternatively, you can try it out online right now! – at: http://danielmoi.github.io/P5/dist)
+(Alternatively, you can try it out online right now! – at: http://danielmoi.github.io/P5/src)
 
 # Helpful Resources
 1. http://knockoutjs.com/documentation/introduction.html
