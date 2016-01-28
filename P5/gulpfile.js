@@ -52,6 +52,7 @@ gulp.task('scripts', function () {
     .pipe(gulp.dest('dist/js/lib'));
   // do the rest
   return gulp.src(['src/js/**/*.js', '!src/js/**/*.min.js', '!src/js/lib']) // need to add "**/" to make this recursive
+    .pipe(gulp.dest('dist/js'))
     .pipe(uglify())
     .pipe(rename({
       suffix: '.min'
@@ -70,6 +71,7 @@ gulp.task('styles', function () {
     .pipe(gulp.dest('dist/css/lib'));
   // do the rest
   return gulp.src(['src/css/**/*.css', '!src/css/**/*.min.css', '!src/css/lib'])
+    .pipe(gulp.dest('dist/css'))
     .pipe(cssnano())
     .pipe(rename({
       suffix: '.min'
