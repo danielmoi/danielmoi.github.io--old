@@ -1,5 +1,5 @@
 // For CLI
-// npm install --save-dev gulp gulp-uglify gulp-rename gulp-cssnano gulp-notify
+// npm install --save-dev gulp gulp-uglify gulp-rename gulp-cssnano del gulp-notify
 
 // Include gulp
 var gulp = require('gulp'),
@@ -12,6 +12,7 @@ var gulp = require('gulp'),
 // Clean up first!
 gulp.task('clean', function () {
   // this uses a Node module directly within gulp (no need for gulp plugin)
+  // but still need to import (as node module)
   return del(['dist']);
 });
 
