@@ -67,7 +67,6 @@ var ViewModel = function () {
 
   // recenter map upon window resize
   window.onresize = function () {
-    console.log("window resized");
     self.myMap.fitBounds(self.bounds);
     self.widthMagic();
   };
@@ -119,12 +118,10 @@ var ViewModel = function () {
       // look for matches of filterValue in cafeArray.name
       var cafeNameLowerCase = self.cafeArray()[i].name.toLowerCase();
       if (cafeNameLowerCase.indexOf(filterValueLowerCase) < 0) {
-        //        console.log("Not found");
         self.cafeArray()[i].marker.setVisible(false);
         self.cafeArray()[i].visible(false);
 
       } else {
-        //        console.log("Found");
         self.cafeArray()[i].marker.setVisible(true);
         self.cafeArray()[i].visible(true);
       }
@@ -173,7 +170,6 @@ var ViewModel = function () {
         self.message("");
         self.messageSimple("");
 
-        console.log(self.cafeArray());
         self.bounds = new google.maps.LatLngBounds();
 
         self.mapOptions.center = returnedData.response.geocode.center;
@@ -186,7 +182,6 @@ var ViewModel = function () {
           self.cafeArray.push(new Cafe(fsdata, i, self));
         }
 
-        console.log(self.cafeArray());
       })
       .fail(function (jqXHR, textStatus, errorThrown) {
         self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
@@ -220,7 +215,6 @@ var Cafe = function (data, index, context) {
     cafe.photoURL = data[index].venue.featuredPhotos.items[0].prefix + 'height200' + data[index].venue.featuredPhotos.items[0].suffix;
   } else {
     context.message("sorry, no featured photos available");
-    console.log("NO PHOTOS!!");
     cafe.photoURL = "#";
   }
 
@@ -263,7 +257,6 @@ var Cafe = function (data, index, context) {
     context.myMap.panTo(cafe.marker.position);
     //    context.myMap.panBy(-50,-200);
     var div = context.myMap.getDiv();
-    console.log(div.offsetHeight);
     context.myMap.panBy(0, -div.offsetHeight / 5);
 
 
