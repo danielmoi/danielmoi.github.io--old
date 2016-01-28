@@ -180,8 +180,9 @@ var ViewModel = function () {
 
         var fsdata = returnedData.response.groups[0].items;
         var i;
+        var len = fsdata.length;
 
-        for (i = 0; i < fsdata.length; i++) {
+        for (i = 0; i < len; i++) {
           self.cafeArray.push(new Cafe(fsdata, i, self));
         }
 
