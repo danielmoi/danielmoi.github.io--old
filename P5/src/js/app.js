@@ -139,7 +139,6 @@ var ViewModel = function () {
   self.isNavClosed = ko.observable(false);
 
   self.navClick = function () {
-    $("#side").slideToggle("slow");
     self.isNavClosed(!self.isNavClosed());
   };
 
@@ -148,7 +147,6 @@ var ViewModel = function () {
   
   // Nav hide for small screens
   self.navHide = function () {
-    $("#side").slideUp("slow");
     self.isNavClosed(true);
   };
   
