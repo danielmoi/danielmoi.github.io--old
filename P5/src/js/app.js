@@ -144,13 +144,13 @@ var ViewModel = function () {
   };
 
 
-  
-  
+
+
   // Nav hide for small screens
   self.navHide = function () {
     self.isNavClosed(true);
   };
-  
+
 
   // Error message
   self.message = ko.observable("no errors to report");
@@ -162,9 +162,10 @@ var ViewModel = function () {
   // The GO button
   self.getStuff = function () {
     $.ajax({
-      url: self.start + self.client_id + self.client_secret + self.location() + self.v + self.m + self.limit + self.section + self.venuePhotos + self.radius,
+      url: self.start + self.client_id + self.client_secret + self.location() + self.v + self.m + self.limit + self.section + self.venuePhotos + self.radius
+    })
 
-      success: function (returnedData) {
+    .done(function (returnedData) {
 
         // reset values
         self.filterValue("");
@@ -185,14 +186,15 @@ var ViewModel = function () {
         }
 
         console.log(self.cafeArray());
-      },
-      error: function (jqXHR, textStatus, errorThrown) {
+      })
+      .fail(function (jqXHR, textStatus, errorThrown) {
+        self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
+
         self.message('system error: "' + textStatus + '–' + errorThrown + '"');
         self.messageSimple('sorry, something went wrong... try a different location!');
         //        $("#error").css("display", "block");
-      }
-    });
-  };
+      }); // end of ajax
+  }; // end of .getStuff
 
   // Populate map with starting city markers
   self.getStuff();
