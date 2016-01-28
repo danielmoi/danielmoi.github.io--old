@@ -1,3 +1,6 @@
+// For CLI
+// npm install --save-dev gulp gulp-uglify gulp-rename gulp-cssnano gulp-notify
+
 // Include gulp
 var gulp = require('gulp'),
   uglify = require('gulp-uglify'),
@@ -11,6 +14,16 @@ gulp.task('clean', function () {
   // this uses a Node module directly within gulp (no need for gulp plugin)
   return del(['dist']);
 });
+
+// Gulp readme
+gulp.task('readme', function () {
+  return gulp.src('src/readme.md')
+    .pipe(gulp.dest('dist'))
+    .pipe(notify({
+      message: 'readme task complete'
+  }));
+});
+
 
 // Gulp html files
 gulp.task('html', function () {
@@ -79,5 +92,5 @@ gulp.task('watch', function () {
 
 // Run gulp
 gulp.task('default', ['clean'], function () {
-  gulp.start('html', 'images', 'scripts', 'styles');
+  gulp.start('readme', 'html', 'images', 'scripts', 'styles');
 });
