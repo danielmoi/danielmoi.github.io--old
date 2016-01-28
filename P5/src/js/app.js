@@ -305,11 +305,26 @@ function initMap() {
   ko.applyBindings(new ViewModel());
 }
 
-function mapError(error, url, line, col, errorObj) {
+var errorModel = function (error) {
+//  var message = ko.observable(error);
+  ko.onError = function(error) {
+    console.log(error);
+  };
+  var message = ko.observable(error);
+  console.log(error);
+};
 
+function mapError(error, url, line, col, errorObj) {
+  ko.applyBindings(errorModel(), document.getElementById('footer'));
+  ko.onError = function(error) {
+    console.log(error);
+  };  
+  var self = this;
+  self.error = error;
+  errorModel(error);
   console.log("Error message: " + error + ', ' + "Script URL: " + url + ', ' + "Line number: " + line + ', ' + "Col number: " + col + ', ' + "Error object: " + errorObj);
   // can't use ViewModel properties because it isn't loaded
-  $("#message").text('system error: "' + error + '"');
-  $('#error').text('sorry, something went wrong with Google Maps... try again soon! (we\'ve sent our code kitten to find out what\'s wrong!)');
-  $("#map").append('<div id="error"><img src="img/cat.jpg"></div>');
+//  $("#message").text('system error: "' + error + '"');
+//  $('#error').text('sorry, something went wrong with Google Maps... try again soon! (we\'ve sent our code kitten to find out what\'s wrong!)');
+//  $("#map").append('<div id="error"><img src="img/cat.jpg"></div>');
 }
