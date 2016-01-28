@@ -32,6 +32,7 @@ var ViewModel = function () {
       position: google.maps.ControlPosition.RIGHT_BOTTOM
     },
     mapTypeId: google.maps.MapTypeId.ROADMAP,
+    streetViewControl: false,
     styles: [
       {
         "featureType": "poi",
