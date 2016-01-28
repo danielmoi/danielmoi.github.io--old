@@ -9,12 +9,7 @@ var model = [{}];
 var ViewModel = function () {
   var self = this;
 
-  // Google Map
-
-  if (typeof google === 'undefined') {
-    mapError();
-  }
-
+  // Google Map elements
   self.markerIconStar = {
     url: "img/coffee_star_32.png"
   };
@@ -149,15 +144,26 @@ var ViewModel = function () {
   };
 
 
-  // Error message
-  self.message = ko.observable("no errors to report");
-  self.messageSimple = ko.observable();
+  // Error messages
+  self.googleError = ko.observable("");
+  self.messageSystem = ko.observable("no errors to report");
+  self.messageUser = ko.observable();
 
 
 
 
   // The GO button
   self.getStuff = function () {
+
+
+    // reset googleError
+    self.googleError("");
+
+    if (typeof google === 'undefined') {
+      self.googleError("sorry, something went wrong with Google Maps... try again soon!");
+      return;
+    }
+
     $.ajax({
       url: self.start + self.client_id + self.client_secret + self.location() + self.v + self.m + self.limit + self.section + self.venuePhotos + self.radius
     })
@@ -167,8 +173,8 @@ var ViewModel = function () {
         // reset values
         self.filterValue("");
         self.cafeArray([]);
-        self.message("");
-        self.messageSimple("");
+        self.messageSystem("");
+        self.messageUser("");
 
         self.bounds = new google.maps.LatLngBounds();
 
@@ -184,10 +190,14 @@ var ViewModel = function () {
 
       })
       .fail(function (jqXHR, textStatus, errorThrown) {
+        if (typeof google === 'undefined') {
+          self.googleError("sorry, something went wrong with Google Maps... try again soon!");
+          return;
+        }
         self.myMap = new google.maps.Map(document.getElementById('map'), self.mapOptions);
 
-        self.message('system error: "' + textStatus + '–' + errorThrown + '"');
-        self.messageSimple('sorry, something went wrong... try a different location!');
+        self.messageSystem('system error: "' + textStatus + '–' + errorThrown + '"');
+        self.messageUser('sorry, something went wrong... try a different location!');
         //        $("#error").css("display", "block");
       }); // end of ajax
   }; // end of .getStuff
@@ -208,13 +218,13 @@ var Cafe = function (data, index, context) {
   cafe.rating = data[index].venue.rating;
   cafe.visible = ko.observable(true);
   cafe.isSelected = ko.observable(false);
-  context.message("no errors to report");
+  context.messageSystem("no errors to report");
 
 
   if (data[index].venue.featuredPhotos) {
     cafe.photoURL = data[index].venue.featuredPhotos.items[0].prefix + 'height200' + data[index].venue.featuredPhotos.items[0].suffix;
   } else {
-    context.message("sorry, no featured photos available");
+    context.messageSystem("sorry, no featured photos available");
     cafe.photoURL = "#";
   }
 
@@ -243,6 +253,7 @@ var Cafe = function (data, index, context) {
 
   // add click listener for marker
   cafe.marker.addListener('click', function () {
+    
 
     // The content for Info Window
     context.myInfo.setContent('<h3>' + cafe.name + '</h3>' +
@@ -302,29 +313,15 @@ var Cafe = function (data, index, context) {
 // this applies the data-bind attributes from the whole View to those described in the constructor function ViewModel, and creates a new variable that is an instance of that constructor object (??)
 
 function initMap() {
+  // check for google object – use this if using `onerror` in google maps call
+  if (typeof google === 'undefined') {
+    console.log("NO GOOGLE!");
+    ko.applyBindings(errorModel, document.getElementById('google-error'));
+    return; // exit function
+  }
   ko.applyBindings(new ViewModel());
 }
 
-var errorModel = function (error) {
-//  var message = ko.observable(error);
-  ko.onError = function(error) {
-    console.log(error);
-  };
-  var message = ko.observable(error);
-  console.log(error);
+var errorModel = {
+  googleError: ko.observable("sorry, something went wrong with Google Maps... try again soon!")
 };
-
-function mapError(error, url, line, col, errorObj) {
-  ko.applyBindings(errorModel(), document.getElementById('footer'));
-  ko.onError = function(error) {
-    console.log(error);
-  };  
-  var self = this;
-  self.error = error;
-  errorModel(error);
-  console.log("Error message: " + error + ', ' + "Script URL: " + url + ', ' + "Line number: " + line + ', ' + "Col number: " + col + ', ' + "Error object: " + errorObj);
-  // can't use ViewModel properties because it isn't loaded
-//  $("#message").text('system error: "' + error + '"');
-//  $('#error').text('sorry, something went wrong with Google Maps... try again soon! (we\'ve sent our code kitten to find out what\'s wrong!)');
-//  $("#map").append('<div id="error"><img src="img/cat.jpg"></div>');
-}

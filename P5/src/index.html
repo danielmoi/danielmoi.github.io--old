@@ -54,9 +54,11 @@
     </div>
 
     <div id="map" class="map"></div>
-    <div id="error" class="error" data-bind="text: messageSimple, visible: messageSimple()"></div>
+    <div id="error" class="error" data-bind="text: messageUser, visible: messageUser()">
+    </div>
+    <div id="google-error" class="google-error" data-bind="text: googleError, visible: googleError()"></div>
 
-    <div id="footer" class="footer">Status: <span id="message" data-bind="text: message"></span></div>
+    <div id="footer" class="footer">Status: <span id="messageSystem" data-bind="text: messageSystem"></span></div>
 
 
 
@@ -71,7 +73,7 @@
   <script src="js/lib/knockout-3.2.0.min.js"></script>
   <!--Make sure app.js is loaded after libraries-->
   <script src="js/app.js"></script>
-  <script async defer src="https://maps.googleapis.com/map/api/js?v=3&callback=initMap" onerror="mapError()"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?v=3&callback=initMap" onerror="initMap()"></script>
 
 
 </body>
