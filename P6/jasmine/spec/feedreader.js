@@ -126,14 +126,15 @@ $(function () {
     
     var feedList = $('.feed-list');
     
-    // Generate random index for allFeeds
-    var myIndex = Math.floor((Math.random() * allFeeds.length) + 1);
+    // Generate random index for allFeeds (greater than 0, the initial load index)
+    var myIndex = Math.floor((Math.random() * (allFeeds.length - 1)) + 1);
     
     // save data before new feed loads
     var contentBefore = $('.feed').html();
 
     beforeEach(function (done) {
       var item = $(this);
+      console.log(myIndex);
 
       loadFeed(myIndex, function () {
         done();
