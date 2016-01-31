@@ -174,6 +174,10 @@ $(function () {
       expect(contentBefore).not.toMatch(contentAfter);
       done();
     });
+    
+    afterEach(function() {
+      loadFeed(0);
+    });
 
 
 
