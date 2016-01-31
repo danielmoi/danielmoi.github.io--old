@@ -74,18 +74,20 @@ $(function () {
      */
     it('should change visibility when the menu icon is clicked', function () {
       $('.menu-icon-link').trigger('click');
-      
+
       // Don't think we can use 'display' because '.slide-menu' is just transformed off the screen; still has display: block
       expect($('body').hasClass('menu-hidden')).toBe(false);
 
 
       $('.menu-icon-link').trigger('click');
       expect($('body').hasClass('menu-hidden')).toBe(true);
-      
+
     });
+  });
 
 
-    /* TODO: Write a new test suite named "Initial Entries" */
+  /* TODO: Write a new test suite named "Initial Entries" */
+  describe('Initial Entries', function () {
 
     /* TODO: Write a test that ensures when the loadFeed
      * function is called and completes its work, there is at least
