@@ -49,6 +49,7 @@ $(function () {
       for (var i = 0; i < allFeeds.length; i++) {
         expect(allFeeds[i].name).toBeDefined();
         expect(allFeeds[i].name).not.toBe("");
+        expect(typeof allFeeds[i].name).toBe('string');
       }
     });
   });
