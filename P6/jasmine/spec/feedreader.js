@@ -52,6 +52,30 @@ $(function () {
         expect(typeof allFeeds[i].name).toBe('string');
       }
     });
+    
+    it('have a color defined, and that the color is valid', function () {
+      var colorRegex = /[0-9a-fA-F]/;
+      
+      for (var i = 0; i < allFeeds.length; i++) {
+        expect(allFeeds[i].color).toBeDefined();
+        expect(allFeeds[i].color).not.toBe("");
+        expect(allFeeds[0].color.charAt(0)).toBe('#');
+        expect(allFeeds[i].color.length).toBe(7 || 4);
+        if (allFeeds[i].color.length === 4) {
+          for (var j = 2; j < 5; j++) {
+            expect(allFeeds[i].color.charAt(j)).toMatch(colorRegex);
+          }
+        }
+        if (allFeeds[i].color.length === 7) {
+          for (var j = 2; j < 5; j++) {
+            expect(allFeeds[i].color.charAt(j)).toMatch(colorRegex);
+          }
+        }
+       
+        
+      }
+    });      
+      
   });
 
   /* TODO: Write a new test suite named "The menu" */
