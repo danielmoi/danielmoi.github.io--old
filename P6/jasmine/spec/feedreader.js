@@ -95,6 +95,23 @@ $(function () {
      * Remember, loadFeed() is asynchronous so this test will require
      * the use of Jasmine's beforeEach and asynchronous done() function.
      */
+    beforeEach(function (done) {
+      // this is only possible because the 'loadFeed' function supports (is written in the function) a callback, which is run upon both success and error
+      loadFeed(0, function () {
+        done();
+
+      });
+    });
+
+    it('when loadFeed function is called and completes it work, there is at least a single .entry element within the .feed container', function (done) {
+      expect($('.feed').children().length > 0).toBe(true);
+      expect(
+$('.feed').children().children().hasClass('entry')).toBe(true);
+      expect($('.feed').find('*').hasClass('entry')).toBe(true);
+
+      done();
+    });
+
 
     /* TODO: Write a new test suite named "New Feed Selection"
 
