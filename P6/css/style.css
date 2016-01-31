@@ -76,6 +76,7 @@ h2 {
     padding: 0.5em 0;
 }
 
+/* This is when '.menu-hidden' is added to the entire 'body' element, but targets only the elements with BOTH '.slide-menu' and '.menu-hidden' */
 .menu-hidden .slide-menu {
     transform: translate3d(-12em, 0, 0);
     transition: transform 0.2s;
