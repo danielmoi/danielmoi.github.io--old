@@ -74,7 +74,10 @@ $(function () {
      */
     it('should change visibility when the menu icon is clicked', function () {
       $('.menu-icon-link').trigger('click');
+      
+      // Don't think we can use 'display' because '.slide-menu' is just transformed off the screen; still has display: block
       expect($('body').hasClass('menu-hidden')).toBe(false);
+
 
       $('.menu-icon-link').trigger('click');
       expect($('body').hasClass('menu-hidden')).toBe(true);
