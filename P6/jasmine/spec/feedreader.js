@@ -95,6 +95,8 @@ $(function () {
      * Remember, loadFeed() is asynchronous so this test will require
      * the use of Jasmine's beforeEach and asynchronous done() function.
      */
+    
+    
     beforeEach(function (done) {
       // this is only possible because the 'loadFeed' function supports (is written in the function) a callback, which is run upon both success and error
       loadFeed(0, function () {
@@ -111,14 +113,43 @@ $(function () {
   });
 
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
+  /* TODO: Write a new test suite named "New Feed Selection" */
   describe('New Feed Selection', function () {
+
+
+
+    /* TODO: Write a test that ensures when a new feed is loaded
+     * by the loadFeed function that the content actually changes.
+     * Remember, loadFeed() is asynchronous.
+     */
+
     
+    var feedList = $('.feed-list');
+    
+    // Generate random index for allFeeds
+    var myIndex = Math.floor((Math.random() * allFeeds.length) + 1);
+    
+    // save data before new feed loads
+    var contentBefore = $('.feed').html();
+
+    beforeEach(function (done) {
+      var item = $(this);
+
+      loadFeed(myIndex, function () {
+        done();
+      });
+    });
 
 
-        /* TODO: Write a test that ensures when a new feed is loaded
-         * by the loadFeed function that the content actually changes.
-         * Remember, loadFeed() is asynchronous.
-         */
+
+    it('when new feed is loaded, that the content actually changes', function (done) {
+      var contentAfter = $('.feed').html();
+      expect(contentAfter).toBeDefined();
+      expect(contentBefore).not.toMatch(contentAfter);
+      done();
+    });
+
+
+
   });
 }());
