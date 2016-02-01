@@ -26,20 +26,16 @@ $(function () {
       expect(allFeeds.length).not.toBe(0);
     });
 
-
     /* A test that loops through each feed
      * in the allFeeds object and ensures it has a URL defined
      * and that the URL is not empty.
      */
-
     it('have a URL defined, and that the URL is not empty', function () {
       for (var i = 0; i < allFeeds.length; i++) {
         expect(allFeeds[i].url).toBeDefined();
         expect(allFeeds[i].url).not.toBe('');
       }
     });
-
-
 
     /* A test that loops through each feed
      * in the allFeeds object and ensures it has a name defined
@@ -52,7 +48,11 @@ $(function () {
         expect(typeof allFeeds[i].name).toBe('string');
       }
     });
-
+    
+    /* A test that loops through each feed
+     * in the allFeeds object and ensures it has a color defined
+     * and that the color is valid.
+     */
     it('have a color defined, and that the color is valid', function () {
       var colorRegex = /[0-9a-fA-F]/;
 
@@ -71,26 +71,20 @@ $(function () {
             expect(allFeeds[i].color.charAt(j)).toMatch(colorRegex);
           }
         }
-
-
       }
     });
-
   });
 
   /* A new test suite named "The menu" */
   describe('The Menu', function () {
-    /* TODO: Write a test that ensures the menu element is
+    /* A test that ensures the menu element is
      * hidden by default. You'll have to analyze the HTML and
      * the CSS to determine how we're performing the
      * hiding/showing of the menu element.
      */
-
     it('is hidden by default', function () {
       expect($('body').hasClass('menu-hidden')).toBe(true);
     });
-
-
 
     /* A test that ensures the menu changes
      * visibility when the menu icon is clicked. This test
@@ -102,14 +96,10 @@ $(function () {
 
       // Don't think we can use 'display' because '.slide-menu' is just transformed off the screen; still has display: block
       expect($('body').hasClass('menu-hidden')).toBe(false);
-
-
       $('.menu-icon-link').trigger('click');
       expect($('body').hasClass('menu-hidden')).toBe(true);
-
     });
   });
-
 
   /* A new test suite named "Initial Entries" */
   describe('Initial Entries', function () {
@@ -120,39 +110,27 @@ $(function () {
      * Remember, loadFeed() is asynchronous so this test will require
      * the use of Jasmine's beforeEach and asynchronous done() function.
      */
-
-
     beforeEach(function (done) {
       // this is only possible because the 'loadFeed' function supports (is written in the function) a callback, which is run upon both success and error
       loadFeed(0, function () {
         done();
-
       });
     });
 
     it('when loadFeed function is called and completes it work, there is at least a single .entry element within the .feed container', function (done) {
       expect($('.feed').find('*').hasClass('entry')).toBe(true);
-
       done();
     });
   });
 
-
   /* A new test suite named "New Feed Selection" */
   describe('New Feed Selection', function () {
-
-
-
-
-
-
 
     // Generate random index for allFeeds (greater than 0, the initial load index)
     var myIndex = Math.floor((Math.random() * (allFeeds.length - 1)) + 1);
     var contentBefore, contentAfter, colorBefore, colorAfter;
-
-
-
+    
+    // Load feed and save data
     beforeEach(function (done) {
 
       // reload default feed
@@ -169,7 +147,6 @@ $(function () {
      * by the loadFeed function that the content actually changes.
      * Remember, loadFeed() is asynchronous.
      */
-
     it('when new feed is loaded, that the content actually changes', function (done) {
       loadFeed(myIndex, function () {
 
@@ -182,9 +159,7 @@ $(function () {
         console.log('loadFeed in `it(content)` completed');
         done();
         console.log('code outside of loadFeed in `it(content)` completed');
-
       });
-
     });
 
     /* A test that ensures when a new feed is loaded
@@ -209,8 +184,6 @@ $(function () {
       loadFeed(0);
       console.log('loadFeed in `afterEach` completed');
     });
-
-
 
   });
 }());
