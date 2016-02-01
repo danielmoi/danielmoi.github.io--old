@@ -35,7 +35,7 @@ $(function () {
     it('have a URL defined, and that the URL is not empty', function () {
       for (var i = 0; i < allFeeds.length; i++) {
         expect(allFeeds[i].url).toBeDefined();
-        expect(allFeeds[i].url).not.toBe("");
+        expect(allFeeds[i].url).not.toBe('');
       }
     });
 
@@ -48,7 +48,7 @@ $(function () {
     it('have a name defined, and that the name is not empty', function () {
       for (var i = 0; i < allFeeds.length; i++) {
         expect(allFeeds[i].name).toBeDefined();
-        expect(allFeeds[i].name).not.toBe("");
+        expect(allFeeds[i].name).not.toBe('');
         expect(typeof allFeeds[i].name).toBe('string');
       }
     });
@@ -58,7 +58,7 @@ $(function () {
 
       for (var i = 0; i < allFeeds.length; i++) {
         expect(allFeeds[i].color).toBeDefined();
-        expect(allFeeds[i].color).not.toBe("");
+        expect(allFeeds[i].color).not.toBe('');
         expect(allFeeds[0].color.charAt(0)).toBe('#');
         expect(allFeeds[i].color.length).toBe(7 || 4);
         if (allFeeds[i].color.length === 4) {
