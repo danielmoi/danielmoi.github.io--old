@@ -155,8 +155,9 @@ $(function () {
         expect(contentBefore).not.toEqual(contentAfter);
         console.log('loadFeed in `it(content)` completed');
         done();
-        console.log('code outside of loadFeed in `it(content)` completed');
       });
+      console.log('code outside of loadFeed in `it(content)` completed');
+
     });
 
     /* A test that ensures when a new feed is loaded
@@ -174,11 +175,11 @@ $(function () {
       });
       console.log('code outside of loadFeed in `it(color)` completed');
     });
-    
+
     // Reset feed to default, after this suite is completed
     afterAll(function () {
       loadFeed(0);
-      console.log('loadFeed in `afterEach` completed');
+      console.log('loadFeed in `afterAll` completed');
     });
 
   });
