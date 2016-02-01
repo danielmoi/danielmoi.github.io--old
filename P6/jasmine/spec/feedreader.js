@@ -48,7 +48,7 @@ $(function () {
         expect(typeof allFeeds[i].name).toBe('string');
       }
     });
-    
+
     /* A test that loops through each feed
      * in the allFeeds object and ensures it has a color defined
      * and that the color is valid.
@@ -126,7 +126,7 @@ $(function () {
     // Generate random index for allFeeds (greater than 0, the initial load index)
     var myIndex = Math.floor((Math.random() * (allFeeds.length - 1)) + 1);
     var contentBefore, contentAfter, colorBefore, colorAfter;
-    
+
     // Load feed and save data
     beforeEach(function (done) {
 
@@ -152,7 +152,7 @@ $(function () {
 
         // these expect calls need to be inside the async `loadFeed` call so they are called only after it finishes
         expect(contentAfter).toBeDefined();
-        expect(contentBefore).not.toMatch(contentAfter);
+        expect(contentBefore).not.toEqual(contentAfter);
         console.log('loadFeed in `it(content)` completed');
         done();
         console.log('code outside of loadFeed in `it(content)` completed');
@@ -163,20 +163,19 @@ $(function () {
      * by the loadFeed function that the header color changes.
      * Remember, loadFeed() is asynchronous.
      */
-    it('when new feed is loaded, that the header color changes',
-      function (done) {
-        loadFeed(myIndex, function () {
-
-          // save data after loadFeed (4th time)
-          colorAfter = $('.header').css('background-color');
-          expect(colorAfter).toBeDefined();
-          expect(colorBefore).not.toEqual(colorAfter);
-          console.log('loadFeed in `it(color)` completed');
-          done();
-        });
-        console.log('code outside of loadFeed in `it(color)` completed');
+    it('when new feed is loaded, that the header color changes', function (done) {
+      loadFeed(myIndex, function () {
+        // save data after loadFeed (4th time)
+        colorAfter = $('.header').css('background-color');
+        expect(colorAfter).toBeDefined();
+        expect(colorBefore).not.toEqual(colorAfter);
+        console.log('loadFeed in `it(color)` completed');
+        done();
       });
-
+      console.log('code outside of loadFeed in `it(color)` completed');
+    });
+    
+    // Reset feed to default, after this suite is completed
     afterAll(function () {
       loadFeed(0);
       console.log('loadFeed in `afterEach` completed');
