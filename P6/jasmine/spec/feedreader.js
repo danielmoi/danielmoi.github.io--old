@@ -116,7 +116,7 @@ $(function () {
     });
 
     it('when loadFeed function is called and completes it work, there is at least a single .entry element within the .feed container', function () {
-      expect($('.feed').find('*').hasClass('entry')).toBe(true);
+      expect($('.feed .entry').length).toBeGreaterThan(0);
     });
   });
 
