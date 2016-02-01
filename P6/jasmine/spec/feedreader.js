@@ -156,10 +156,10 @@ $(function () {
     
     // save data before new feed loads
     var contentBefore = $('.feed').html();
+    var colorBefore = $('.header').css('background-color');
 
     beforeEach(function (done) {
       var item = $(this);
-      console.log(myIndex);
 
       loadFeed(myIndex, function () {
         done();
@@ -173,6 +173,13 @@ $(function () {
       expect(contentAfter).toBeDefined();
       expect(contentBefore).not.toMatch(contentAfter);
       done();
+    });
+    
+    it('when new feed is loaded, that the header color changes',
+       function() {
+      var colorAfter = $('.header').css('background-color');
+      expect(colorAfter).toBeDefined();
+      expect(colorBefore).not.toEqual(colorAfter);
     });
     
     afterEach(function() {
