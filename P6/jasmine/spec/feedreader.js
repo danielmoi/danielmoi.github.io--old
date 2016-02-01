@@ -52,10 +52,10 @@ $(function () {
         expect(typeof allFeeds[i].name).toBe('string');
       }
     });
-    
+
     it('have a color defined, and that the color is valid', function () {
       var colorRegex = /[0-9a-fA-F]/;
-      
+
       for (var i = 0; i < allFeeds.length; i++) {
         expect(allFeeds[i].color).toBeDefined();
         expect(allFeeds[i].color).not.toBe("");
@@ -71,11 +71,11 @@ $(function () {
             expect(allFeeds[i].color.charAt(j)).toMatch(colorRegex);
           }
         }
-       
-        
+
+
       }
-    });      
-      
+    });
+
   });
 
   /* TODO: Write a new test suite named "The menu" */
@@ -120,8 +120,8 @@ $(function () {
      * Remember, loadFeed() is asynchronous so this test will require
      * the use of Jasmine's beforeEach and asynchronous done() function.
      */
-    
-    
+
+
     beforeEach(function (done) {
       // this is only possible because the 'loadFeed' function supports (is written in the function) a callback, which is run upon both success and error
       loadFeed(0, function () {
@@ -148,20 +148,22 @@ $(function () {
      * Remember, loadFeed() is asynchronous.
      */
 
-    
-    var feedList = $('.feed-list');
-    
+
+
     // Generate random index for allFeeds (greater than 0, the initial load index)
     var myIndex = Math.floor((Math.random() * (allFeeds.length - 1)) + 1);
-    
-    // save data before new feed loads
-    var contentBefore = $('.feed').html();
-    var colorBefore = $('.header').css('background-color');
+    var contentBefore, contentAfter, colorBefore, colorAfter;
+
+
 
     beforeEach(function (done) {
-      var item = $(this);
 
-      loadFeed(myIndex, function () {
+      // reload default feed
+      loadFeed(0, function () {
+        // save data, after loadFeed completes, and before new feed loads
+        contentBefore = $('.feed').html();
+        colorBefore = $('.header').css('background-color');
+        console.log('loadFeed in `beforeEach` completed');
         done();
       });
     });
@@ -169,21 +171,39 @@ $(function () {
 
 
     it('when new feed is loaded, that the content actually changes', function (done) {
-      var contentAfter = $('.feed').html();
-      expect(contentAfter).toBeDefined();
-      expect(contentBefore).not.toMatch(contentAfter);
-      done();
+      loadFeed(myIndex, function () {
+
+        // save data after loadFeed (2nd time) completes
+        contentAfter = $('.feed').html();
+
+        // these expect calls need to be inside the async `loadFeed` call so they are called only after it finishes
+        expect(contentAfter).toBeDefined();
+        expect(contentBefore).not.toMatch(contentAfter);
+        console.log('loadFeed in `it(content)` completed');
+        done();
+      console.log('code outside of loadFeed in `it(content)` completed');
+        
+      });
+
     });
-    
+
     it('when new feed is loaded, that the header color changes',
-       function() {
-      var colorAfter = $('.header').css('background-color');
-      expect(colorAfter).toBeDefined();
-      expect(colorBefore).not.toEqual(colorAfter);
-    });
-    
-    afterEach(function() {
+      function (done) {
+        loadFeed(myIndex, function () {
+
+          // save data after loadFeed (4th time)
+          colorAfter = $('.header').css('background-color');
+          expect(colorAfter).toBeDefined();
+          expect(colorBefore).not.toEqual(colorAfter);
+          console.log('loadFeed in `it(color)` completed');
+          done();
+        });
+      console.log('code outside of loadFeed in `it(color)` completed');
+      });
+
+    afterEach(function () {
       loadFeed(0);
+      console.log('loadFeed in `afterEach` completed');
     });
 
 
